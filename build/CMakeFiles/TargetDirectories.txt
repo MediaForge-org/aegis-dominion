@@ -1,0 +1,8 @@
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_core.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_ui.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_core_tests.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_text_tests.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/test.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/edit_cache.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/rebuild_cache.dir

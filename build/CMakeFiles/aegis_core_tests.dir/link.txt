@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/aegis_core_tests.dir/link.d CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o -o aegis_core_tests  libaegis_core.a

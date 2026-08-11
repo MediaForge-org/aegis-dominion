@@ -1,0 +1,86 @@
+[
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapEditorModel.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapEditorModel.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/ui/TextService.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/ui/TextService.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/main.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/main.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/main.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/main.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Game.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Game.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Game.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Game.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Assets.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Assets.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Map.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Map.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Map.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Map.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Enemy.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Enemy.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Tower.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Tower.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Projectile.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Projectile.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Effects.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Effects.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/WaveManager.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/WaveManager.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/tests/map_document_tests.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/tests/map_document_tests.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o"
+},
+{
+  "directory": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build",
+  "command": "/usr/bin/g++ -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/tests/text_service_tests.cpp",
+  "file": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/tests/text_service_tests.cpp",
+  "output": "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o"
+}
+]

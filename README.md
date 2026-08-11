@@ -15,13 +15,13 @@
 - stack-based screen architecture with separate menu, gameplay and editor screens
 - functional MAP FORGE vertical slice with camera/grid, map tools, history, validation, persistence and direct playtest
 
-See `docs/ARCHITECTURE_V3.md`, `docs/MAP_FORGE.md` and `docs/CODEX_START.md`.
+See `docs/ARCHITECTURE_V3.md`, `docs/MAP_FORGE.md`, `docs/BUILDING.md` and `docs/CODEX_START.md`.
 
 ---
 
 # AEGIS DOMINION
 
-Ein vollständigerer 2D-Tower-Defense-Prototyp in **C++17 + SFML**. Die Deluxe-Fassung benutzt echte PNG-Grafiken, mehrere Karten, Soundeffekte, ein Hauptmenü, Kartenwahl, eine sechsteilige In-Game-Anleitung und ein OOP-System für Türme und Gegner.
+Ein vollständigerer 2D-Tower-Defense-Prototyp in **C++23 + SFML**. Die Deluxe-Fassung benutzt echte PNG-Grafiken, mehrere Karten, Soundeffekte, ein Hauptmenü, Kartenwahl, eine sechsteilige In-Game-Anleitung und ein OOP-System für Türme und Gegner.
 
 ## Schnellstart auf Fedora
 
@@ -42,6 +42,8 @@ cd build
 ```
 
 > Wichtig: Starte über `./run.sh` oder aus dem `build`-Ordner. CMake kopiert beim Build den kompletten `assets`-Ordner neben die ausführbare Datei.
+
+Der Projektstandard wird zentral durch `AEGIS_CXX_STANDARD` gesetzt und ist standardmäßig C++23. Toolchain-, Debug-, Release- und Testbefehle stehen in `docs/BUILDING.md`.
 
 ## Was diese Version enthält
 

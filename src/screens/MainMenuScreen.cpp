@@ -115,7 +115,7 @@ void MainMenuScreen::drawMenu() {
     ui_.button(ForgeButton, "MAP FORGE", ui::Orange, false, 22);
     ui_.button(TutorialButton, "ANLEITUNG", ui::Green, false, 21);
     ui_.button(ExitButton, "BEENDEN", ui::Red, false, 20);
-    ui_.text("C++17  •  SFML  •  MAP FORGE", 16, {800.f, 780.f}, ui::Muted, false, true);
+    ui_.text("C++23  •  SFML  •  MAP FORGE", 16, {800.f, 780.f}, ui::Muted, false, true);
 }
 
 void MainMenuScreen::drawMapSelect() {
@@ -136,7 +136,7 @@ void MainMenuScreen::drawMapSelect() {
         ui_.wrapped(map_.data().description, 16, {rect.left + 22.f, rect.top + 394.f, 392.f, 72.f}, ui::Muted, 4.f);
     }
     map_.set(0);
-    ui_.button(BackButton, "← ZURÜCK", ui::Cyan);
+    ui_.iconButton(BackButton, "ZURÜCK", ui::UiIcon::ArrowLeft, ui::IconPlacement::Left, ui::Cyan);
 }
 
 void MainMenuScreen::drawTutorial() {
@@ -147,9 +147,11 @@ void MainMenuScreen::drawTutorial() {
     ui_.text(TutorialTitles[static_cast<std::size_t>(tutorialPage_)], 34, {800.f, 160.f}, ui::Cyan, true, true);
     ui_.wrapped(TutorialBodies[static_cast<std::size_t>(tutorialPage_)], 22, {430.f, 240.f, 740.f, 330.f}, ui::Text, 10.f);
     ui_.text(std::to_string(tutorialPage_ + 1) + " / 6", 16, {800.f, 720.f}, ui::Muted, false, true);
-    ui_.button({500.f, 800.f, 180.f, 52.f}, "← ZURÜCK", ui::Cyan, tutorialPage_ == 0, 17);
+    ui_.iconButton({500.f, 800.f, 180.f, 52.f}, "ZURÜCK", ui::UiIcon::ArrowLeft,
+                   ui::IconPlacement::Left, ui::Cyan, tutorialPage_ == 0, 17);
     ui_.button({700.f, 800.f, 200.f, 52.f}, "HAUPTMENÜ", ui::Muted, false, 17);
-    ui_.button({920.f, 800.f, 180.f, 52.f}, "WEITER →", ui::Green, tutorialPage_ == 5, 17);
+    ui_.iconButton({920.f, 800.f, 180.f, 52.f}, "WEITER", ui::UiIcon::ArrowRight,
+                   ui::IconPlacement::Right, ui::Green, tutorialPage_ == 5, 17);
 }
 
 } // namespace aegis::screens

@@ -19,6 +19,13 @@
 - Unsaved in-memory editor → gameplay → exact editor-state playtest round trip.
 - Expanded document/editor/playtest/UTF-8 regression suite.
 
+## Completed toolchain migration
+
+- C++23 is the central project standard for all libraries, executables and tests.
+- Shared `aegis_project_options` owns compile features and warning flags.
+- GNU language extensions are disabled and unsupported requested standards fail configuration.
+- A later C++26 toolchain experiment requires only `-DAEGIS_CXX_STANDARD=26`; C++26 is not yet an official project requirement.
+
 ## Recommended next bounded phase
 
 Build the reusable UI/input and typed asset-definition foundation before expanding content: extract map selection/tutorial into dedicated screens, introduce reusable forms/widgets and input actions, and establish typed asset IDs/fallbacks/logging. This reduces risk for later settings, codex, arsenal and professional presentation work.

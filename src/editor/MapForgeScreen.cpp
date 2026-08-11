@@ -489,16 +489,19 @@ void MapForgeScreen::setStatus(std::string value) { statusMessage_ = std::move(v
 
 void MapForgeScreen::drawToolbar() {
     ui_.panel(Toolbar, sf::Color(10, 19, 29, 252), sf::Color(48, 78, 98));
-    ui_.button({8.f, 10.f, 104.f, 44.f}, "← MENÜ", ui::Cyan, false, 14);
+    ui_.iconButton({8.f, 10.f, 104.f, 44.f}, "MENÜ", ui::UiIcon::ArrowLeft,
+                   ui::IconPlacement::Left, ui::Cyan, false, 14);
     ui_.button({120.f, 10.f, 68.f, 44.f}, "NEU", ui::Green, false, 13);
     ui_.button({194.f, 10.f, 78.f, 44.f}, "ÖFFNEN", ui::Cyan, false, 13);
     ui_.button({278.f, 10.f, 86.f, 44.f}, "SPEICHERN", ui::Gold, false, 12);
     ui_.button({370.f, 10.f, 108.f, 44.f}, "SPEICHERN UNTER", ui::Gold, false, 10);
-    ui_.button({486.f, 10.f, 54.f, 44.f}, "↶", ui::Cyan, model_.canUndo(), 22);
-    ui_.button({546.f, 10.f, 54.f, 44.f}, "↷", ui::Cyan, model_.canRedo(), 22);
+    ui_.iconButton({486.f, 10.f, 54.f, 44.f}, "", ui::UiIcon::Undo,
+                   ui::IconPlacement::Center, ui::Cyan, model_.canUndo());
+    ui_.iconButton({546.f, 10.f, 54.f, 44.f}, "", ui::UiIcon::Redo,
+                   ui::IconPlacement::Center, ui::Cyan, model_.canRedo());
     ui_.button({608.f, 10.f, 70.f, 44.f}, "GRID", ui::Cyan, gridVisible_, 12);
     ui_.button({684.f, 10.f, 70.f, 44.f}, "SNAP", ui::Green, snapEnabled_, 12);
-    ui_.button({760.f, 10.f, 44.f, 44.f}, "G−", ui::Muted, false, 12);
+    ui_.button({760.f, 10.f, 44.f, 44.f}, "G-", ui::Muted, false, 12);
     ui_.button({810.f, 10.f, 44.f, 44.f}, "G+", ui::Muted, false, 12);
     ui_.button({862.f, 10.f, 72.f, 44.f}, "FIT", ui::Purple, false, 12);
     ui_.button({944.f, 10.f, 148.f, 44.f}, "KARTE TESTEN", ui::Orange, false, 13);
@@ -634,9 +637,9 @@ void MapForgeScreen::drawInspector() {
         ui_.panel({1240.f, 371.f, 340.f, 38.f}, sf::Color(18, 30, 43), textField_ == TextField::Biome ? ui::Cyan : sf::Color(55, 84, 102));
         ui_.text(textField_ == TextField::Biome ? textBuffer_ : document.metadata.biome, 14, {1250.f, 381.f}, ui::Text);
         ui_.text("Breite  " + std::to_string(static_cast<int>(document.width)), 13, {1240.f, 439.f}, ui::Text, true);
-        ui_.button({1450.f, 430.f, 54.f, 34.f}, "−", ui::Muted, false, 18); ui_.button({1510.f, 430.f, 54.f, 34.f}, "+", ui::Green, false, 18);
+        ui_.button({1450.f, 430.f, 54.f, 34.f}, "-", ui::Muted, false, 18); ui_.button({1510.f, 430.f, 54.f, 34.f}, "+", ui::Green, false, 18);
         ui_.text("Höhe    " + std::to_string(static_cast<int>(document.height)), 13, {1240.f, 481.f}, ui::Text, true);
-        ui_.button({1450.f, 472.f, 54.f, 34.f}, "−", ui::Muted, false, 18); ui_.button({1510.f, 472.f, 54.f, 34.f}, "+", ui::Green, false, 18);
+        ui_.button({1450.f, 472.f, 54.f, 34.f}, "-", ui::Muted, false, 18); ui_.button({1510.f, 472.f, 54.f, 34.f}, "+", ui::Green, false, 18);
     } else if (selection_.type == SelectionType::Path || selection_.type == SelectionType::PathPoint) {
         ui_.text("Pfad-ID", 12, {1240.f, 130.f}, ui::Muted, true); ui_.text(selection_.id, 18, {1240.f, 154.f}, ui::Cyan, true);
         const auto path = std::find_if(document.paths.begin(), document.paths.end(), [&](const core::Path& value) { return value.id == selection_.id; });
@@ -665,9 +668,9 @@ void MapForgeScreen::drawInspector() {
         ui_.text("Typ  " + std::string(core::toString(zone.type)), 14, {1240.f, 176.f}, ui::Text);
         ui_.text("Position  " + std::to_string(static_cast<int>(zone.rect.x)) + " / " + std::to_string(static_cast<int>(zone.rect.y)), 14, {1240.f, 218.f}, ui::Text);
         ui_.text("Breite  " + std::to_string(static_cast<int>(zone.rect.w)), 14, {1240.f, 270.f}, ui::Text);
-        ui_.button({1450.f, 340.f, 54.f, 32.f}, "W−", ui::Muted, false, 12); ui_.button({1510.f, 340.f, 54.f, 32.f}, "W+", ui::Green, false, 12);
+        ui_.button({1450.f, 340.f, 54.f, 32.f}, "W-", ui::Muted, false, 12); ui_.button({1510.f, 340.f, 54.f, 32.f}, "W+", ui::Green, false, 12);
         ui_.text("Höhe    " + std::to_string(static_cast<int>(zone.rect.h)), 14, {1240.f, 318.f}, ui::Text);
-        ui_.button({1450.f, 388.f, 54.f, 32.f}, "H−", ui::Muted, false, 12); ui_.button({1510.f, 388.f, 54.f, 32.f}, "H+", ui::Green, false, 12);
+        ui_.button({1450.f, 388.f, 54.f, 32.f}, "H-", ui::Muted, false, 12); ui_.button({1510.f, 388.f, 54.f, 32.f}, "H+", ui::Green, false, 12);
         ui_.button({1240.f, 455.f, 340.f, 38.f}, "ZONENTYP WECHSELN", zoneColor(zone.type), false, 12);
     }
     drawValidation();
@@ -685,7 +688,10 @@ void MapForgeScreen::drawValidation() {
     for (std::size_t i = 0; i < std::min<std::size_t>(issues.size(), 7); ++i) {
         const auto& issue = issues[i];
         const auto color = issue.severity == core::ValidationSeverity::Error ? ui::Red : ui::Gold;
-        ui_.text(issue.severity == core::ValidationSeverity::Error ? "×" : "!", 14, {1242.f, 650.f + static_cast<float>(i) * 27.f}, color, true);
+        if (issue.severity == core::ValidationSeverity::Error)
+            ui_.icon(ui::UiIcon::Close, {1249.f, 660.f + static_cast<float>(i) * 27.f}, 10.f, color);
+        else
+            ui_.text("!", 14, {1242.f, 650.f + static_cast<float>(i) * 27.f}, color, true);
         std::string message = issue.message;
         if (message.size() > 42) message = message.substr(0, 39) + "…";
         ui_.text(message, 11, {1262.f, 652.f + static_cast<float>(i) * 27.f}, ui::Text);
@@ -701,7 +707,9 @@ void MapForgeScreen::drawStatusBar() {
     ui_.text("ZOOM  " + std::to_string(static_cast<int>(camera_.zoomPercent())) + "%", 12, {390.f, 868.f}, ui::Text);
     ui_.text("GRID  " + std::to_string(static_cast<int>(gridSize_)) + (gridVisible_ ? " ON" : " OFF"), 12, {505.f, 868.f}, gridVisible_ ? ui::Cyan : ui::Muted);
     ui_.text(std::string("SNAP  ") + (snapEnabled_ ? "ON" : "OFF"), 12, {640.f, 868.f}, snapEnabled_ ? ui::Green : ui::Muted);
-    ui_.text(model_.dirty() ? "● GEÄNDERT" : "✓ GESPEICHERT", 12, {755.f, 868.f}, model_.dirty() ? ui::Gold : ui::Green, true);
+    const auto stateColor = model_.dirty() ? ui::Gold : ui::Green;
+    ui_.icon(model_.dirty() ? ui::UiIcon::Modified : ui::UiIcon::Check, {762.f, 875.f}, 11.f, stateColor);
+    ui_.text(model_.dirty() ? "GEÄNDERT" : "GESPEICHERT", 12, {775.f, 868.f}, stateColor, true);
     ui_.text(statusTimer_ > 0.f ? statusMessage_ : (model_.currentFile().empty() ? "Ungespeicherte Karte" : model_.currentFile()), 12, {920.f, 868.f}, ui::Muted);
 }
 

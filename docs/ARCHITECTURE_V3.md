@@ -51,6 +51,12 @@ The same scale pair is applied to path nodes, spawn, goal and every zone rectang
 
 Built-in games retain their authored background PNG. MAP FORGE playtests have no built-in visual index: `GameScreen` renders their terrain surface, route, spawn, goal and build/blocked/water overlays from projected session data. Thus simulation and visible geometry share one `GameMap` instance.
 
+## Toolchain boundary
+
+AEGIS DOMINION uses C++23 for every project library, executable and test. `AEGIS_CXX_STANDARD` is the single selector, and the `aegis_project_options` INTERFACE target propagates `cxx_std_23` plus the common warning policy. GNU language extensions are disabled globally. CMake rejects values other than 23/26 and rejects a requested standard that the selected compiler does not advertise.
+
+C++26 is not the current project standard. The build structure merely reserves `-DAEGIS_CXX_STANDARD=26` as a future toolchain experiment without requiring runtime-source or per-target CMake edits. See `BUILDING.md`.
+
 ## Text boundary
 
 Repository/map strings are UTF-8 `std::string`. `ui::TextService` converts them using `sf::String::fromUtf8`. MAP FORGE text entry encodes SFML Unicode events back to UTF-8, including German umlauts and ß.

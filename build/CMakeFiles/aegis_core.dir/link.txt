@@ -1,2 +1,0 @@
-/usr/bin/ar qc libaegis_core.a CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o
-/usr/bin/ranlib libaegis_core.a

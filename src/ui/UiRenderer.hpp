@@ -19,6 +19,24 @@ inline const sf::Color Gold(255, 197, 76);
 inline const sf::Color Purple(203, 139, 255);
 inline const sf::Color Orange(255, 140, 78);
 
+enum class UiIcon {
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
+    ArrowDown,
+    Undo,
+    Redo,
+    Check,
+    Close,
+    Modified,
+    Play,
+    Pause,
+    Settings,
+    Delete
+};
+
+enum class IconPlacement { Left, Right, Center };
+
 class UiRenderer {
 public:
     UiRenderer(sf::RenderWindow& window, Assets& assets) : window_(window), assets_(assets) {}
@@ -30,8 +48,13 @@ public:
                  float lineGap = 5.f, bool bold = false);
     bool button(const sf::FloatRect& rect, const std::string& label, sf::Color accent,
                 bool active = false, unsigned size = 18);
+    bool iconButton(const sf::FloatRect& rect, const std::string& label, UiIcon icon,
+                    IconPlacement placement, sf::Color accent, bool active = false, unsigned size = 18);
+    void icon(UiIcon icon, sf::Vector2f center, float size, sf::Color color = Text);
 
 private:
+    bool buttonSurface(const sf::FloatRect& rect, sf::Color accent, bool active);
+
     sf::RenderWindow& window_;
     Assets& assets_;
 };

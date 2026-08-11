@@ -17,7 +17,7 @@ Complete the first bounded foundation phase: adopt the AEGIS DOMINION product na
 - `.aegismap` remains `AEGIS_MAP_V1`; no compatibility-breaking semantic change is made.
 - Existing maps, towers, enemies, waves, tutorial and gameplay stay available.
 - All `std::string` text passed to SFML is converted explicitly from UTF-8.
-- The configured C++17 warning set remains clean.
+- The warning configuration used by that phase remains clean.
 - No Map Forge UI, asset-pipeline rewrite, or combat redesign is claimed in this phase.
 
 ## Implementation steps

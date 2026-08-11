@@ -29,7 +29,7 @@ Build a polished, highly replayable C++ tower-defense game. The current SFML ver
 The integrated editor must eventually support terrain/biomes, paths, multiple spawns/goals, build and blocked zones, water, decorations, height information, wave sets, environment settings, validation, undo/redo, save/load and instant play-test.
 
 ## Build and verification
-- C++17 minimum.
+- C++23 is the required project standard; configure it centrally through `AEGIS_CXX_STANDARD`.
 - Keep `-Wall -Wextra -Wpedantic` clean.
 - Run core tests after changes to map/editor serialization.
 - Never silently change `.aegismap` semantics; bump the map format version when compatibility breaks.

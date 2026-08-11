@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

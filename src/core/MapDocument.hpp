@@ -21,6 +21,17 @@ struct Rect {
 
 enum class ZoneType { Buildable, Blocked, Water, DecorationOnly };
 
+enum class ValidationSeverity { Error, Warning };
+enum class MapObjectType { Map, Path, PathPoint, Spawn, Goal, Zone, Decoration };
+
+struct ValidationIssue {
+    ValidationSeverity severity = ValidationSeverity::Error;
+    MapObjectType objectType = MapObjectType::Map;
+    std::string objectId;
+    std::size_t index = 0;
+    std::string message;
+};
+
 struct Zone {
     ZoneType type = ZoneType::Buildable;
     Rect rect;
@@ -83,6 +94,7 @@ struct MapDocument {
 
     bool save(const std::string& file, std::string* error = nullptr) const;
     static std::optional<MapDocument> load(const std::string& file, std::string* error = nullptr);
+    std::vector<ValidationIssue> validateDetailed() const;
     std::vector<std::string> validate() const;
 };
 

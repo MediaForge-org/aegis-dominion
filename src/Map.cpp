@@ -1,4 +1,5 @@
 #include "Map.hpp"
+#include "core/PlayableMap.hpp"
 #include <array>
 #include <iostream>
 
@@ -21,21 +22,43 @@ void GameMap::rebuildLengths(){
     if(totalLength_<0.001f) totalLength_=1.f;
 }
 
-void GameMap::applyDocument(const aegis::core::MapDocument& doc, int visualIndex){
-    index_=std::max(0,std::min(2,visualIndex));
-    document_=doc;
-    data_.id=doc.metadata.id;
-    data_.name=doc.metadata.name;
-    data_.subtitle=doc.metadata.subtitle;
-    data_.description=doc.metadata.description;
-    data_.biome=doc.metadata.biome;
-    data_.accent=accentForBiome(doc.metadata.biome);
-    data_.path.clear();
-    if(!doc.paths.empty()){
-        data_.path.reserve(doc.paths.front().nodes.size());
-        for(const auto& p:doc.paths.front().nodes) data_.path.emplace_back(p.x,p.y);
-    }
+void GameMap::applyPlayableMap(const aegis::core::PlayableMap& map,int visualIndex,bool authoredBackground){
+    index_=authoredBackground?std::max(0,std::min(2,visualIndex)):-1;
+    data_={};
+    data_.id=map.id;
+    data_.name=map.name;
+    data_.subtitle=map.subtitle;
+    data_.description=map.description;
+    data_.biome=map.biome;
+    data_.accent=accentForBiome(map.biome);
+    data_.sourceWidth=map.width;
+    data_.sourceHeight=map.height;
+    data_.authoredBackground=authoredBackground;
+    const float scaleX=WORLD_W/map.width;
+    const float scaleY=WORLD_H/map.height;
+    auto project=[&](aegis::core::Vec2 point){return sf::Vector2f(point.x*scaleX,point.y*scaleY);};
+    data_.path.reserve(map.route.size());
+    for(const auto& point:map.route)data_.path.push_back(project(point));
+    data_.spawn=project(map.spawn);
+    data_.goal=project(map.goal);
+    data_.zones.reserve(map.zones.size());
+    for(const auto& zone:map.zones)data_.zones.push_back({zone.type,{zone.rect.x*scaleX,zone.rect.y*scaleY,zone.rect.w*scaleX,zone.rect.h*scaleY}});
     rebuildLengths();
+}
+
+void GameMap::applyDocument(const aegis::core::MapDocument& document,int visualIndex){
+    std::string error;
+    const auto playable=aegis::core::buildPlayableMap(document,&error);
+    if(!playable){
+        std::cerr << "Map konnte nicht in Gameplay-Daten konvertiert werden:\n" << error << "\n";
+        loadLegacyFallback(visualIndex);
+        return;
+    }
+    applyPlayableMap(*playable,visualIndex,true);
+}
+
+void GameMap::loadFromPlayableMap(const aegis::core::PlayableMap& map){
+    applyPlayableMap(map,-1,false);
 }
 
 bool GameMap::loadFromFile(const std::string& file, int visualIndex){
@@ -57,18 +80,19 @@ void GameMap::set(int index){
 }
 
 void GameMap::loadLegacyFallback(int index){
-    document_.reset();
     index_=std::max(0,std::min(2,index));
+    data_={};
     if(index_==0){
-        data_={"verdant_frontier","Grüne Grenze","Ausgewogen","Weite Bauflächen und ein gut lesbarer Pfad. Ideal zum Lernen.","verdant",sf::Color(92,196,139),
-            {{0,145},{180,145},{180,330},{500,330},{500,160},{780,160},{780,560},{1060,560},{1060,760},{1200,760}}};
+        data_.id="verdant_frontier";data_.name="Grüne Grenze";data_.subtitle="Ausgewogen";data_.description="Weite Bauflächen und ein gut lesbarer Pfad. Ideal zum Lernen.";data_.biome="verdant";data_.accent=sf::Color(92,196,139);
+        data_.path={{0,145},{180,145},{180,330},{500,330},{500,160},{780,160},{780,560},{1060,560},{1060,760},{1200,760}};
     } else if(index_==1){
-        data_={"frost_pass","Frostpass","Taktisch","Lange Geraden wechseln mit engen Kurven. Reichweite ist hier besonders wertvoll.","frost",sf::Color(110,221,255),
-            {{0,690},{210,690},{210,480},{420,480},{420,720},{690,720},{690,400},{920,400},{920,190},{1200,190}}};
+        data_.id="frost_pass";data_.name="Frostpass";data_.subtitle="Taktisch";data_.description="Lange Geraden wechseln mit engen Kurven. Reichweite ist hier besonders wertvoll.";data_.biome="frost";data_.accent=sf::Color(110,221,255);
+        data_.path={{0,690},{210,690},{210,480},{420,480},{420,720},{690,720},{690,400},{920,400},{920,190},{1200,190}};
     } else {
-        data_={"ember_field","Aschefeld","Schwer","Wenig sichere Fläche und ein aggressiver Zickzackkurs. Für gute Kombinationen.","ember",sf::Color(255,130,70),
-            {{0,240},{230,240},{230,600},{430,600},{430,400},{690,400},{690,190},{900,190},{900,690},{1200,690}}};
+        data_.id="ember_field";data_.name="Aschefeld";data_.subtitle="Schwer";data_.description="Wenig sichere Fläche und ein aggressiver Zickzackkurs. Für gute Kombinationen.";data_.biome="ember";data_.accent=sf::Color(255,130,70);
+        data_.path={{0,240},{230,240},{230,600},{430,600},{430,400},{690,400},{690,190},{900,190},{900,690},{1200,690}};
     }
+    data_.spawn=data_.path.front();data_.goal=data_.path.back();data_.authoredBackground=true;
     rebuildLengths();
 }
 
@@ -82,6 +106,15 @@ bool GameMap::canBuild(sf::Vector2f p,const std::vector<sf::Vector2f>& towers,fl
     for(std::size_t i=0;i+1<data_.path.size();++i) if(distanceToSegment(p,data_.path[i],data_.path[i+1]) < 58.f+radius*.42f) return false;
     for(auto t:towers) if(distance(p,t)<radius*1.75f) return false;
     if(!data_.path.empty() && (distance(p,data_.path.front())<105.f || distance(p,data_.path.back())<105.f)) return false;
+    const bool hasBuildZone=std::any_of(data_.zones.begin(),data_.zones.end(),[](const GameMapZone& zone){return zone.type==aegis::core::ZoneType::Buildable;});
+    if(!data_.authoredBackground && hasBuildZone){
+        const bool insideBuildZone=std::any_of(data_.zones.begin(),data_.zones.end(),[&](const GameMapZone& zone){return zone.type==aegis::core::ZoneType::Buildable && zone.rect.contains(p);});
+        if(!insideBuildZone)return false;
+    }
+    for(const auto& zone:data_.zones){
+            if(zone.type!=aegis::core::ZoneType::Blocked && zone.type!=aegis::core::ZoneType::Water) continue;
+            if(zone.rect.contains(p)) return false;
+    }
     return true;
 }
 

@@ -2,7 +2,9 @@
 
 ## Status
 
-The current extension remains `.aegismap` and the only supported header is `AEGIS_MAP_V1`. Files are UTF-8 text. Unknown versions, unknown record types, malformed rows and structurally invalid documents fail with an explanatory error.
+The extension is `.aegismap`; the supported header remains `AEGIS_MAP_V1`. Phase 2 does not change V1 persistence semantics. Files are UTF-8 text. Unknown versions, unknown record types and malformed rows fail with an explanatory parser error.
+
+Semantic validation is intentionally separate from parsing. This lets MAP FORGE reopen and repair an incomplete draft (for example, one without a goal). A parsed document must pass fatal validation before gameplay conversion.
 
 ## V1 records
 
@@ -19,15 +21,32 @@ zone buildable|blocked|water|decoration_only x y width height
 deco "asset_id" x y rotationDegrees scale layer
 ```
 
-Quoted values may contain spaces and German UTF-8 text. Coordinates are semantic world coordinates, not UI positions. The current renderer treats them as a 2D plane, while future versions may add elevation and full transforms.
+Quoted values may contain spaces and German UTF-8 text. Coordinates are semantic map-world coordinates, not UI pixels. `size` defines that coordinate plane. The 2D gameplay adapter scales it into its current viewport; a future 3D renderer can consume the same world data.
+
+## Identity and layers
+
+Path, spawn and goal IDs are stable strings and must be unique within their object category. Spawn/goal `path_id` references must resolve. Rectangular zones are ordered map layers in V1 and are addressed by stable order during an editor session. `biome`, decoration `asset_id` and the wave preset are semantic IDs, not texture paths.
+
+V1 already carries future-facing height-adjacent metadata through world dimensions, decoration layer/transform and terrain seed, but it does not persist per-point Z, height fields or terrain layers. Those additions require a compatible new record strategy or a version bump; MAP FORGE does not pretend they are available in Phase 2.
+
+## Validation
+
+Fatal errors include:
+
+- missing map ID/name, path, spawn or goal;
+- paths with fewer than two nodes;
+- duplicate path/spawn/goal IDs;
+- unresolved spawn/goal route references;
+- non-finite or out-of-bounds points/endpoints/decorations;
+- invalid/out-of-bounds zone rectangles;
+- empty decoration asset IDs or invalid decoration transforms;
+- unsupported declared format versions.
+
+No explicit build zone is a warning, because free non-path space remains buildable. Playtest accepts warnings but rejects any fatal error. The current asset catalog has no renderer-independent lookup service, so non-empty decoration IDs cannot yet be verified against installed art.
 
 ## Compatibility rules
 
-- V1 semantics must not change silently.
-- Additive records need a parser strategy for older readers; the current strict V1 parser rejects unknown records.
-- Any incompatible change requires a new header and an explicit migration path.
-- `MapDocument::metadata.formatVersion` must match the writer version; unsupported versions are not downgraded implicitly.
-
-## Current validation
-
-Validation checks required metadata, map dimensions, paths and route references; point, spawn, goal, zone and decoration bounds; positive transformations; and duplicate path IDs. Gameplay checks such as route-to-goal connectivity, build-area sufficiency, wave validity and asset-catalog lookup belong to later validation layers.
+- V1 meanings must not change silently.
+- Existing V1 files continue to load.
+- Incompatible changes require a new header and explicit migration.
+- Unsupported `metadata.formatVersion` values are never written as V1 implicitly.

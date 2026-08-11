@@ -2,7 +2,7 @@
 
 > Dieses Repository entwickelt den spielbaren SFML-Prototyp schrittweise zu einer datengetriebenen Architektur weiter. Karten, Editorzustand und Rendering werden getrennt, damit MAP FORGE und ein späterer 3D-Renderer dieselben Inhalte verwenden können.
 
-## V3 milestone already included
+## V3 milestones already included
 - zentrale UTF-8-/Font-Infrastruktur für deutsche Umlaute und ß
 - renderer-independent `MapDocument`
 - versioned `.aegismap` save/load format
@@ -12,8 +12,10 @@
 - automatisierte Tests für Map-Serialisierung, Fehlerfälle, Versionierung, Editor-Historie und UTF-8
 - `AGENTS.md` and Codex work instructions
 - architecture designed so a later 3D renderer can reuse map/game data
+- stack-based screen architecture with separate menu, gameplay and editor screens
+- functional MAP FORGE vertical slice with camera/grid, map tools, history, validation, persistence and direct playtest
 
-See `docs/ARCHITECTURE_V3.md` and `docs/CODEX_START.md`.
+See `docs/ARCHITECTURE_V3.md`, `docs/MAP_FORGE.md` and `docs/CODEX_START.md`.
 
 ---
 
@@ -146,6 +148,11 @@ assets/
   ui/         Menü, Logo und HUD-Icons
   sfx/        WAV-Soundeffekte
 src/
+  app/        Window lifecycle and screen navigation
+  core/       renderer-independent map and playtest data
+  editor/     MAP FORGE model, camera and screen
+  screens/    main menu and gameplay screens
+  ui/         UTF-8 text and shared SFML UI drawing
   Assets.*
   Enemy.*
   Tower.*
@@ -153,7 +160,6 @@ src/
   Effects.*
   Map.*
   WaveManager.*
-  Game.*
   main.cpp
 tools/
   generate_assets.py

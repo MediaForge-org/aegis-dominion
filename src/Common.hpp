@@ -13,7 +13,6 @@ constexpr float PANEL_X = 1200.f;
 constexpr float PANEL_W = 400.f;
 constexpr float PI_F = 3.14159265358979323846f;
 
-enum class GameState { Menu, MapSelect, Tutorial, Playing };
 enum class TowerKind { Pulse, Cannon, Frost, Sniper, Tesla, Missile };
 enum class EnemyKind { Raider, Runner, Tank, Shield, Regen, Splitter, Boss };
 enum class TargetMode { First, Strongest, Nearest, Last };

@@ -1,3 +1,3 @@
-aegis_core_tests 4 0.00105113
-aegis_text_tests 1 0.00843515
+aegis_core_tests 1 0.00445455
+aegis_text_tests 1 0.00803091
 ---

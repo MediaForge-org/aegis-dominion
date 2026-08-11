@@ -140,17 +140,30 @@ aegis_core/fast:
 .PHONY : aegis_core/fast
 
 #=============================================================================
-# Target rules for targets named aegis_frontier
+# Target rules for targets named aegis_ui
 
 # Build rule for target.
-aegis_frontier: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_frontier
-.PHONY : aegis_frontier
+aegis_ui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_ui
+.PHONY : aegis_ui
 
 # fast build rule for target.
-aegis_frontier/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/build
-.PHONY : aegis_frontier/fast
+aegis_ui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/build
+.PHONY : aegis_ui/fast
+
+#=============================================================================
+# Target rules for targets named aegis_dominion
+
+# Build rule for target.
+aegis_dominion: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_dominion
+.PHONY : aegis_dominion
+
+# fast build rule for target.
+aegis_dominion/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/build
+.PHONY : aegis_dominion/fast
 
 #=============================================================================
 # Target rules for targets named aegis_core_tests
@@ -165,12 +178,25 @@ aegis_core_tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core_tests.dir/build.make CMakeFiles/aegis_core_tests.dir/build
 .PHONY : aegis_core_tests/fast
 
+#=============================================================================
+# Target rules for targets named aegis_text_tests
+
+# Build rule for target.
+aegis_text_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_text_tests
+.PHONY : aegis_text_tests
+
+# fast build rule for target.
+aegis_text_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/build
+.PHONY : aegis_text_tests/fast
+
 src/Assets.o: src/Assets.cpp.o
 .PHONY : src/Assets.o
 
 # target to build an object file
 src/Assets.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Assets.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o
 .PHONY : src/Assets.cpp.o
 
 src/Assets.i: src/Assets.cpp.i
@@ -178,7 +204,7 @@ src/Assets.i: src/Assets.cpp.i
 
 # target to preprocess a source file
 src/Assets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Assets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Assets.cpp.i
 .PHONY : src/Assets.cpp.i
 
 src/Assets.s: src/Assets.cpp.s
@@ -186,7 +212,7 @@ src/Assets.s: src/Assets.cpp.s
 
 # target to generate assembly for a file
 src/Assets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Assets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Assets.cpp.s
 .PHONY : src/Assets.cpp.s
 
 src/Effects.o: src/Effects.cpp.o
@@ -194,7 +220,7 @@ src/Effects.o: src/Effects.cpp.o
 
 # target to build an object file
 src/Effects.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Effects.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o
 .PHONY : src/Effects.cpp.o
 
 src/Effects.i: src/Effects.cpp.i
@@ -202,7 +228,7 @@ src/Effects.i: src/Effects.cpp.i
 
 # target to preprocess a source file
 src/Effects.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Effects.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Effects.cpp.i
 .PHONY : src/Effects.cpp.i
 
 src/Effects.s: src/Effects.cpp.s
@@ -210,7 +236,7 @@ src/Effects.s: src/Effects.cpp.s
 
 # target to generate assembly for a file
 src/Effects.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Effects.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Effects.cpp.s
 .PHONY : src/Effects.cpp.s
 
 src/Enemy.o: src/Enemy.cpp.o
@@ -218,7 +244,7 @@ src/Enemy.o: src/Enemy.cpp.o
 
 # target to build an object file
 src/Enemy.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Enemy.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o
 .PHONY : src/Enemy.cpp.o
 
 src/Enemy.i: src/Enemy.cpp.i
@@ -226,7 +252,7 @@ src/Enemy.i: src/Enemy.cpp.i
 
 # target to preprocess a source file
 src/Enemy.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Enemy.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.i
 .PHONY : src/Enemy.cpp.i
 
 src/Enemy.s: src/Enemy.cpp.s
@@ -234,7 +260,7 @@ src/Enemy.s: src/Enemy.cpp.s
 
 # target to generate assembly for a file
 src/Enemy.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Enemy.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.s
 .PHONY : src/Enemy.cpp.s
 
 src/Game.o: src/Game.cpp.o
@@ -242,7 +268,7 @@ src/Game.o: src/Game.cpp.o
 
 # target to build an object file
 src/Game.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Game.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Game.cpp.o
 .PHONY : src/Game.cpp.o
 
 src/Game.i: src/Game.cpp.i
@@ -250,7 +276,7 @@ src/Game.i: src/Game.cpp.i
 
 # target to preprocess a source file
 src/Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Game.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Game.cpp.i
 .PHONY : src/Game.cpp.i
 
 src/Game.s: src/Game.cpp.s
@@ -258,7 +284,7 @@ src/Game.s: src/Game.cpp.s
 
 # target to generate assembly for a file
 src/Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Game.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Game.cpp.s
 .PHONY : src/Game.cpp.s
 
 src/Map.o: src/Map.cpp.o
@@ -266,7 +292,7 @@ src/Map.o: src/Map.cpp.o
 
 # target to build an object file
 src/Map.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Map.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.o
 .PHONY : src/Map.cpp.o
 
 src/Map.i: src/Map.cpp.i
@@ -274,7 +300,7 @@ src/Map.i: src/Map.cpp.i
 
 # target to preprocess a source file
 src/Map.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Map.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.i
 .PHONY : src/Map.cpp.i
 
 src/Map.s: src/Map.cpp.s
@@ -282,7 +308,7 @@ src/Map.s: src/Map.cpp.s
 
 # target to generate assembly for a file
 src/Map.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Map.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.s
 .PHONY : src/Map.cpp.s
 
 src/Projectile.o: src/Projectile.cpp.o
@@ -290,7 +316,7 @@ src/Projectile.o: src/Projectile.cpp.o
 
 # target to build an object file
 src/Projectile.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Projectile.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o
 .PHONY : src/Projectile.cpp.o
 
 src/Projectile.i: src/Projectile.cpp.i
@@ -298,7 +324,7 @@ src/Projectile.i: src/Projectile.cpp.i
 
 # target to preprocess a source file
 src/Projectile.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Projectile.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.i
 .PHONY : src/Projectile.cpp.i
 
 src/Projectile.s: src/Projectile.cpp.s
@@ -306,7 +332,7 @@ src/Projectile.s: src/Projectile.cpp.s
 
 # target to generate assembly for a file
 src/Projectile.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Projectile.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.s
 .PHONY : src/Projectile.cpp.s
 
 src/Tower.o: src/Tower.cpp.o
@@ -314,7 +340,7 @@ src/Tower.o: src/Tower.cpp.o
 
 # target to build an object file
 src/Tower.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Tower.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o
 .PHONY : src/Tower.cpp.o
 
 src/Tower.i: src/Tower.cpp.i
@@ -322,7 +348,7 @@ src/Tower.i: src/Tower.cpp.i
 
 # target to preprocess a source file
 src/Tower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Tower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Tower.cpp.i
 .PHONY : src/Tower.cpp.i
 
 src/Tower.s: src/Tower.cpp.s
@@ -330,7 +356,7 @@ src/Tower.s: src/Tower.cpp.s
 
 # target to generate assembly for a file
 src/Tower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/Tower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Tower.cpp.s
 .PHONY : src/Tower.cpp.s
 
 src/WaveManager.o: src/WaveManager.cpp.o
@@ -338,7 +364,7 @@ src/WaveManager.o: src/WaveManager.cpp.o
 
 # target to build an object file
 src/WaveManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/WaveManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o
 .PHONY : src/WaveManager.cpp.o
 
 src/WaveManager.i: src/WaveManager.cpp.i
@@ -346,7 +372,7 @@ src/WaveManager.i: src/WaveManager.cpp.i
 
 # target to preprocess a source file
 src/WaveManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/WaveManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.i
 .PHONY : src/WaveManager.cpp.i
 
 src/WaveManager.s: src/WaveManager.cpp.s
@@ -354,7 +380,7 @@ src/WaveManager.s: src/WaveManager.cpp.s
 
 # target to generate assembly for a file
 src/WaveManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/WaveManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.s
 .PHONY : src/WaveManager.cpp.s
 
 src/core/MapDocument.o: src/core/MapDocument.cpp.o
@@ -410,7 +436,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -418,7 +444,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -426,8 +452,32 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_frontier.dir/build.make CMakeFiles/aegis_frontier.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/ui/TextService.o: src/ui/TextService.cpp.o
+.PHONY : src/ui/TextService.o
+
+# target to build an object file
+src/ui/TextService.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.o
+.PHONY : src/ui/TextService.cpp.o
+
+src/ui/TextService.i: src/ui/TextService.cpp.i
+.PHONY : src/ui/TextService.i
+
+# target to preprocess a source file
+src/ui/TextService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.i
+.PHONY : src/ui/TextService.cpp.i
+
+src/ui/TextService.s: src/ui/TextService.cpp.s
+.PHONY : src/ui/TextService.s
+
+# target to generate assembly for a file
+src/ui/TextService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.s
+.PHONY : src/ui/TextService.cpp.s
 
 tests/map_document_tests.o: tests/map_document_tests.cpp.o
 .PHONY : tests/map_document_tests.o
@@ -453,6 +503,30 @@ tests/map_document_tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core_tests.dir/build.make CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.s
 .PHONY : tests/map_document_tests.cpp.s
 
+tests/text_service_tests.o: tests/text_service_tests.cpp.o
+.PHONY : tests/text_service_tests.o
+
+# target to build an object file
+tests/text_service_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o
+.PHONY : tests/text_service_tests.cpp.o
+
+tests/text_service_tests.i: tests/text_service_tests.cpp.i
+.PHONY : tests/text_service_tests.i
+
+# target to preprocess a source file
+tests/text_service_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.i
+.PHONY : tests/text_service_tests.cpp.i
+
+tests/text_service_tests.s: tests/text_service_tests.cpp.s
+.PHONY : tests/text_service_tests.s
+
+# target to generate assembly for a file
+tests/text_service_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.s
+.PHONY : tests/text_service_tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -464,7 +538,9 @@ help:
 	@echo "... test"
 	@echo "... aegis_core"
 	@echo "... aegis_core_tests"
-	@echo "... aegis_frontier"
+	@echo "... aegis_dominion"
+	@echo "... aegis_text_tests"
+	@echo "... aegis_ui"
 	@echo "... src/Assets.o"
 	@echo "... src/Assets.i"
 	@echo "... src/Assets.s"
@@ -498,9 +574,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/ui/TextService.o"
+	@echo "... src/ui/TextService.i"
+	@echo "... src/ui/TextService.s"
 	@echo "... tests/map_document_tests.o"
 	@echo "... tests/map_document_tests.i"
 	@echo "... tests/map_document_tests.s"
+	@echo "... tests/text_service_tests.o"
+	@echo "... tests/text_service_tests.i"
+	@echo "... tests/text_service_tests.s"
 .PHONY : help
 
 

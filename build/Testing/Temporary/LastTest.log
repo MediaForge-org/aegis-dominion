@@ -1,18 +1,18 @@
-Start testing: Aug 11 21:00 CEST
+Start testing: Aug 11 21:43 CEST
 ----------------------------------------------------------
 1/2 Testing: aegis_core_tests
 1/2 Test: aegis_core_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/aegis_core_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build
-"aegis_core_tests" start time: Aug 11 21:00 CEST
+"aegis_core_tests" start time: Aug 11 21:43 CEST
 Output:
 ----------------------------------------------------------
-4 MapDocument/MapEditor test groups passed
+5 MapDocument/MapEditor test groups passed
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_core_tests" end time: Aug 11 21:00 CEST
+"aegis_core_tests" end time: Aug 11 21:43 CEST
 "aegis_core_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -20,7 +20,7 @@ Test Passed.
 2/2 Test: aegis_text_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build/aegis_text_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build
-"aegis_text_tests" start time: Aug 11 21:00 CEST
+"aegis_text_tests" start time: Aug 11 21:43 CEST
 Output:
 ----------------------------------------------------------
 3 UTF-8/font checks passed
@@ -28,8 +28,8 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_text_tests" end time: Aug 11 21:00 CEST
+"aegis_text_tests" end time: Aug 11 21:43 CEST
 "aegis_text_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 11 21:00 CEST
+End testing: Aug 11 21:43 CEST

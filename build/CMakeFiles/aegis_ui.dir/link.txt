@@ -1,0 +1,2 @@
+/usr/bin/ar qc libaegis_ui.a CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.o
+/usr/bin/ranlib libaegis_ui.a

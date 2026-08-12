@@ -8,6 +8,7 @@
 #include <iomanip>
 #include "logging/Logger.hpp"
 #include "render/RenderContext.hpp"
+#include "render/WorldRenderer.hpp"
 #include <sstream>
 
 namespace aegis::screens {
@@ -91,6 +92,7 @@ void GameScreen::handleEvent(const sf::Event& event) {
 
 void GameScreen::update(float deltaSeconds) {
     elapsed_ += deltaSeconds;
+    screenShake_=std::max(0.f,screenShake_-deltaSeconds*11.f);
     if (paused_ || helpOverlay_ || gameOver_ || victory_) {
         effects_.update(deltaSeconds * .3f);
         return;
@@ -120,7 +122,11 @@ void GameScreen::update(float deltaSeconds) {
             score_ += enemy->reward() * 11;
             ++kills_;
             effects_.text(enemy->position() + sf::Vector2f(-12.f, -28.f), "+" + std::to_string(enemy->reward()), ui::Gold);
-            effects_.burst(enemy->position(), map_.data().accent, enemy->kind() == EnemyKind::Boss ? 38 : 16, enemy->kind() == EnemyKind::Boss ? 220.f : 120.f);
+            sf::Color deathColor=map_.data().accent;
+            if(enemy->kind()==EnemyKind::Shield)deathColor=sf::Color(90,190,255);else if(enemy->kind()==EnemyKind::Regen)deathColor=sf::Color(90,235,140);
+            else if(enemy->kind()==EnemyKind::Splitter)deathColor=sf::Color(215,120,255);else if(enemy->kind()==EnemyKind::Tank||enemy->kind()==EnemyKind::Boss)deathColor=sf::Color(255,125,72);
+            effects_.burst(enemy->position(),deathColor,enemy->kind()==EnemyKind::Boss?42:enemy->kind()==EnemyKind::Tank?24:16,enemy->kind()==EnemyKind::Boss?230.f:130.f);
+            if(enemy->kind()==EnemyKind::Tank||enemy->kind()==EnemyKind::Boss)for(int puff=0;puff<5;++puff)effects_.trail(enemy->position()+sf::Vector2f(static_cast<float>(puff*6-12),0.f),{0.f,-35.f-static_cast<float>(puff*5)},sf::Color(90,92,96,150),8.f,.65f,-12.f);
             if (enemy->kind() == EnemyKind::Splitter) {
                 for (int i = 0; i < 2; ++i) {
                     auto child = makeEnemy(EnemyKind::Runner, nextEnemyId_++, std::max(.7f, waves_.enemyScale() * .72f));
@@ -151,19 +157,23 @@ void GameScreen::update(float deltaSeconds) {
         }
     }
     effects_.update(step);
+    screenShake_=std::max(screenShake_,effects_.consumeShake());
 }
 
 void GameScreen::render() {
     render::RenderContext renderContext(context_.window);
-    render::WorldRenderer world(renderContext);
-    world.begin(render::Layer::Terrain);
-    drawWorld();
-    world.begin(render::Layer::Effects);
+    const auto stableView=context_.window.getView();
+    if(screenShake_>.05f){auto shaken=stableView;shaken.move(std::sin(elapsed_*91.f)*screenShake_,std::cos(elapsed_*77.f)*screenShake_*.65f);context_.window.setView(shaken);}
+    render::WorldRenderer world(renderContext, context_.assets);
+    world.draw(buildRenderSnapshot());
+    drawBuildPreview();
+    renderContext.setLayer(render::Layer::Effects);
     effects_.draw(context_.window, context_.assets.text().loaded() ? &context_.assets.text() : nullptr);
-    world.begin(render::Layer::ScreenUi);
+    context_.window.setView(stableView);
+    renderContext.setLayer(render::Layer::ScreenUi);
     drawHud();
     drawCommandPanel();
-    world.begin(render::Layer::ModalUi);
+    renderContext.setLayer(render::Layer::ModalUi);
     if (helpOverlay_) drawHelpOverlay();
     else if (paused_) drawPauseOverlay();
     if (gameOver_ || victory_) drawEndOverlay();
@@ -258,67 +268,27 @@ void GameScreen::upgradeSelected(UpgradeBranch branch) {
     }
 }
 
-void GameScreen::drawWorld() {
-    if (map_.data().authoredBackground) {
-        sf::Sprite background(context_.assets.mapTexture(map_.index()));
-        context_.window.draw(background);
-    } else {
-        sf::Color terrain(22, 49, 43);
-        if (map_.data().biome == "frost") terrain = sf::Color(24, 43, 57);
-        else if (map_.data().biome == "ember") terrain = sf::Color(57, 36, 30);
-        sf::RectangleShape background({WORLD_W, WORLD_H});
-        background.setFillColor(terrain);
-        context_.window.draw(background);
-        for (const auto& zone : map_.data().zones) {
-            sf::Color color = ui::Green;
-            if (zone.type == core::ZoneType::Blocked) color = ui::Red;
-            else if (zone.type == core::ZoneType::Water) color = sf::Color(70, 160, 245);
-            else if (zone.type == core::ZoneType::DecorationOnly) color = ui::Purple;
-            sf::RectangleShape shape({zone.rect.width, zone.rect.height});
-            shape.setPosition(zone.rect.left, zone.rect.top);
-            shape.setFillColor(withAlpha(color, 52));
-            shape.setOutlineColor(withAlpha(color, 175));
-            shape.setOutlineThickness(2.f);
-            context_.window.draw(shape);
-        }
-    }
-    const auto& path = map_.path();
-    if (!map_.data().authoredBackground) {
-        for (std::size_t i = 0; i + 1 < path.size(); ++i) {
-            const auto delta = path[i + 1] - path[i];
-            const float segmentLength = length(delta);
-            const float angle = std::atan2(delta.y, delta.x) * 180.f / PI_F;
-            sf::RectangleShape road({segmentLength, 54.f});
-            road.setOrigin(0.f, 27.f); road.setPosition(path[i]); road.setRotation(angle); road.setFillColor(sf::Color(39, 48, 52));
-            context_.window.draw(road);
-            sf::RectangleShape centerLine({segmentLength, 3.f});
-            centerLine.setOrigin(0.f, 1.5f); centerLine.setPosition(path[i]); centerLine.setRotation(angle); centerLine.setFillColor(withAlpha(map_.data().accent, 190));
-            context_.window.draw(centerLine);
-        }
-    }
-    if (!path.empty()) {
-        const float pulse = .5f + .5f * std::sin(elapsed_ * 3.1f);
-        sf::CircleShape spawn(36.f + pulse * 5.f);
-        spawn.setOrigin(spawn.getRadius(), spawn.getRadius());
-        spawn.setPosition(map_.data().spawn);
-        spawn.setFillColor(sf::Color::Transparent);
-        spawn.setOutlineColor(map_.data().accent);
-        spawn.setOutlineThickness(3.f);
-        context_.window.draw(spawn);
-        sf::CircleShape goal(38.f + pulse * 5.f);
-        goal.setOrigin(goal.getRadius(), goal.getRadius());
-        goal.setPosition(map_.data().goal);
-        goal.setFillColor(withAlpha(map_.data().accent, 30));
-        goal.setOutlineColor(withAlpha(map_.data().accent, 190));
-        goal.setOutlineThickness(3.f);
-        context_.window.draw(goal);
-    }
-    for (const auto& enemy : enemies_) enemy->draw(context_.window, context_.assets);
-    for (std::size_t i = 0; i < towers_.size(); ++i) towers_[i]->draw(context_.window, context_.assets, static_cast<int>(i) == selectedTower_);
-    for (const auto& projectile : projectiles_) projectile.draw(context_.window);
+render::WorldRenderSnapshot GameScreen::buildRenderSnapshot() const {
+    render::WorldRenderSnapshot snapshot;
+    snapshot.map=map_.renderSnapshot(buildKind_.has_value(), false); snapshot.elapsedSeconds=elapsed_;
+    snapshot.enemies.reserve(enemies_.size());
+    for (const auto& enemy : enemies_) snapshot.enemies.push_back(enemy->renderSnapshot(false));
+    snapshot.towers.reserve(towers_.size());
+    for (std::size_t i=0;i<towers_.size();++i) snapshot.towers.push_back(towers_[i]->renderSnapshot(static_cast<int>(i)==selectedTower_));
+    snapshot.projectiles.reserve(projectiles_.size());
+    for (const auto& projectile : projectiles_) if(projectile.alive) snapshot.projectiles.push_back(projectile.renderSnapshot());
+    return snapshot;
+}
+
+void GameScreen::drawBuildPreview() {
     if (buildKind_) {
         const auto mouse = context_.window.mapPixelToCoords(sf::Mouse::getPosition(context_.window));
-        if (mouse.x < WORLD_W) drawTowerIcon(*buildKind_, mouse, .72f, 0.f, map_.canBuild(mouse, towerPositions()) ? sf::Color(190, 255, 220, 210) : sf::Color(255, 145, 150, 210));
+        if (mouse.x < WORLD_W) {
+            const bool valid=map_.canBuild(mouse,towerPositions());
+            sf::CircleShape footprint(46.f,48); footprint.setOrigin(46.f,46.f); footprint.setPosition(mouse);
+            footprint.setFillColor(valid?sf::Color(70,230,155,34):sf::Color(255,80,95,38)); footprint.setOutlineColor(valid?ui::Green:ui::Red); footprint.setOutlineThickness(2.f); context_.window.draw(footprint);
+            drawTowerIcon(*buildKind_, mouse, .72f, 0.f, valid ? sf::Color(190, 255, 220, 210) : sf::Color(255, 145, 150, 210));
+        }
     }
 }
 
@@ -332,12 +302,12 @@ void GameScreen::drawStatBadge(const std::string& icon, const std::string& value
 }
 
 void GameScreen::drawHud() {
-    ui_.panel({18.f, 18.f, 640.f, 64.f}, sf::Color(4, 10, 17, 205), sf::Color(90, 150, 185, 70));
+    ui_.card({18.f, 18.f, 640.f, 64.f}, map_.data().accent, true);
     drawStatBadge("credits", std::to_string(credits_), {30.f, 26.f}, ui::Gold);
     drawStatBadge("core", std::to_string(coreHealth_), {184.f, 26.f}, ui::Red);
     drawStatBadge("wave", std::to_string(waves_.wave()) + "/20", {338.f, 26.f}, ui::Cyan);
     drawStatBadge("score", std::to_string(score_), {492.f, 26.f}, ui::Purple);
-    ui_.panel({820.f, 20.f, 350.f, 48.f}, sf::Color(4, 10, 17, 180), sf::Color(90, 150, 185, 55));
+    ui_.card({820.f, 20.f, 350.f, 48.f}, map_.data().accent, true);
     const auto mapLabel = (isPlaytest() ? "PLAYTEST · " : "") + map_.data().name + " · " +
                           std::to_string(static_cast<int>(map_.data().sourceWidth)) + "×" + std::to_string(static_cast<int>(map_.data().sourceHeight));
     ui_.text(mapLabel, 15, {835.f, 35.f}, ui::Text, true);

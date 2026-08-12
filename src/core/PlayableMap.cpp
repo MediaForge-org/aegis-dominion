@@ -40,6 +40,8 @@ std::optional<PlayableMap> buildPlayableMap(const MapDocument& document, std::st
     result.routeId = path.id;
     result.route = path.nodes;
     result.zones = document.zones;
+    result.decorations = document.decorations;
+    result.environment = document.environment;
 
     for (const auto& spawn : document.spawns) {
         if (spawn.pathId == path.id) {

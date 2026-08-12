@@ -31,6 +31,7 @@ find_package(SFML 2.5 COMPONENTS graphics window system audio REQUIRED)
 add_library(aegis_core
     src/core/GameLaunchConfig.cpp
     src/core/MapDocument.cpp
+    src/core/PathCurve.cpp
     src/core/PlayableMap.cpp
     src/editor/MapEditorModel.cpp)
 target_include_directories(aegis_core PUBLIC src)
@@ -41,8 +42,8 @@ add_library(aegis_ui
     src/assets/AssetCatalog.cpp src/assets/AssetManager.cpp
     src/input/InputSystem.cpp
     src/ui/TextService.cpp src/ui/Theme.cpp src/ui/Layout.cpp src/ui/Interaction.cpp src/ui/UiRenderer.cpp
-    src/animation/Tween.cpp src/animation/SpriteAnimation.cpp
-    src/render/RenderContext.cpp
+    src/animation/Tween.cpp src/animation/SpriteAnimation.cpp src/animation/AnimationCatalog.cpp
+    src/render/RenderContext.cpp src/render/WorldRenderData.cpp src/render/WorldRenderer.cpp
     src/settings/Settings.cpp)
 target_include_directories(aegis_ui PUBLIC src)
 target_link_libraries(aegis_ui PUBLIC aegis_project_options sfml-graphics sfml-window sfml-audio)
@@ -77,6 +78,10 @@ target_compile_definitions(aegis_text_tests PRIVATE AEGIS_SOURCE_DIR="${CMAKE_SO
 add_executable(aegis_foundation_tests tests/foundation_tests.cpp)
 target_link_libraries(aegis_foundation_tests PRIVATE aegis_project_options aegis_ui)
 
+add_executable(aegis_phase4_tests tests/phase4_render_tests.cpp)
+target_link_libraries(aegis_phase4_tests PRIVATE aegis_project_options aegis_core aegis_ui)
+target_compile_definitions(aegis_phase4_tests PRIVATE AEGIS_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
 enable_testing()
 add_test(NAME aegis_core_tests COMMAND aegis_core_tests)
 add_test(NAME aegis_editor_tests COMMAND aegis_editor_tests)
@@ -84,6 +89,7 @@ add_test(NAME aegis_playtest_tests COMMAND aegis_playtest_tests)
 add_test(NAME aegis_game_map_tests COMMAND aegis_game_map_tests)
 add_test(NAME aegis_text_tests COMMAND aegis_text_tests)
 add_test(NAME aegis_foundation_tests COMMAND aegis_foundation_tests)
+add_test(NAME aegis_phase4_tests COMMAND aegis_phase4_tests)
 
 add_custom_command(TARGET aegis_dominion POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:aegis_dominion>/assets

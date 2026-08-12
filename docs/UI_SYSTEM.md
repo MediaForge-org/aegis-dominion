@@ -6,6 +6,8 @@ AEGIS DOMINION renders UI in a 1600×900 reference coordinate system. `Applicati
 
 `UiRenderer` provides panels/cards, labels/wrapped text, separators, buttons/icon buttons, progress bars, tooltips, toggles, sliders, dropdown shells, scroll areas, modal dialogs, toasts and tab bars. Existing immediate-mode click routing remains compatible while `ButtonInteraction` supplies testable Normal, Hover, Pressed, Selected, Disabled and Focused logic for new components. `LinearLayout` supports horizontal/vertical fixed and flex allocation with gap and padding.
 
+Phase 4 adds authored nine-slice surfaces. Cards, selected cards and buttons resolve typed `ui.surface.*` IDs and split the source into fixed corners/edges plus a scalable center; hit areas and theme semantics remain unchanged. The current role IDs intentionally share one polished transitional sheet and can be replaced independently later through `manifest.aegis`.
+
 `UiIcon` is geometry-based and font-independent. Do not reintroduce Unicode arrows, undo/redo, play/pause, settings, delete, check/close or modified markers into text. Real texture icons can later implement the same typed icon calls.
 
 The migrated surfaces are the main menu, map selection, all tutorial pages, the gameplay command panel/cards and MAP FORGE toolbar, tool palette, inspector shell, status bar and dialogs. These form a consistent foundation, not the final authored art pass.

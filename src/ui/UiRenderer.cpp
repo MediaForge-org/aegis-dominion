@@ -42,9 +42,27 @@ void UiRenderer::panel(const sf::FloatRect& rect, sf::Color fill, sf::Color outl
 
 void UiRenderer::card(const sf::FloatRect& rect, sf::Color accent, bool elevated) {
     if (elevated) panel({rect.left + 5.f, rect.top + 7.f, rect.width, rect.height}, sf::Color(0, 0, 0, 85));
-    const auto border = accent == sf::Color::Transparent ? theme().colors.border : withAlpha(accent, 135);
-    panel(rect, elevated ? theme().colors.elevatedSurface : theme().colors.surface, border, theme().sizes.border);
+    if(rect.width>=92.f&&rect.height>=66.f) nineSlice(rect,assets::TextureId{accent==sf::Color::Transparent?"ui.surface.card":"ui.surface.card_selected"},76.f,std::min(24.f,std::min(rect.width,rect.height)*.2f));
+    else {
+        const auto border = accent == sf::Color::Transparent ? theme().colors.border : withAlpha(accent, 135);
+        panel(rect, elevated ? theme().colors.elevatedSurface : theme().colors.surface, border, theme().sizes.border);
+    }
     if (accent != sf::Color::Transparent) panel({rect.left, rect.top, 4.f, rect.height}, accent);
+}
+
+void UiRenderer::nineSlice(const sf::FloatRect& rect,const assets::TextureId& textureId,float sourceBorder,float destinationBorder,sf::Color tint){
+    const auto& texture=assets_.resources().texture(textureId);const auto size=texture.getSize();
+    const int sb=static_cast<int>(std::clamp(sourceBorder,1.f,static_cast<float>(std::min(size.x,size.y))/2.f-1.f));
+    const float db=std::clamp(destinationBorder,1.f,std::min(rect.width,rect.height)/2.f);
+    const int sourceX[4]={0,sb,static_cast<int>(size.x)-sb,static_cast<int>(size.x)};
+    const int sourceY[4]={0,sb,static_cast<int>(size.y)-sb,static_cast<int>(size.y)};
+    const float destX[4]={rect.left,rect.left+db,rect.left+rect.width-db,rect.left+rect.width};
+    const float destY[4]={rect.top,rect.top+db,rect.top+rect.height-db,rect.top+rect.height};
+    for(int y=0;y<3;++y)for(int x=0;x<3;++x){
+        const int sw=sourceX[x+1]-sourceX[x],sh=sourceY[y+1]-sourceY[y];const float dw=destX[x+1]-destX[x],dh=destY[y+1]-destY[y];
+        if(sw<=0||sh<=0||dw<=0.f||dh<=0.f)continue;
+        sf::Sprite sprite(texture,sf::IntRect(sourceX[x],sourceY[y],sw,sh));sprite.setPosition(destX[x],destY[y]);sprite.setScale(dw/static_cast<float>(sw),dh/static_cast<float>(sh));sprite.setColor(tint);window_.draw(sprite);
+    }
 }
 
 void UiRenderer::separator(sf::Vector2f from, sf::Vector2f to, sf::Color color) { segment(window_, from, to, 1.f, color); }
@@ -88,8 +106,9 @@ bool UiRenderer::buttonSurface(const sf::FloatRect& rect, sf::Color accent, bool
     const auto mouse = window_.mapPixelToCoords(sf::Mouse::getPosition(window_));
     const bool hovered = rect.contains(mouse);
     const bool pressed = hovered && sf::Mouse::isButtonPressed(sf::Mouse::Left);
-    panel(rect, pressed ? sf::Color(10, 20, 30, 252) : (hovered ? sf::Color(26, 42, 57, 248) : sf::Color(17, 29, 41, 245)),
-          active ? accent : withAlpha(accent, hovered ? 220 : 120), active ? 2.5f : 1.5f);
+    const auto tint=pressed?sf::Color(135,145,150):hovered?sf::Color(215,225,230):sf::Color(185,195,202);
+    nineSlice(rect,assets::TextureId{"ui.surface.button_primary"},76.f,std::min(16.f,rect.height*.3f),tint);
+    if(active){sf::RectangleShape selected({rect.width,rect.height});selected.setPosition(rect.left,rect.top);selected.setFillColor(withAlpha(accent,24));selected.setOutlineColor(accent);selected.setOutlineThickness(2.f);window_.draw(selected);}
     sf::RectangleShape bar({4.f, rect.height - 12.f});
     bar.setPosition(rect.left + 6.f, rect.top + 6.f);
     bar.setFillColor(withAlpha(accent, hovered ? 255 : 180));

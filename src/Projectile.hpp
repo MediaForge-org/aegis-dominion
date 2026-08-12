@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.hpp"
+#include "render/RenderSnapshot.hpp"
 #include <vector>
 #include <memory>
 
@@ -18,6 +19,7 @@ struct Projectile {
     sf::Color color=sf::Color::White;
     float life=4.f;
     bool alive=true;
+    float rotationDeg=0.f;
     void update(float dt,std::vector<std::unique_ptr<Enemy>>& enemies,Effects& fx);
-    void draw(sf::RenderTarget& rt) const;
+    aegis::render::ProjectileRenderSnapshot renderSnapshot() const;
 };

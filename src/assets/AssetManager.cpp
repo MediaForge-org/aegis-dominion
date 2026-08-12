@@ -53,6 +53,13 @@ bool AssetManager::loadFallbackFont() {
 
 bool AssetManager::load(const std::filesystem::path& root) {
     root_ = root;
+    std::string manifestError;
+    if(const auto manifest=AssetCatalog::loadManifest(root_/"manifest.aegis",&manifestError)){
+        catalog_=*manifest;
+        logging::log().info("Loaded {} external asset definitions",catalog_.definitions().size());
+    }else{
+        logging::log().warning("{}; compiled fallback catalog remains active",manifestError);
+    }
     bool complete = true;
     for (const auto& definition : catalog_.definitions()) {
         if (definition.type == AssetType::Texture) texture(TextureId{definition.id});

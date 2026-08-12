@@ -1,6 +1,7 @@
 #pragma once
 #include "Common.hpp"
 #include "Assets.hpp"
+#include "render/RenderSnapshot.hpp"
 #include <memory>
 #include <vector>
 
@@ -19,7 +20,7 @@ public:
     Tower(TowerKind kind,sf::Vector2f pos);
     virtual ~Tower()=default;
     void update(float dt,std::vector<std::unique_ptr<Enemy>>& enemies,std::vector<Projectile>& projectiles,Effects& fx,Assets& assets);
-    void draw(sf::RenderTarget& rt,const Assets& assets,bool selected) const;
+    aegis::render::TowerRenderSnapshot renderSnapshot(bool selected) const;
     virtual TowerStats stats() const=0;
     virtual std::string branchAName() const=0;
     virtual std::string branchBName() const=0;
@@ -52,6 +53,9 @@ protected:
     int spent_=0;
     float cooldownTimer_=0.f;
     float turretAngle_=0.f;
+    float desiredTurretAngle_=0.f;
+    float recoil_=0.f;
+    float idlePhase_=0.f;
 };
 
 class PulseTower final:public Tower{public:PulseTower(sf::Vector2f p);TowerStats stats()const override;std::string branchAName()const override{return"Overclock";}std::string branchBName()const override{return"Panzerbrecher";}std::string branchADesc()const override{return"Sehr viel höhere Feuerrate.";}std::string branchBDesc()const override{return"Mehr Schaden und Reichweite.";}void fire(Enemy&,std::vector<std::unique_ptr<Enemy>>&,std::vector<Projectile>&,Effects&,Assets&)override;};

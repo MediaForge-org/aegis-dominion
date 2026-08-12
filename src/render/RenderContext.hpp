@@ -1,21 +1,12 @@
 #pragma once
 
+#include "RenderLayer.hpp"
+
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <array>
 #include <functional>
 #include <vector>
 
 namespace aegis::render {
-
-enum class Layer {
-    Terrain, Water, Road, Environment, Zones, Enemies, Towers, Projectiles,
-    Effects, WorldUi, ScreenUi, ModalUi, Count
-};
-
-constexpr std::array<Layer, static_cast<std::size_t>(Layer::Count)> LayerOrder = {
-    Layer::Terrain, Layer::Water, Layer::Road, Layer::Environment, Layer::Zones,
-    Layer::Enemies, Layer::Towers, Layer::Projectiles, Layer::Effects,
-    Layer::WorldUi, Layer::ScreenUi, Layer::ModalUi};
 
 class RenderContext {
 public:
@@ -38,14 +29,6 @@ public:
 
 private:
     std::array<std::vector<DrawCall>, static_cast<std::size_t>(Layer::Count)> layers_;
-};
-
-class WorldRenderer {
-public:
-    explicit WorldRenderer(RenderContext& context) : context_(context) {}
-    void begin(Layer layer) { context_.setLayer(layer); }
-private:
-    RenderContext& context_;
 };
 
 } // namespace aegis::render

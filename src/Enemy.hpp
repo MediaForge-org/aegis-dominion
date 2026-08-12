@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.hpp"
 #include "Map.hpp"
-#include "Assets.hpp"
+#include "render/RenderSnapshot.hpp"
 #include <memory>
 
 class Enemy {
@@ -11,7 +11,7 @@ public:
     virtual void update(float dt, const GameMap& map);
     virtual float takeDamage(float dmg);
     virtual void applySlow(float factor, float duration);
-    virtual void draw(sf::RenderTarget& rt, const Assets& assets) const;
+    aegis::render::EnemyRenderSnapshot renderSnapshot(bool selected = false) const;
     virtual void onSecond(float /*dt*/) {}
 
     int id() const { return id_; }
@@ -50,6 +50,8 @@ protected:
     float progress_=0.f;
     float angle_=0.f;
     bool reachedEnd_=false;
+    float age_=0.f;
+    float hitFlashTimer_=0.f;
 };
 
 class RaiderEnemy final: public Enemy { public: RaiderEnemy(int id,float scale); };

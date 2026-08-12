@@ -36,9 +36,19 @@
 - Deterministic render-layer vocabulary, render context/queue, tween and sprite-animation playback, and parameter-driven effects.
 - Settings-ready model for scale, audio, VSync, FPS limit and screen shake.
 
+## Completed Phase-4 visual vertical slice
+
+- Immutable map/enemy/tower/projectile render snapshots and a real fixed-pass `WorldRenderer`.
+- One SFML-free Catmull-Rom curve shared by enemy movement, road visuals and build clearance.
+- Eight material mappings; distinct Verdant/Frost/Ash surfaces with deterministic patches and seeded environment.
+- Smooth layered road mesh, animated water, authored spawn gate/AEGIS Core, shadows, radial glow and world-only screen shake.
+- Enemy state presentation and contextual health/shield UI; separate tower bases/heads with eased tracking, recoil, idle energy and differentiated projectile/VFX profiles.
+- External asset and animation definition files plus authored nine-slice surfaces used by HUD, cards, buttons and editor chrome.
+- MAP FORGE material/curve preview and gameplay/editor zone-visibility separation.
+
 ## Recommended next bounded phase
 
-Extract renderer-facing snapshots from gameplay entities and move terrain/road/environment rendering into dedicated layer renderers. In the same bounded phase, introduce authored nine-slice UI art and data files for the asset/animation catalogs, then migrate the remaining gameplay HUD/modal surfaces without changing combat balance.
+Complete renderer-agnostic combat simulation and turn the Phase-4 transitional art into multi-frame authored sprite sheets. Add MAP FORGE terrain/decoration authoring, compatible height metadata, richer water masks and profiled batching/post-processing without changing V1 map meaning silently.
 
 ## Later phases
 

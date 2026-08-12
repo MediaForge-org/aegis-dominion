@@ -4,6 +4,8 @@
 #include "app/ScreenManager.hpp"
 #include "core/PlayableMap.hpp"
 #include "render/RenderContext.hpp"
+#include "render/WorldRenderData.hpp"
+#include "core/PathCurve.hpp"
 
 #include <algorithm>
 #include <array>
@@ -86,15 +88,14 @@ void MapForgeScreen::update(float deltaSeconds) {
 
 void MapForgeScreen::render() {
     render::RenderContext renderContext(context_.window);
-    render::WorldRenderer renderer(renderContext);
-    renderer.begin(render::Layer::Terrain);
+    renderContext.setLayer(render::Layer::Terrain);
     drawCanvas();
-    renderer.begin(render::Layer::ScreenUi);
+    renderContext.setLayer(render::Layer::ScreenUi);
     drawToolbar();
     drawTools();
     drawInspector();
     drawStatusBar();
-    if (dialog_ != Dialog::None) { renderer.begin(render::Layer::ModalUi); drawDialog(); }
+    if (dialog_ != Dialog::None) { renderContext.setLayer(render::Layer::ModalUi); drawDialog(); }
 }
 
 void MapForgeScreen::handleKey(const sf::Event::KeyEvent& key) {
@@ -547,12 +548,17 @@ void MapForgeScreen::drawCanvas() {
     const auto bottomRight = camera_.worldToScreen({document.width, document.height});
     sf::RectangleShape mapShape({bottomRight.x - topLeft.x, bottomRight.y - topLeft.y});
     mapShape.setPosition(topLeft);
-    sf::Color mapFill(24, 45, 43);
-    if (document.metadata.biome == "frost") mapFill = sf::Color(27, 43, 55);
-    else if (document.metadata.biome == "ember") mapFill = sf::Color(52, 35, 31);
-    mapShape.setFillColor(mapFill);
+    mapShape.setFillColor(sf::Color(12, 20, 25));
     mapShape.setOutlineColor(sf::Color(106, 151, 166));
     mapShape.setOutlineThickness(2.f);
+    context_.window.draw(mapShape);
+    const auto material=render::terrainMaterialForBiome(document.metadata.biome);
+    const auto& terrain=context_.assets.resources().texture(assets::TextureId{render::terrainTextureId(material)});
+    sf::Sprite terrainSprite(terrain);
+    terrainSprite.setTextureRect({0,0,static_cast<int>(document.width),static_cast<int>(document.height)});
+    terrainSprite.setPosition(topLeft);terrainSprite.setScale(camera_.scale(),camera_.scale());terrainSprite.setColor(sf::Color(255,255,255,205));
+    context_.window.draw(terrainSprite);
+    mapShape.setFillColor(sf::Color::Transparent);
     context_.window.draw(mapShape);
     if (gridVisible_) drawGrid();
     drawZones();
@@ -606,17 +612,11 @@ void MapForgeScreen::drawZones() {
 void MapForgeScreen::drawPaths() {
     for (const auto& path : model_.document().paths) {
         const bool selectedPath = selection_.id == path.id;
-        for (std::size_t i = 0; i + 1 < path.nodes.size(); ++i) {
-            const auto a = camera_.worldToScreen(path.nodes[i]);
-            const auto b = camera_.worldToScreen(path.nodes[i + 1]);
-            const auto delta = b - a;
-            const float length = std::sqrt(delta.x * delta.x + delta.y * delta.y);
-            const float angle = std::atan2(delta.y, delta.x) * 180.f / PI_F;
-            sf::RectangleShape underlay({length, selectedPath ? 12.f : 10.f});
-            underlay.setOrigin(0.f, underlay.getSize().y / 2.f); underlay.setPosition(a); underlay.setRotation(angle); underlay.setFillColor(sf::Color(5, 13, 18, 210)); context_.window.draw(underlay);
-            sf::RectangleShape line({length, selectedPath ? 5.f : 4.f});
-            line.setOrigin(0.f, line.getSize().y / 2.f); line.setPosition(a); line.setRotation(angle); line.setFillColor(selectedPath ? ui::Gold : ui::Cyan); context_.window.draw(line);
-        }
+        const auto curve=core::samplePathCurve(path.nodes,std::max(8.f,18.f/camera_.scale()));
+        sf::VertexArray underlay(sf::LineStrip),line(sf::LineStrip);
+        for(const auto point:curve){const auto screen=camera_.worldToScreen(point);underlay.append(sf::Vertex(screen,sf::Color(5,13,18,230)));line.append(sf::Vertex(screen,selectedPath?ui::Gold:ui::Cyan));}
+        context_.window.draw(underlay,sf::RenderStates(sf::BlendAlpha));
+        context_.window.draw(line,sf::RenderStates(sf::BlendAlpha));
         for (std::size_t i = 0; i < path.nodes.size(); ++i) {
             const bool selected = selection_.type == SelectionType::PathPoint && selection_.id == path.id && selection_.subIndex == i;
             const auto fill = i == 0 ? ui::Green : (i + 1 == path.nodes.size() ? ui::Orange : ui::Cyan);

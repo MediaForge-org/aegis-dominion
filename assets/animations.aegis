@@ -1,0 +1,12 @@
+AEGIS_ANIMATIONS_V1
+# clip "id" "sprite-sheet-id" loop|once frames x y width height duration
+clip "enemy.raider.spawn" "enemy.raider.idle" once 1 0 0 96 96 0.35
+clip "enemy.raider.move" "enemy.raider.idle" loop 1 0 0 96 96 0.18
+clip "enemy.raider.hit" "enemy.raider.idle" once 1 0 0 96 96 0.11
+clip "enemy.raider.death" "enemy.raider.idle" once 1 0 0 96 96 0.30
+clip "enemy.runner.spawn" "enemy.runner.idle" once 1 0 0 96 96 0.30
+clip "enemy.runner.move" "enemy.runner.idle" loop 1 0 0 96 96 0.12
+clip "enemy.tank.spawn" "enemy.tank.idle" once 1 0 0 96 96 0.48
+clip "enemy.tank.move" "enemy.tank.idle" loop 1 0 0 96 96 0.24
+clip "enemy.boss.spawn" "enemy.boss.idle" once 1 0 0 96 96 0.65
+clip "enemy.boss.move" "enemy.boss.idle" loop 1 0 0 96 96 0.28

@@ -5,6 +5,8 @@ Enemy::Enemy(int id,EnemyKind kind,float hp,float speed,int reward,float armor)
 
 void Enemy::update(float dt,const GameMap& map){
     if(dead()||reachedEnd_) return;
+    age_ += dt;
+    hitFlashTimer_ = std::max(0.f, hitFlashTimer_ - dt);
     if(regenPerSec_>0) heal(regenPerSec_*dt);
     if(slowTimer_>0){ slowTimer_-=dt; if(slowTimer_<=0) slowFactor_=1.f; }
     const auto& p=map.path();
@@ -31,7 +33,7 @@ float Enemy::takeDamage(float dmg){
     if(dmg<=0) return 0;
     float actual=dmg*(1.f-armor_);
     if(shield_>0){ float s=std::min(shield_,actual); shield_-=s; actual-=s; }
-    float before=hp_; hp_=std::max(0.f,hp_-actual); return before-hp_;
+    float before=hp_; hp_=std::max(0.f,hp_-actual); hitFlashTimer_ = .11f; return before-hp_;
 }
 void Enemy::applySlow(float factor,float duration){
     factor=1.f-(1.f-factor)*(1.f-slowResistance_);
@@ -39,12 +41,18 @@ void Enemy::applySlow(float factor,float duration){
     slowTimer_=std::max(slowTimer_,duration*(1.f-slowResistance_*.4f));
 }
 
-void Enemy::draw(sf::RenderTarget& rt,const Assets& assets) const{
-    sf::Sprite s(assets.enemy(kind_));
-    auto b=s.getLocalBounds(); s.setOrigin(b.width/2,b.height/2); s.setPosition(pos_); s.setRotation(angle_); float sc=(kind_==EnemyKind::Boss?1.2f:.82f); s.setScale(sc,sc); rt.draw(s);
-    float w=(kind_==EnemyKind::Boss?78.f:56.f), h=7.f; sf::RectangleShape bg({w,h}); bg.setOrigin(w/2,h/2); bg.setPosition(pos_.x,pos_.y-radius_-13); bg.setFillColor(sf::Color(5,8,11,210)); rt.draw(bg);
-    sf::RectangleShape hp({w*clampf(hp_/maxHp_,0,1),h-2}); hp.setOrigin(w/2, (h-2)/2); hp.setPosition(pos_.x,pos_.y-radius_-13); hp.setFillColor(sf::Color(92,225,129)); rt.draw(hp);
-    if(maxShield_>0 && shield_>0){ sf::RectangleShape sh({w*clampf(shield_/maxShield_,0,1),3}); sh.setOrigin(w/2,1.5f); sh.setPosition(pos_.x,pos_.y-radius_-7); sh.setFillColor(sf::Color(92,189,255)); rt.draw(sh); }
+aegis::render::EnemyRenderSnapshot Enemy::renderSnapshot(bool selected) const {
+    static constexpr const char* ids[] = {"enemy.raider.idle", "enemy.runner.idle", "enemy.tank.idle", "enemy.shield.idle", "enemy.regen.idle", "enemy.splitter.idle", "enemy.boss.idle"};
+    aegis::render::EnemyRenderSnapshot snapshot;
+    snapshot.id = id_; snapshot.position = {pos_.x, pos_.y}; snapshot.rotationDeg = angle_;
+    snapshot.scale = kind_ == EnemyKind::Boss ? 1.2f : (kind_ == EnemyKind::Tank ? .94f : .82f);
+    snapshot.visualId = ids[static_cast<std::size_t>(kind_)];
+    snapshot.animation = age_ < .42f ? aegis::render::AnimationState::Spawn : (hitFlashTimer_ > 0.f ? aegis::render::AnimationState::Hit : aegis::render::AnimationState::Move);
+    snapshot.animationTime = age_; snapshot.healthRatio = clampf(hp_ / maxHp_, 0.f, 1.f);
+    snapshot.shieldRatio = maxShield_ > 0.f ? clampf(shield_ / maxShield_, 0.f, 1.f) : 0.f;
+    snapshot.boss = kind_ == EnemyKind::Boss; snapshot.healthVisible = selected || snapshot.boss || hp_ < maxHp_ || shield_ < maxShield_;
+    snapshot.hitFlash = hitFlashTimer_ > 0.f;
+    return snapshot;
 }
 
 RaiderEnemy::RaiderEnemy(int id,float s):Enemy(id,EnemyKind::Raider,80*s,76.f,12,0.02f){}

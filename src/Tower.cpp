@@ -30,15 +30,24 @@ Enemy* Tower::acquire(const std::vector<std::unique_ptr<Enemy>>& enemies,const T
 }
 
 void Tower::update(float dt,std::vector<std::unique_ptr<Enemy>>& enemies,std::vector<Projectile>& projectiles,Effects& fx,Assets& assets){
-    cooldownTimer_-=dt; auto s=stats(); Enemy* t=acquire(enemies,s);
-    if(t){ turretAngle_=angleDeg(t->position()-pos_); if(cooldownTimer_<=0){ fire(*t,enemies,projectiles,fx,assets); cooldownTimer_=s.cooldown; } }
+    cooldownTimer_-=dt; recoil_=std::max(0.f,recoil_-dt*5.5f); idlePhase_+=dt*2.2f; auto s=stats(); Enemy* t=acquire(enemies,s);
+    if(t){
+        desiredTurretAngle_=angleDeg(t->position()-pos_);
+        float delta=std::fmod(desiredTurretAngle_-turretAngle_+540.f,360.f)-180.f;
+        turretAngle_+=clampf(delta,-240.f*dt,240.f*dt);
+        if(cooldownTimer_<=0){ fire(*t,enemies,projectiles,fx,assets); cooldownTimer_=s.cooldown; recoil_=1.f; }
+    }
 }
 
-void Tower::draw(sf::RenderTarget& rt,const Assets& assets,bool selected) const{
-    if(selected){ sf::CircleShape r(range()); r.setOrigin(range(),range()); r.setPosition(pos_); r.setFillColor(sf::Color(80,190,255,18)); r.setOutlineColor(sf::Color(115,220,255,90)); r.setOutlineThickness(2); rt.draw(r); }
-    sf::Sprite base(assets.towerBase(kind_)); auto bb=base.getLocalBounds(); base.setOrigin(bb.width/2,bb.height/2); base.setPosition(pos_); base.setScale(.72f,.72f); rt.draw(base);
-    sf::Sprite turret(assets.towerTurret(kind_)); auto tb=turret.getLocalBounds(); turret.setOrigin(tb.width/2,tb.height/2); turret.setPosition(pos_); turret.setRotation(turretAngle_); turret.setScale(.72f,.72f); rt.draw(turret);
-    for(int i=0;i<level_;++i){ sf::CircleShape pip(3.2f); pip.setOrigin(3.2f,3.2f); pip.setPosition(pos_.x-10.5f+i*7.f,pos_.y+40.f); pip.setFillColor(branch_==UpgradeBranch::A?sf::Color(92,224,255):branch_==UpgradeBranch::B?sf::Color(255,176,92):sf::Color(220,230,238)); rt.draw(pip); }
+aegis::render::TowerRenderSnapshot Tower::renderSnapshot(bool selected) const {
+    static constexpr const char* names[] = {"pulse", "cannon", "frost", "sniper", "tesla", "missile"};
+    static constexpr const char* profiles[] = {"energy", "kinetic", "cryo", "rail", "tesla", "missile"};
+    const auto index = static_cast<std::size_t>(kind_);
+    aegis::render::TowerRenderSnapshot snapshot;
+    snapshot.position={pos_.x,pos_.y}; snapshot.turretRotationDeg=turretAngle_; snapshot.scale=.72f; snapshot.range=range();
+    snapshot.recoil=recoil_; snapshot.idlePhase=idlePhase_; snapshot.level=level_; snapshot.branch=static_cast<int>(branch_);
+    snapshot.baseVisualId="tower."+std::string(names[index])+".base"; snapshot.turretVisualId="tower."+std::string(names[index])+".turret";
+    snapshot.effectProfile=profiles[index]; snapshot.selected=selected; return snapshot;
 }
 void Tower::cycleTargetMode(){ targetMode_=static_cast<TargetMode>((static_cast<int>(targetMode_)+1)%4); }
 int Tower::upgradeCost() const { if(level_>=4)return 0; return static_cast<int>(towerCost(kind_)*(0.72f+0.38f*level_)); }
@@ -63,11 +72,11 @@ void CannonTower::fire(Enemy& t,std::vector<std::unique_ptr<Enemy>>&,std::vector
 
 FrostTower::FrostTower(sf::Vector2f p):Tower(TowerKind::Frost,p){}
 TowerStats FrostTower::stats()const{ auto s=scaled({16,165,.62f,620,0,.68f,1.7f,1}); if(branch_==UpgradeBranch::A){s.slowFactor=.48f;s.slowDuration=2.7f;} if(branch_==UpgradeBranch::B){s.damage*=1.55f;s.slowFactor=.62f;} return s; }
-void FrostTower::fire(Enemy& t,std::vector<std::unique_ptr<Enemy>>&,std::vector<Projectile>& p,Effects&,Assets& a){ auto s=stats(); p.push_back({ProjectileKind::Frost,pos_,t.id(),s.projectileSpeed,s.damage,0,s.slowFactor,s.slowDuration,sf::Color(132,238,255),4,true}); a.play("laser",24); }
+void FrostTower::fire(Enemy& t,std::vector<std::unique_ptr<Enemy>>&,std::vector<Projectile>& p,Effects& fx,Assets& a){ auto s=stats(); p.push_back({ProjectileKind::Frost,pos_,t.id(),s.projectileSpeed,s.damage,0,s.slowFactor,s.slowDuration,sf::Color(132,238,255),4,true});fx.burst(pos_,sf::Color(145,240,255),7,55.f); a.play("laser",24); }
 
 SniperTower::SniperTower(sf::Vector2f p):Tower(TowerKind::Sniper,p){}
 TowerStats SniperTower::stats()const{ auto s=scaled({148,330,1.85f,0,0,1,0,1}); if(branch_==UpgradeBranch::A){s.cooldown*=.68f;s.damage*=.96f;} if(branch_==UpgradeBranch::B){s.damage*=1.72f;s.cooldown*=1.08f;} return s; }
-void SniperTower::fire(Enemy& t,std::vector<std::unique_ptr<Enemy>>&,std::vector<Projectile>&,Effects& fx,Assets& a){ auto s=stats(); float dealt=t.takeDamage(s.damage); fx.tracer(pos_,t.position(),sf::Color(220,154,255),.16f,3.5f); fx.burst(t.position(),sf::Color(225,170,255),10,100); fx.text(t.position()+sf::Vector2f(8,-30),"-"+std::to_string(int(dealt)),sf::Color(240,190,255)); a.play("shoot",50); }
+void SniperTower::fire(Enemy& t,std::vector<std::unique_ptr<Enemy>>&,std::vector<Projectile>&,Effects& fx,Assets& a){ auto s=stats(); float dealt=t.takeDamage(s.damage);fx.ring(pos_,sf::Color(210,135,255),34.f,.18f); fx.tracer(pos_,t.position(),sf::Color(220,154,255),.16f,3.5f); fx.burst(t.position(),sf::Color(225,170,255),10,100); fx.text(t.position()+sf::Vector2f(8,-30),"-"+std::to_string(int(dealt)),sf::Color(240,190,255));fx.shake(1.6f); a.play("shoot",50); }
 
 TeslaTower::TeslaTower(sf::Vector2f p):Tower(TowerKind::Tesla,p){}
 TowerStats TeslaTower::stats()const{ auto s=scaled({41,185,.92f,0,0,1,0,3}); if(branch_==UpgradeBranch::A){s.chains+=2;s.damage*=.92f;} if(branch_==UpgradeBranch::B){s.damage*=1.38f;s.chains-=1;} return s; }

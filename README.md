@@ -17,8 +17,12 @@
 - Phase-3 presentation foundation with typed/cached assets, visible fallbacks, input actions/contexts and centralized logging
 - tactical shared UI theme, reusable widgets/layout, 1600×900 reference scaling and deterministic render layers
 - reusable tween, sprite-animation and parameter-driven effect definitions
+- Phase-4 world renderer with immutable entity/map snapshots and fixed presentation layers
+- shared Catmull-Rom route used by enemy movement and the smooth road mesh
+- deterministic material terrain, animated water, seeded environment, spawn gate and AEGIS Core for custom maps
+- external asset/animation manifests, authored nine-slice surfaces, shadows, glow and upgraded combat VFX
 
-See `docs/ARCHITECTURE_V3.md`, `docs/UI_SYSTEM.md`, `docs/ASSET_PIPELINE.md`, `docs/INPUT_SYSTEM.md`, `docs/MAP_FORGE.md` and `docs/BUILDING.md`.
+See `docs/ARCHITECTURE_V3.md`, `docs/UI_SYSTEM.md`, `docs/ASSET_PIPELINE.md`, `docs/RENDERING.md`, `docs/ROAD_RENDERING.md`, `docs/ART_DIRECTION.md`, `docs/INPUT_SYSTEM.md`, `docs/MAP_FORGE.md` and `docs/BUILDING.md`.
 
 ---
 
@@ -57,6 +61,8 @@ Der Projektstandard wird zentral durch `AEGIS_CXX_STANDARD` gesetzt und ist stan
 - 7 Gegnertypen mit eigenen Sprites
 - Lebens- und Schildbalken
 - Partikel, Tracer, Explosionen und Reichweitenanzeigen
+- weiche Bodenschatten, kontrollierter Glow, Screen Shake und typisierte Projektil-/Impactprofile
+- automatisch ausgestattete Custom Maps mit Terrainmaterial, geglätteter Straße, Wasser und seeded Environment
 - 6 unterschiedliche Turmklassen
 - 4 Turmstufen
 - ab Stufe 2 zwei dauerhafte Spezialisierungswege
@@ -147,6 +153,11 @@ Du musst nicht jede Welle sofort starten. Zwischen zwei Wellen kannst du in Ruhe
 
 ```text
 assets/
+  manifest.aegis  externe logische Runtime-Assetdefinitionen
+  animations.aegis externe Clipdefinitionen
+  terrain/    acht wiederholbare Materialoberflächen
+  environment/ zehn austauschbare Environment-Sprites
+  world/      Spawn Gate und AEGIS Core
   maps/       fertige Kartenhintergründe
   towers/     Basis- und Turret-Sprites
   enemies/    Gegner-Sprites

@@ -1,5 +1,6 @@
 #include "Map.hpp"
 #include "core/PlayableMap.hpp"
+#include "core/PathCurve.hpp"
 #include "logging/Logger.hpp"
 #include <array>
 
@@ -37,12 +38,24 @@ void GameMap::applyPlayableMap(const aegis::core::PlayableMap& map,int visualInd
     const float scaleX=WORLD_W/map.width;
     const float scaleY=WORLD_H/map.height;
     auto project=[&](aegis::core::Vec2 point){return sf::Vector2f(point.x*scaleX,point.y*scaleY);};
-    data_.path.reserve(map.route.size());
-    for(const auto& point:map.route)data_.path.push_back(project(point));
+    data_.logicalPath.reserve(map.route.size());
+    for(const auto& point:map.route)data_.logicalPath.push_back(project(point));
+    std::vector<aegis::core::Vec2> projectedNodes;
+    projectedNodes.reserve(data_.logicalPath.size());
+    for (const auto point : data_.logicalPath) projectedNodes.push_back({point.x, point.y});
+    const auto sampled = aegis::core::samplePathCurve(projectedNodes, 13.f);
+    data_.path.reserve(sampled.size());
+    for (const auto point : sampled) data_.path.push_back({point.x, point.y});
     data_.spawn=project(map.spawn);
     data_.goal=project(map.goal);
     data_.zones.reserve(map.zones.size());
     for(const auto& zone:map.zones)data_.zones.push_back({zone.type,{zone.rect.x*scaleX,zone.rect.y*scaleY,zone.rect.w*scaleX,zone.rect.h*scaleY}});
+    data_.decorations.reserve(map.decorations.size());
+    for (const auto& decoration : map.decorations)
+        data_.decorations.push_back({decoration.assetId, project(decoration.position), decoration.rotationDeg,
+                                     decoration.scale * std::min(scaleX, scaleY), decoration.layer});
+    data_.terrainSeed = map.environment.terrainSeed;
+    data_.ambientIntensity = map.environment.ambientIntensity;
     rebuildLengths();
 }
 
@@ -84,14 +97,17 @@ void GameMap::loadLegacyFallback(int index){
     data_={};
     if(index_==0){
         data_.id="verdant_frontier";data_.name="Grüne Grenze";data_.subtitle="Ausgewogen";data_.description="Weite Bauflächen und ein gut lesbarer Pfad. Ideal zum Lernen.";data_.biome="verdant";data_.accent=sf::Color(92,196,139);
-        data_.path={{0,145},{180,145},{180,330},{500,330},{500,160},{780,160},{780,560},{1060,560},{1060,760},{1200,760}};
+        data_.logicalPath={{0,145},{180,145},{180,330},{500,330},{500,160},{780,160},{780,560},{1060,560},{1060,760},{1200,760}};
     } else if(index_==1){
         data_.id="frost_pass";data_.name="Frostpass";data_.subtitle="Taktisch";data_.description="Lange Geraden wechseln mit engen Kurven. Reichweite ist hier besonders wertvoll.";data_.biome="frost";data_.accent=sf::Color(110,221,255);
-        data_.path={{0,690},{210,690},{210,480},{420,480},{420,720},{690,720},{690,400},{920,400},{920,190},{1200,190}};
+        data_.logicalPath={{0,690},{210,690},{210,480},{420,480},{420,720},{690,720},{690,400},{920,400},{920,190},{1200,190}};
     } else {
         data_.id="ember_field";data_.name="Aschefeld";data_.subtitle="Schwer";data_.description="Wenig sichere Fläche und ein aggressiver Zickzackkurs. Für gute Kombinationen.";data_.biome="ember";data_.accent=sf::Color(255,130,70);
-        data_.path={{0,240},{230,240},{230,600},{430,600},{430,400},{690,400},{690,190},{900,190},{900,690},{1200,690}};
+        data_.logicalPath={{0,240},{230,240},{230,600},{430,600},{430,400},{690,400},{690,190},{900,190},{900,690},{1200,690}};
     }
+    std::vector<aegis::core::Vec2> nodes;
+    for (const auto point : data_.logicalPath) nodes.push_back({point.x, point.y});
+    for (const auto point : aegis::core::samplePathCurve(nodes, 13.f)) data_.path.push_back({point.x, point.y});
     data_.spawn=data_.path.front();data_.goal=data_.path.back();data_.authoredBackground=true;
     rebuildLengths();
 }
@@ -122,4 +138,24 @@ float GameMap::pathProgress(std::size_t segment,float segmentT) const{
     float d=0.f; for(std::size_t i=0;i<segment && i<segmentLengths_.size();++i)d+=segmentLengths_[i];
     if(segment<segmentLengths_.size()) d+=segmentLengths_[segment]*segmentT;
     return clampf(d/totalLength_,0.f,1.f);
+}
+
+aegis::render::MapRenderSnapshot GameMap::renderSnapshot(bool buildMode, bool debugZones) const {
+    aegis::render::MapRenderSnapshot snapshot;
+    snapshot.id=data_.id; snapshot.biome=data_.biome; snapshot.accent={data_.accent.r,data_.accent.g,data_.accent.b,data_.accent.a};
+    snapshot.authoredTerrain=data_.authoredBackground; snapshot.buildMode=buildMode; snapshot.debugZones=debugZones;
+    snapshot.terrainSeed=data_.terrainSeed; snapshot.ambientIntensity=data_.ambientIntensity;
+    if (data_.authoredBackground) {
+        static constexpr const char* ids[]={"environment.verdant.background","environment.frost.background","environment.ember.background"};
+        snapshot.authoredBackgroundId=ids[static_cast<std::size_t>(std::clamp(index_,0,2))];
+    }
+    snapshot.path.reserve(data_.path.size());
+    for (const auto point : data_.path) snapshot.path.push_back({point.x,point.y});
+    snapshot.spawn={data_.spawn.x,data_.spawn.y}; snapshot.goal={data_.goal.x,data_.goal.y};
+    snapshot.zones.reserve(data_.zones.size());
+    for (const auto& zone : data_.zones) snapshot.zones.push_back({zone.type,{zone.rect.left,zone.rect.top,zone.rect.width,zone.rect.height}});
+    snapshot.decorations.reserve(data_.decorations.size());
+    for (const auto& decoration : data_.decorations)
+        snapshot.decorations.push_back({decoration.assetId,{decoration.position.x,decoration.position.y},decoration.rotationDeg,decoration.scale,0,aegis::render::Layer::Environment});
+    return snapshot;
 }

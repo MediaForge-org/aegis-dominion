@@ -2,6 +2,7 @@
 #include "Common.hpp"
 #include "assets/AssetManager.hpp"
 #include "ui/TextService.hpp"
+#include "animation/AnimationCatalog.hpp"
 #include <SFML/Audio.hpp>
 #include <map>
 
@@ -17,10 +18,12 @@ public:
     const aegis::assets::AssetManager& resources() const { return resources_; }
     aegis::ui::TextService& text() { return text_; }
     const aegis::ui::TextService& text() const { return text_; }
+    const aegis::animation::AnimationCatalog& animations() const { return animations_; }
 
     void play(const std::string& name, float volume=100.f);
 private:
     aegis::assets::AssetManager resources_;
     std::map<std::string, sf::Sound> sounds_;
     aegis::ui::TextService text_;
+    aegis::animation::AnimationCatalog animations_;
 };

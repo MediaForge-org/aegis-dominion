@@ -24,6 +24,7 @@ public:
     const AssetDefinition* find(std::string_view id, AssetType type) const;
     const std::vector<AssetDefinition>& definitions() const { return definitions_; }
     static AssetCatalog builtIn();
+    static std::optional<AssetCatalog> loadManifest(const std::filesystem::path& file, std::string* error = nullptr);
 
 private:
     std::vector<AssetDefinition> definitions_;

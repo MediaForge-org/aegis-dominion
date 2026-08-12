@@ -1,12 +1,21 @@
 #pragma once
 #include "Common.hpp"
 #include "core/PlayableMap.hpp"
+#include "render/RenderSnapshot.hpp"
 #include <vector>
 #include <string>
 
 struct GameMapZone {
     aegis::core::ZoneType type = aegis::core::ZoneType::Buildable;
     sf::FloatRect rect;
+};
+
+struct GameMapDecoration {
+    std::string assetId;
+    sf::Vector2f position;
+    float rotationDeg = 0.f;
+    float scale = 1.f;
+    int layer = 0;
 };
 
 struct MapData {
@@ -16,10 +25,14 @@ struct MapData {
     std::string description;
     std::string biome;
     sf::Color accent;
+    std::vector<sf::Vector2f> logicalPath;
     std::vector<sf::Vector2f> path;
     sf::Vector2f spawn;
     sf::Vector2f goal;
     std::vector<GameMapZone> zones;
+    std::vector<GameMapDecoration> decorations;
+    unsigned terrainSeed = 1;
+    float ambientIntensity = 1.f;
     float sourceWidth = WORLD_W;
     float sourceHeight = WORLD_H;
     bool authoredBackground = true;
@@ -36,6 +49,7 @@ public:
     float totalLength() const { return totalLength_; }
     bool canBuild(sf::Vector2f p, const std::vector<sf::Vector2f>& towerPositions, float radius=42.f) const;
     float pathProgress(std::size_t segment, float segmentT) const;
+    aegis::render::MapRenderSnapshot renderSnapshot(bool buildMode = false, bool debugZones = false) const;
 private:
     void rebuildLengths();
     void applyDocument(const aegis::core::MapDocument& document, int visualIndex);

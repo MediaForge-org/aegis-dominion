@@ -45,6 +45,8 @@ public:
 
     void panel(const sf::FloatRect& rect, sf::Color fill, sf::Color outline = sf::Color::Transparent, float thickness = 1.f);
     void card(const sf::FloatRect& rect, sf::Color accent = sf::Color::Transparent, bool elevated = true);
+    void nineSlice(const sf::FloatRect& rect, const assets::TextureId& texture, float sourceBorder = 76.f,
+                   float destinationBorder = 22.f, sf::Color tint = sf::Color::White);
     void separator(sf::Vector2f from, sf::Vector2f to, sf::Color color = sf::Color(55, 84, 102));
     void text(const std::string& value, unsigned size, sf::Vector2f position, sf::Color color = Text,
               bool bold = false, bool centered = false);

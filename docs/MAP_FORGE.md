@@ -1,6 +1,6 @@
 # MAP FORGE
 
-MAP FORGE is available from the main menu and edits `.aegismap` documents directly. Phase 2 is a functional vertical slice; terrain painting, height sculpting and decoration placement are shown only as inactive future tools.
+MAP FORGE is available from the main menu and edits `.aegismap` documents directly. Its canvas now previews the selected material texture and the same Catmull-Rom route used by playtest. Terrain painting, height sculpting and decoration placement remain inactive future tools.
 
 ## Layout
 
@@ -56,7 +56,7 @@ The current 2D adapter maps world coordinates to the 1200×900 gameplay plane wi
 
 The screen manager pushes `GameScreen` above MAP FORGE. Use the pause/end overlay's **ZURÜCK ZU MAP FORGE** action to pop gameplay and reveal the exact same editor screen—document, dirty state, selection, tool, camera and history are preserved.
 
-The current gameplay engine follows one route per match and scales arbitrary map dimensions to its 1200×900 world viewport. Blocked and water zones prevent tower placement. Multiple routes remain stored/editable for the future multi-route simulation.
+The current gameplay engine follows one route per match and scales arbitrary map dimensions to its 1200×900 world viewport. Blocked and water zones prevent tower placement. Water becomes an animated surface; build/blocked overlays disappear in ordinary gameplay, while editor overlays remain explicit. Biome and terrain seed automatically provide material/detail/environment when no decorations are authored. Multiple routes remain stored/editable for the future multi-route simulation.
 
 ## Known Phase 2 limits
 

@@ -19,8 +19,10 @@ struct PlayableMap {
     std::string routeId;
     std::vector<Vec2> route;
     std::vector<Zone> zones;
+    std::vector<Decoration> decorations;
     Vec2 spawn;
     Vec2 goal;
+    EnvironmentSettings environment;
 };
 
 std::optional<PlayableMap> buildPlayableMap(const MapDocument& document, std::string* error = nullptr);

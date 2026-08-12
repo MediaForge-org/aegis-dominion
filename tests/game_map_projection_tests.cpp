@@ -34,16 +34,17 @@ int main() {
         require(projected.id == source.id && projected.name == source.name, "projected identity changed");
         require(projected.sourceWidth == 1733.f && projected.sourceHeight == 977.f, "source dimensions lost");
         require(!projected.authoredBackground && gameMap.index() == -1, "custom map selected a built-in visual map");
-        require(projected.path.size() == source.route.size() && near(projected.path[1].x, 419.f * scaleX) && near(projected.path[1].y, 731.f * scaleY), "path projection differs");
+        require(projected.logicalPath.size() == source.route.size() && near(projected.logicalPath[1].x, 419.f * scaleX) && near(projected.logicalPath[1].y, 731.f * scaleY), "logical path projection differs");
+        require(projected.path.size() > projected.logicalPath.size() && near(projected.path.front().x, projected.logicalPath.front().x) && near(projected.path.back().y, projected.logicalPath.back().y), "shared smooth path was not generated");
         require(near(projected.spawn.x, 37.f * scaleX) && near(projected.spawn.y, 83.f * scaleY), "spawn projection differs");
         require(near(projected.goal.x, 1691.f * scaleX) && near(projected.goal.y, 901.f * scaleY), "goal projection differs");
         require(projected.zones.size() == 3 && near(projected.zones[0].rect.left, 111.f * scaleX) && near(projected.zones[0].rect.height, 123.f * scaleY), "zone projection differs");
         require(projected.zones[0].type == aegis::core::ZoneType::Buildable && projected.zones[1].type == aegis::core::ZoneType::Blocked && projected.zones[2].type == aegis::core::ZoneType::Water, "zone types changed");
-        require(gameMap.canBuild({85.f, 500.f}, {}), "projected build zone is not buildable");
+        require(gameMap.canBuild({200.f, 415.f}, {}), "projected build zone is not buildable");
         require(!gameMap.canBuild({500.f, 500.f}, {}), "custom map allowed building outside explicit build zones");
         require(!gameMap.canBuild({570.f, 130.f}, {}), "projected blocked zone allows building");
         require(!gameMap.canBuild({1030.f, 600.f}, {}), "projected water zone allows building");
-        std::cout << "12 GameMap projection/identity/mechanics checks passed\n";
+        std::cout << "13 GameMap projection/identity/mechanics checks passed\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << "TEST FAILURE: " << error.what() << '\n';

@@ -8,6 +8,7 @@
 #include "Tower.hpp"
 #include "WaveManager.hpp"
 #include "ui/UiRenderer.hpp"
+#include "render/RenderSnapshot.hpp"
 
 #include <memory>
 #include <optional>
@@ -34,7 +35,8 @@ private:
     std::vector<sf::Vector2f> towerPositions() const;
     int towerAt(sf::Vector2f position) const;
 
-    void drawWorld();
+    render::WorldRenderSnapshot buildRenderSnapshot() const;
+    void drawBuildPreview();
     void drawHud();
     void drawCommandPanel();
     void drawBuildCards();
@@ -69,6 +71,7 @@ private:
     bool gameOver_ = false;
     bool victory_ = false;
     float elapsed_ = 0.f;
+    float screenShake_ = 0.f;
 };
 
 } // namespace aegis::screens

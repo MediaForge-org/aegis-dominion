@@ -27,7 +27,9 @@ The request/factory boundary is ready to add `MapSelectScreen`, `SettingsScreen`
 
 `ui::Theme`, `ButtonInteraction`, `LinearLayout`, `UiScale` and `UiRenderer` form the UI boundary. Application renders a 1600×900 virtual UI through an aspect-preserving letterboxed view, so coordinates, text and icons scale together without modifying simulation coordinates.
 
-`render::Layer` defines Terrain, Water, Road, Environment, Zones, Enemies, Towers, Projectiles, Effects, WorldUi, ScreenUi and ModalUi. Screens mark top-level passes through `RenderContext`; later entity extraction can submit immutable render data to `RenderQueue` without changing core maps. `animation::Tween`, sprite definitions/animator and parameter-driven effect definitions provide the reusable motion foundation.
+`render::Layer` defines Terrain, Water, Road, Environment, Zones, Enemies, Towers, Projectiles, Effects, WorldUi, ScreenUi and ModalUi. `GameScreen` extracts one immutable `WorldRenderSnapshot` each frame. `WorldRenderer` owns the ordered world passes; `Enemy`, `Tower` and `Projectile` no longer issue arbitrary SFML draw calls. Their snapshots contain transforms, logical visual IDs, animation state, health/shield presentation, selection and effect profiles, but no targeting, damage or wave logic.
+
+`core::samplePathCurve()` is SFML-free. `GameMap` projects logical route nodes once, samples the Catmull-Rom curve and exposes that same point list to enemy movement, build-distance checks and road rendering. The editor keeps storing logical nodes and previews the sampled curve without changing the document.
 
 ## Data and rendering boundaries
 
@@ -44,7 +46,7 @@ editor/MapEditorModel                    MapForgeScreen + EditorCamera
 - `MapForgeScreen` owns transient UI state only: tool, selection, drag preview, camera, grid/snap and dialogs. It renders the current `MapDocument`; there is no second editable path or zone copy.
 - `EditorCamera` converts screen/world coordinates without changing map data.
 - `GameMap` is the current SFML/gameplay adapter. It projects a selected playable route to the fixed 1200×900 gameplay viewport and blocks building in blocked/water zones.
-- `GameScreen` still coordinates current prototype simulation and rendering. Entity simulation/render separation remains later work.
+- `GameScreen` still coordinates match simulation, input and HUD, but delegates all world presentation to `WorldRenderer` through snapshots.
 
 ## Validation and playtest flow
 
@@ -61,7 +63,7 @@ gameY = worldY ×  900 / mapHeight
 
 The same scale pair is applied to path nodes, spawn, goal and every zone rectangle. Original dimensions remain in session metadata and are displayed in the playtest HUD. This projection is isolated in the current 2D adapter; `MapDocument` and `PlayableMap` retain semantic world coordinates for future renderers.
 
-Built-in games retain their authored background PNG. MAP FORGE playtests have no built-in visual index: `GameScreen` renders their terrain surface, route, spawn, goal and build/blocked/water overlays from projected session data. Thus simulation and visible geometry share one `GameMap` instance.
+Built-in games retain their authored background PNG as an optional terrain input but then use the same road/endpoints/environment/entity passes as custom maps. MAP FORGE playtests choose a material from biome data, use `terrainSeed` for deterministic patches/decorations and render water as an animated surface. Build/blocked rectangles remain mechanics/editor data: gameplay hides them unless building/debugging.
 
 ## Toolchain boundary
 
@@ -75,9 +77,10 @@ Repository/map strings are UTF-8 `std::string`. `ui::TextService` converts them 
 
 ## Remaining architecture debt
 
-- Gameplay entities still use SFML vectors and draw themselves inside the current world pass.
+- Gameplay entities still use SFML vectors internally; snapshots isolate rendering, but complete renderer-agnostic combat simulation remains future work.
 - Current gameplay supports one active enemy route per match; maps may store several routes and MAP FORGE edits all of them.
 - Map selection/tutorial are menu pages rather than independent screens, although navigation supports extracting them.
 - The inspector uses shared panels/buttons/labels but does not yet provide reflection or complete numeric/text widget editing.
-- Terrain, elevation, decorations and environment authoring are deliberately not active tools yet.
+- MAP FORGE previews terrain and stored decorations flow into playtest, but terrain painting, height sculpting and decoration placement tools are not active yet.
+- Current enemy sheets are single-pose transitional art; external clip definitions and state playback are ready for multi-frame replacements.
 - Waves, economy and balance remain hard-coded.

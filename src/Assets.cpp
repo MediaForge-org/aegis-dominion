@@ -1,5 +1,7 @@
 #include "Assets.hpp"
+#include "logging/Logger.hpp"
 #include <array>
+#include <filesystem>
 
 namespace {
 std::string towerId(TowerKind kind, std::string_view part) {
@@ -14,6 +16,9 @@ std::string enemyId(EnemyKind kind) {
 
 bool Assets::load(const std::string& root){
     const bool ok = resources_.load(root);
+    std::string animationError;
+    if(!animations_.load(std::filesystem::path(root)/"animations.aegis",&animationError))
+        aegis::logging::log().warning("{}; built-in static poses remain available",animationError);
     const auto& font = resources_.font(aegis::assets::FontId{"font.ui.default"});
     text_.bind(font, resources_.hasFontFallback());
     for(const auto& n:{"click","build","upgrade","shoot","laser","explosion","wave","gameover"}){

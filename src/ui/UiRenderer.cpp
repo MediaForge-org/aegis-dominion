@@ -40,6 +40,15 @@ void UiRenderer::panel(const sf::FloatRect& rect, sf::Color fill, sf::Color outl
     window_.draw(shape);
 }
 
+void UiRenderer::card(const sf::FloatRect& rect, sf::Color accent, bool elevated) {
+    if (elevated) panel({rect.left + 5.f, rect.top + 7.f, rect.width, rect.height}, sf::Color(0, 0, 0, 85));
+    const auto border = accent == sf::Color::Transparent ? theme().colors.border : withAlpha(accent, 135);
+    panel(rect, elevated ? theme().colors.elevatedSurface : theme().colors.surface, border, theme().sizes.border);
+    if (accent != sf::Color::Transparent) panel({rect.left, rect.top, 4.f, rect.height}, accent);
+}
+
+void UiRenderer::separator(sf::Vector2f from, sf::Vector2f to, sf::Color color) { segment(window_, from, to, 1.f, color); }
+
 void UiRenderer::text(const std::string& value, unsigned size, sf::Vector2f position, sf::Color color, bool bold, bool centered) {
     if (!assets_.text().loaded()) return;
     auto drawable = assets_.text().makeText(value, size);
@@ -78,13 +87,86 @@ void UiRenderer::wrapped(const std::string& value, unsigned size, sf::FloatRect 
 bool UiRenderer::buttonSurface(const sf::FloatRect& rect, sf::Color accent, bool active) {
     const auto mouse = window_.mapPixelToCoords(sf::Mouse::getPosition(window_));
     const bool hovered = rect.contains(mouse);
-    panel(rect, hovered ? sf::Color(26, 42, 57, 248) : sf::Color(17, 29, 41, 245),
+    const bool pressed = hovered && sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    panel(rect, pressed ? sf::Color(10, 20, 30, 252) : (hovered ? sf::Color(26, 42, 57, 248) : sf::Color(17, 29, 41, 245)),
           active ? accent : withAlpha(accent, hovered ? 220 : 120), active ? 2.5f : 1.5f);
     sf::RectangleShape bar({4.f, rect.height - 12.f});
     bar.setPosition(rect.left + 6.f, rect.top + 6.f);
     bar.setFillColor(withAlpha(accent, hovered ? 255 : 180));
     window_.draw(bar);
     return hovered;
+}
+
+void UiRenderer::label(const std::string& value, sf::Vector2f position, bool heading, sf::Color color) {
+    text(value, heading ? theme().typography.heading : theme().typography.body, position, color, heading);
+}
+
+void UiRenderer::progressBar(const sf::FloatRect& rect, float progress, sf::Color accent, const std::string& caption) {
+    panel(rect, sf::Color(5, 11, 18, 220), theme().colors.border);
+    const float fill = std::clamp(progress, 0.f, 1.f) * std::max(0.f, rect.width - 4.f);
+    panel({rect.left + 2.f, rect.top + 2.f, fill, std::max(0.f, rect.height - 4.f)}, accent);
+    if (!caption.empty()) text(caption, theme().typography.caption, {rect.left + rect.width / 2.f, rect.top + rect.height / 2.f - 1.f}, Text, true, true);
+}
+
+void UiRenderer::tooltip(const sf::FloatRect& anchor, const std::string& value, sf::Color accent) {
+    const auto mouse = window_.mapPixelToCoords(sf::Mouse::getPosition(window_));
+    if (!anchor.contains(mouse)) return;
+    const float width = std::clamp(24.f + static_cast<float>(value.size()) * 7.f, 120.f, 340.f);
+    const sf::FloatRect box(mouse.x + 14.f, mouse.y + 18.f, width, 34.f);
+    card(box, accent, true);
+    text(value, 12, {box.left + 12.f, box.top + 9.f}, Text);
+}
+
+bool UiRenderer::toggle(const sf::FloatRect& rect, const std::string& labelValue, bool value, bool enabled) {
+    const auto mouse = window_.mapPixelToCoords(sf::Mouse::getPosition(window_));
+    const auto color = enabled ? (value ? theme().colors.success : theme().colors.textSecondary) : theme().colors.disabled;
+    label(labelValue, {rect.left, rect.top + 5.f}, false, enabled ? Text : theme().colors.disabled);
+    const sf::FloatRect track(rect.left + rect.width - 52.f, rect.top, 52.f, 28.f);
+    panel(track, value ? withAlpha(color, 110) : sf::Color(18, 29, 39), color, 1.f);
+    sf::CircleShape knob(10.f); knob.setOrigin(10.f, 10.f); knob.setPosition(track.left + (value ? 38.f : 14.f), track.top + 14.f);
+    knob.setFillColor(color); window_.draw(knob);
+    return enabled && rect.contains(mouse);
+}
+
+float UiRenderer::slider(const sf::FloatRect& rect, float value, sf::Color accent, bool enabled) {
+    value = std::clamp(value, 0.f, 1.f);
+    const auto color = enabled ? accent : theme().colors.disabled;
+    panel({rect.left, rect.top + rect.height / 2.f - 2.f, rect.width, 4.f}, sf::Color(35, 50, 61));
+    panel({rect.left, rect.top + rect.height / 2.f - 2.f, rect.width * value, 4.f}, color);
+    sf::CircleShape knob(8.f); knob.setOrigin(8.f, 8.f); knob.setPosition(rect.left + rect.width * value, rect.top + rect.height / 2.f); knob.setFillColor(color); window_.draw(knob);
+    return value;
+}
+
+void UiRenderer::dropdown(const sf::FloatRect& rect, const std::string& labelValue, bool open, bool enabled) {
+    card(rect, open ? theme().colors.primary : sf::Color::Transparent, false);
+    text(labelValue, 14, {rect.left + 12.f, rect.top + rect.height / 2.f - 8.f}, enabled ? Text : theme().colors.disabled);
+    icon(open ? UiIcon::ArrowUp : UiIcon::ArrowDown, {rect.left + rect.width - 18.f, rect.top + rect.height / 2.f}, 11.f, enabled ? Text : theme().colors.disabled);
+}
+
+void UiRenderer::scrollArea(const sf::FloatRect& rect, float position, float contentRatio) {
+    card(rect, sf::Color::Transparent, false);
+    const float thumbHeight = std::max(24.f, rect.height * std::clamp(contentRatio, 0.f, 1.f));
+    panel({rect.left + rect.width - 6.f, rect.top + (rect.height - thumbHeight) * std::clamp(position, 0.f, 1.f), 4.f, thumbHeight}, theme().colors.primary);
+}
+
+void UiRenderer::modalDialog(const sf::FloatRect& rect, const std::string& titleValue) {
+    panel({0.f, 0.f, 1600.f, 900.f}, sf::Color(0, 0, 0, 185));
+    card(rect, theme().colors.primary, true);
+    text(titleValue, theme().typography.title, {rect.left + rect.width / 2.f, rect.top + 48.f}, Text, true, true);
+}
+
+void UiRenderer::toast(const sf::FloatRect& rect, const std::string& message, sf::Color accent, float visibility) {
+    const auto alpha = static_cast<sf::Uint8>(255.f * std::clamp(visibility, 0.f, 1.f));
+    card({rect.left + (1.f - visibility) * 24.f, rect.top, rect.width, rect.height}, withAlpha(accent, alpha), true);
+    text(message, 14, {rect.left + 18.f, rect.top + rect.height / 2.f - 8.f}, withAlpha(Text, alpha), true);
+}
+
+int UiRenderer::tabBar(const sf::FloatRect& rect, const std::vector<std::string>& labels, int selected) {
+    if (labels.empty()) return selected;
+    const float width = rect.width / static_cast<float>(labels.size());
+    for (std::size_t i = 0; i < labels.size(); ++i)
+        button({rect.left + static_cast<float>(i) * width, rect.top, width - 4.f, rect.height}, labels[i], theme().colors.primary, static_cast<int>(i) == selected, 13);
+    return selected;
 }
 
 bool UiRenderer::button(const sf::FloatRect& rect, const std::string& label, sf::Color accent, bool active, unsigned size) {

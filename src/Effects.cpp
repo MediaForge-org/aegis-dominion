@@ -11,6 +11,13 @@ void Effects::burst(sf::Vector2f pos,sf::Color c,int count,float speed){
 void Effects::ring(sf::Vector2f p,sf::Color c,float r,float life){ rings_.push_back({p,c,8.f,r,life,life}); }
 void Effects::tracer(sf::Vector2f a,sf::Vector2f b,sf::Color c,float life,float w){ tracers_.push_back({a,b,c,life,life,w}); }
 void Effects::text(sf::Vector2f p,const std::string& s,sf::Color c){ texts_.push_back({p,s,c,.9f,.9f}); }
+void Effects::emit(const EffectDefinition& definition, sf::Vector2f position, sf::Vector2f target) {
+    switch (definition.shape) {
+        case EffectShape::Burst: burst(position, definition.color, definition.count, definition.speed); break;
+        case EffectShape::Ring: ring(position, definition.color, definition.radius, definition.lifetime); break;
+        case EffectShape::Tracer: tracer(position, target, definition.color, definition.lifetime, definition.width); break;
+    }
+}
 void Effects::clear(){ particles_.clear(); rings_.clear(); tracers_.clear(); texts_.clear(); }
 void Effects::update(float dt){
     for(auto& p:particles_){ p.life-=dt; p.pos+=p.vel*dt; p.vel*=std::pow(.08f,dt); }

@@ -14,8 +14,11 @@
 - architecture designed so a later 3D renderer can reuse map/game data
 - stack-based screen architecture with separate menu, gameplay and editor screens
 - functional MAP FORGE vertical slice with camera/grid, map tools, history, validation, persistence and direct playtest
+- Phase-3 presentation foundation with typed/cached assets, visible fallbacks, input actions/contexts and centralized logging
+- tactical shared UI theme, reusable widgets/layout, 1600×900 reference scaling and deterministic render layers
+- reusable tween, sprite-animation and parameter-driven effect definitions
 
-See `docs/ARCHITECTURE_V3.md`, `docs/MAP_FORGE.md`, `docs/BUILDING.md` and `docs/CODEX_START.md`.
+See `docs/ARCHITECTURE_V3.md`, `docs/UI_SYSTEM.md`, `docs/ASSET_PIPELINE.md`, `docs/INPUT_SYSTEM.md`, `docs/MAP_FORGE.md` and `docs/BUILDING.md`.
 
 ---
 
@@ -151,10 +154,16 @@ assets/
   sfx/        WAV-Soundeffekte
 src/
   app/        Window lifecycle and screen navigation
+  assets/     typed asset IDs, catalog, cache and fallbacks
+  animation/  tweens and sprite animation playback
   core/       renderer-independent map and playtest data
   editor/     MAP FORGE model, camera and screen
+  input/      actions, bindings, contexts and pointer capture
+  logging/    leveled source-aware logging
+  render/     render context and fixed layer order
   screens/    main menu and gameplay screens
-  ui/         UTF-8 text and shared SFML UI drawing
+  settings/   settings-ready application data model
+  ui/         theme, UTF-8 text, layout, interaction and widgets
   Assets.*
   Enemy.*
   Tower.*

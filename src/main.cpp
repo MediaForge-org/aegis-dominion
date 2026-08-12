@@ -1,4 +1,4 @@
 #include "app/Application.hpp"
+#include "logging/Logger.hpp"
 #include <exception>
-#include <iostream>
-int main(){ try{ aegis::app::Application application; return application.run(); } catch(const std::exception& e){ std::cerr<<"Fataler Fehler: "<<e.what()<<"\n"; return 1; } }
+int main(){ try{ aegis::app::Application application; return application.run(); } catch(const std::exception& e){ aegis::logging::log().error("Fatal error: {}", e.what()); return 1; } }

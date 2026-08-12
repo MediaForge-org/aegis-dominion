@@ -22,6 +22,7 @@ public:
     void handleEvent(const sf::Event& event) override;
     void update(float deltaSeconds) override;
     void render() override;
+    void onResume() override { context_.input.setContext(input::Context::Gameplay); }
 
 private:
     void resetGameplay();

@@ -2,6 +2,7 @@
 
 #include "Assets.hpp"
 #include "ScreenManager.hpp"
+#include "input/InputSystem.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <memory>
@@ -18,6 +19,7 @@ private:
 
     sf::RenderWindow window_;
     Assets assets_;
+    input::InputSystem input_;
     ScreenManager screens_;
 };
 

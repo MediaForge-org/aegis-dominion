@@ -1,7 +1,7 @@
 #include "Map.hpp"
 #include "core/PlayableMap.hpp"
+#include "logging/Logger.hpp"
 #include <array>
-#include <iostream>
 
 namespace {
 sf::Color accentForBiome(const std::string& biome) {
@@ -50,7 +50,7 @@ void GameMap::applyDocument(const aegis::core::MapDocument& document,int visualI
     std::string error;
     const auto playable=aegis::core::buildPlayableMap(document,&error);
     if(!playable){
-        std::cerr << "Map konnte nicht in Gameplay-Daten konvertiert werden:\n" << error << "\n";
+        aegis::logging::log().error("Map could not be converted to gameplay data: {}", error);
         loadLegacyFallback(visualIndex);
         return;
     }
@@ -65,7 +65,7 @@ bool GameMap::loadFromFile(const std::string& file, int visualIndex){
     std::string error;
     auto loaded=aegis::core::MapDocument::load(file,&error);
     if(!loaded){
-        std::cerr << "Map konnte nicht geladen werden: " << file << "\n" << error << "\n";
+        aegis::logging::log().error("Map '{}' could not be loaded: {}", file, error);
         return false;
     }
     applyDocument(*loaded,visualIndex);

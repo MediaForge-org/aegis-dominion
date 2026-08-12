@@ -30,6 +30,7 @@ const std::array<const char*, 6> TutorialBodies = {
 }
 
 MainMenuScreen::MainMenuScreen(app::ScreenContext context, bool openMapSelect) : Screen(context), ui_(context.window, context.assets) {
+    context_.input.setContext(input::Context::Menu);
     std::mt19937 random{73};
     std::uniform_real_distribution<float> x(0.f, static_cast<float>(WINDOW_W));
     std::uniform_real_distribution<float> y(0.f, static_cast<float>(WINDOW_H));
@@ -38,20 +39,23 @@ MainMenuScreen::MainMenuScreen(app::ScreenContext context, bool openMapSelect) :
     for (int i = 0; i < 90; ++i) particles_.push_back({{x(random), y(random)}, {-speed(random) * .25f, speed(random)}, radius(random), sf::Color(85, 190, 255, 60)});
     map_.set(0);
     if (openMapSelect) page_ = Page::MapSelect;
+    pageAppear_.restart();
 }
 
 void MainMenuScreen::handleEvent(const sf::Event& event) {
     if (event.type == sf::Event::Closed) { context_.screens.quit(); return; }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+    if (context_.input.triggered(input::Action::MenuBack, event)) {
         if (page_ == Page::Menu) context_.screens.quit();
         else page_ = Page::Menu;
     }
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+        context_.input.consumePointerPress(sf::Mouse::Left);
         click(context_.window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y}));
     }
 }
 
 void MainMenuScreen::click(sf::Vector2f position) {
+    const auto previousPage = page_;
     if (page_ == Page::Menu) {
         if (PlayButton.contains(position)) page_ = Page::MapSelect;
         else if (ForgeButton.contains(position)) context_.screens.replace({app::ScreenType::MapForge});
@@ -75,10 +79,12 @@ void MainMenuScreen::click(sf::Vector2f position) {
         else if (next.contains(position) && tutorialPage_ < 5) ++tutorialPage_;
         else if (menu.contains(position)) page_ = Page::Menu;
     }
+    if (page_ != previousPage) pageAppear_.restart();
     context_.assets.play("click", 50.f);
 }
 
 void MainMenuScreen::update(float deltaSeconds) {
+    pageAppear_.update(deltaSeconds);
     for (auto& particle : particles_) {
         particle.position += particle.velocity * deltaSeconds;
         if (particle.position.y > static_cast<float>(WINDOW_H) + 10.f) {
@@ -92,6 +98,7 @@ void MainMenuScreen::render() {
     if (page_ == Page::Menu) drawMenu();
     else if (page_ == Page::MapSelect) drawMapSelect();
     else drawTutorial();
+    ui_.panel({0.f, 0.f, 1600.f * pageAppear_.value(), 3.f}, withAlpha(page_ == Page::Tutorial ? ui::Green : ui::Cyan, 210));
 }
 
 void MainMenuScreen::drawMenu() {
@@ -111,6 +118,7 @@ void MainMenuScreen::drawMenu() {
     logo.setScale(.86f, .86f);
     context_.window.draw(logo);
     ui_.wrapped("Verteidige den Aegis-Kern oder erschaffe in MAP FORGE eigene Einsatzgebiete.", 20, {520.f, 340.f, 560.f, 70.f}, sf::Color(176, 199, 216), 6.f);
+    ui_.card({580.f, 420.f, 440.f, 320.f}, ui::Cyan, true);
     ui_.button(PlayButton, "SPIEL STARTEN", ui::Cyan, false, 22);
     ui_.button(ForgeButton, "MAP FORGE", ui::Orange, false, 22);
     ui_.button(TutorialButton, "ANLEITUNG", ui::Green, false, 21);
@@ -126,7 +134,7 @@ void MainMenuScreen::drawMapSelect() {
         map_.set(i);
         const sf::FloatRect rect(70.f + static_cast<float>(i) * 510.f, 220.f, 440.f, 500.f);
         const bool hovered = rect.contains(mouse);
-        ui_.panel(rect, hovered ? sf::Color(18, 31, 44) : sf::Color(13, 23, 34), withAlpha(map_.data().accent, hovered ? 230 : 100), hovered ? 3.f : 1.5f);
+        ui_.card(rect, withAlpha(map_.data().accent, hovered ? 255 : 150), true);
         sf::Sprite preview(context_.assets.mapTexture(i));
         preview.setPosition(rect.left + 20.f, rect.top + 20.f);
         preview.setScale(400.f / 1200.f, 280.f / 900.f);
@@ -143,10 +151,12 @@ void MainMenuScreen::drawTutorial() {
     sf::Sprite background(context_.assets.ui("menu_background"));
     background.setColor(sf::Color(150, 160, 170));
     context_.window.draw(background);
-    ui_.panel({330.f, 90.f, 940.f, 670.f}, sf::Color(8, 16, 26, 246), sf::Color(75, 135, 172, 130), 2.f);
+    ui_.card({330.f, 90.f, 940.f, 670.f}, ui::Cyan, true);
+    ui_.separator({430.f, 205.f}, {1170.f, 205.f}, withAlpha(ui::Cyan, 100));
     ui_.text(TutorialTitles[static_cast<std::size_t>(tutorialPage_)], 34, {800.f, 160.f}, ui::Cyan, true, true);
     ui_.wrapped(TutorialBodies[static_cast<std::size_t>(tutorialPage_)], 22, {430.f, 240.f, 740.f, 330.f}, ui::Text, 10.f);
     ui_.text(std::to_string(tutorialPage_ + 1) + " / 6", 16, {800.f, 720.f}, ui::Muted, false, true);
+    ui_.progressBar({620.f, 744.f, 360.f, 7.f}, static_cast<float>(tutorialPage_ + 1) / 6.f, ui::Cyan);
     ui_.iconButton({500.f, 800.f, 180.f, 52.f}, "ZURÜCK", ui::UiIcon::ArrowLeft,
                    ui::IconPlacement::Left, ui::Cyan, tutorialPage_ == 0, 17);
     ui_.button({700.f, 800.f, 200.f, 52.f}, "HAUPTMENÜ", ui::Muted, false, 17);

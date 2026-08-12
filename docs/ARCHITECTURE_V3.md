@@ -2,11 +2,13 @@
 
 ## Runtime composition
 
-The Phase 2 runtime is screen-based:
+The Phase 3 runtime remains screen-based and composes presentation services explicitly:
 
 ```text
 Application
-  ├─ RenderWindow + shared Assets/TextService
+  ├─ RenderWindow + reference-resolution view
+  ├─ AssetManager/Catalog + TextService facade
+  ├─ InputSystem + Logger + Settings model
   └─ ScreenManager (queued stack navigation)
        ├─ MainMenuScreen (menu, map selection, tutorial)
        ├─ GameScreen (match orchestration and current SFML gameplay view)
@@ -16,6 +18,16 @@ Application
 `Application` owns only the window lifecycle, event loop, common services and screen dispatch. Navigation requests are queued so a screen is never destroyed while handling its own event. The stack is important for playtesting: MAP FORGE pushes a `GameScreen`; popping that screen exposes the same editor instance, including camera, selection, tool, undo/redo and unsaved document.
 
 The request/factory boundary is ready to add `MapSelectScreen`, `SettingsScreen`, `TutorialScreen`, `CodexScreen`, `ArsenalScreen` and `ResultsScreen` without reintroducing a central state switch. Map selection and tutorial still live as bounded pages inside `MainMenuScreen` in this phase.
+
+## Presentation boundaries
+
+`AssetManager` is the only resource file-loading boundary. Strong `TextureId`, `FontId` and `SoundId` values resolve logical catalog names, cache owned SFML resources and return explicit checkerboard/font/silent fallbacks. The legacy `Assets` class is now only a domain-friendly adapter for existing tower, enemy, map and sound call sites.
+
+`InputSystem` owns default/rebindable action mappings for Menu, Gameplay, MapForge and Modal contexts. Application records pointer events once; UI/modal regions consume presses before world logic. Text editing and directional point nudging retain direct low-level key interpretation because they are text/editor primitives rather than global commands.
+
+`ui::Theme`, `ButtonInteraction`, `LinearLayout`, `UiScale` and `UiRenderer` form the UI boundary. Application renders a 1600×900 virtual UI through an aspect-preserving letterboxed view, so coordinates, text and icons scale together without modifying simulation coordinates.
+
+`render::Layer` defines Terrain, Water, Road, Environment, Zones, Enemies, Towers, Projectiles, Effects, WorldUi, ScreenUi and ModalUi. Screens mark top-level passes through `RenderContext`; later entity extraction can submit immutable render data to `RenderQueue` without changing core maps. `animation::Tween`, sprite definitions/animator and parameter-driven effect definitions provide the reusable motion foundation.
 
 ## Data and rendering boundaries
 
@@ -63,9 +75,9 @@ Repository/map strings are UTF-8 `std::string`. `ui::TextService` converts them 
 
 ## Remaining architecture debt
 
-- Gameplay entities still use SFML vectors and draw themselves.
+- Gameplay entities still use SFML vectors and draw themselves inside the current world pass.
 - Current gameplay supports one active enemy route per match; maps may store several routes and MAP FORGE edits all of them.
 - Map selection/tutorial are menu pages rather than independent screens, although navigation supports extracting them.
-- The inspector uses focused fields and bounded controls; a reusable retained widget/form system belongs to a later UI phase.
+- The inspector uses shared panels/buttons/labels but does not yet provide reflection or complete numeric/text widget editing.
 - Terrain, elevation, decorations and environment authoring are deliberately not active tools yet.
 - Waves, economy and balance remain hard-coded.

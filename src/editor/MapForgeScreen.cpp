@@ -3,6 +3,7 @@
 #include "Common.hpp"
 #include "app/ScreenManager.hpp"
 #include "core/PlayableMap.hpp"
+#include "render/RenderContext.hpp"
 
 #include <algorithm>
 #include <array>
@@ -50,19 +51,21 @@ sf::Color zoneColor(core::ZoneType type) {
 }
 
 MapForgeScreen::MapForgeScreen(app::ScreenContext context) : Screen(context), ui_(context.window, context.assets) {
+    context_.input.setContext(input::Context::MapForge);
     camera_.setViewport(Canvas);
     camera_.fit(model_.document().width, model_.document().height);
     refreshMapFiles();
 }
 
-void MapForgeScreen::onResume() { setStatus("Playtest beendet – Editorzustand wiederhergestellt"); }
+void MapForgeScreen::onResume() { context_.input.setContext(input::Context::MapForge); setStatus("Playtest beendet – Editorzustand wiederhergestellt"); }
 
 void MapForgeScreen::handleEvent(const sf::Event& event) {
+    context_.input.setContext(dialog_ == Dialog::None ? input::Context::MapForge : input::Context::Modal);
     if (event.type == sf::Event::Closed) { confirmOrRun(PendingAction::Quit); return; }
     if (event.type == sf::Event::KeyPressed) { handleKey(event.key); return; }
     if (event.type == sf::Event::TextEntered) { handleText(event.text.unicode); return; }
     if (event.type == sf::Event::MouseWheelScrolled) {
-        const sf::Vector2f screen(static_cast<float>(event.mouseWheelScroll.x), static_cast<float>(event.mouseWheelScroll.y));
+        const auto screen = context_.window.mapPixelToCoords({event.mouseWheelScroll.x, event.mouseWheelScroll.y});
         if (dialog_ == Dialog::Open) {
             if (event.mouseWheelScroll.delta > 0.f && mapScroll_ > 0) --mapScroll_;
             else if (event.mouseWheelScroll.delta < 0.f && mapScroll_ + 8 < mapFiles_.size()) ++mapScroll_;
@@ -70,11 +73,11 @@ void MapForgeScreen::handleEvent(const sf::Event& event) {
         return;
     }
     if (event.type == sf::Event::MouseButtonPressed)
-        mousePressed({static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)}, event.mouseButton.button);
+        mousePressed(context_.window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y}), event.mouseButton.button);
     else if (event.type == sf::Event::MouseButtonReleased)
-        mouseReleased({static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)}, event.mouseButton.button);
+        mouseReleased(context_.window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y}), event.mouseButton.button);
     else if (event.type == sf::Event::MouseMoved)
-        mouseMoved({static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y)});
+        mouseMoved(context_.window.mapPixelToCoords({event.mouseMove.x, event.mouseMove.y}));
 }
 
 void MapForgeScreen::update(float deltaSeconds) {
@@ -82,12 +85,16 @@ void MapForgeScreen::update(float deltaSeconds) {
 }
 
 void MapForgeScreen::render() {
+    render::RenderContext renderContext(context_.window);
+    render::WorldRenderer renderer(renderContext);
+    renderer.begin(render::Layer::Terrain);
     drawCanvas();
+    renderer.begin(render::Layer::ScreenUi);
     drawToolbar();
     drawTools();
     drawInspector();
     drawStatusBar();
-    if (dialog_ != Dialog::None) drawDialog();
+    if (dialog_ != Dialog::None) { renderer.begin(render::Layer::ModalUi); drawDialog(); }
 }
 
 void MapForgeScreen::handleKey(const sf::Event::KeyEvent& key) {
@@ -103,21 +110,21 @@ void MapForgeScreen::handleKey(const sf::Event::KeyEvent& key) {
         else if (key.code == sf::Keyboard::Escape) { textField_ = TextField::None; textBuffer_.clear(); }
         return;
     }
-    const bool control = key.control;
-    if (control && key.code == sf::Keyboard::Z) { if (model_.undo()) { selection_.clear(); setStatus("Rückgängig"); } return; }
-    if (control && key.code == sf::Keyboard::Y) { if (model_.redo()) { selection_.clear(); setStatus("Wiederholt"); } return; }
-    if (control && key.code == sf::Keyboard::S) { if (key.shift) dialog_ = Dialog::SaveAs; else save(); return; }
-    if (control && key.code == sf::Keyboard::O) { dialog_ = Dialog::Open; refreshMapFiles(); return; }
-    if (control && key.code == sf::Keyboard::N) { requestNew(); return; }
+    sf::Event event{}; event.type = sf::Event::KeyPressed; event.key = key;
+    if (context_.input.triggered(input::Action::EditorUndo, event)) { if (model_.undo()) { selection_.clear(); setStatus("Rückgängig"); } return; }
+    if (context_.input.triggered(input::Action::EditorRedo, event)) { if (model_.redo()) { selection_.clear(); setStatus("Wiederholt"); } return; }
+    if (context_.input.triggered(input::Action::EditorSaveAs, event)) { dialog_ = Dialog::SaveAs; return; }
+    if (context_.input.triggered(input::Action::EditorSave, event)) { save(); return; }
+    if (context_.input.triggered(input::Action::EditorOpen, event)) { dialog_ = Dialog::Open; refreshMapFiles(); return; }
+    if (context_.input.triggered(input::Action::EditorNew, event)) { requestNew(); return; }
     if (key.code == sf::Keyboard::Escape) { if (!selection_.empty()) selection_.clear(); else requestExit(); return; }
     if (key.code == sf::Keyboard::Delete || key.code == sf::Keyboard::BackSpace) { deleteSelected(); return; }
-    if (key.code == sf::Keyboard::G) { gridVisible_ = !gridVisible_; return; }
-    if (key.code == sf::Keyboard::H) { snapEnabled_ = !snapEnabled_; return; }
-    if (key.code == sf::Keyboard::F) { camera_.fit(model_.document().width, model_.document().height); return; }
-    if (key.code >= sf::Keyboard::Num1 && key.code <= sf::Keyboard::Num8) {
-        model_.setTool(Tools[static_cast<std::size_t>(key.code - sf::Keyboard::Num1)]);
-        return;
-    }
+    if (context_.input.triggered(input::Action::EditorGrid, event)) { gridVisible_ = !gridVisible_; return; }
+    if (context_.input.triggered(input::Action::EditorSnap, event)) { snapEnabled_ = !snapEnabled_; return; }
+    if (context_.input.triggered(input::Action::EditorFit, event)) { camera_.fit(model_.document().width, model_.document().height); return; }
+    const input::Action toolActions[] = {input::Action::EditorSelect, input::Action::EditorPath, input::Action::EditorSpawn, input::Action::EditorGoal,
+                                         input::Action::EditorBuildZone, input::Action::EditorBlockedZone, input::Action::EditorWater, input::Action::EditorErase};
+    for (std::size_t i = 0; i < Tools.size(); ++i) if (context_.input.triggered(toolActions[i], event)) { model_.setTool(Tools[i]); return; }
 
     core::Vec2 target{};
     bool canNudge = true;
@@ -164,16 +171,17 @@ void MapForgeScreen::handleText(sf::Uint32 unicode) {
 void MapForgeScreen::mousePressed(sf::Vector2f screen, sf::Mouse::Button button) {
     lastMouseScreen_ = screen;
     mouseWorld_ = camera_.screenToWorld(screen);
-    if (dialog_ != Dialog::None) { if (button == sf::Mouse::Left) dialogPressed(screen); return; }
+    if (dialog_ != Dialog::None) { context_.input.capturePointer(true); context_.input.consumePointerPress(button); if (button == sf::Mouse::Left) dialogPressed(screen); return; }
     if (button == sf::Mouse::Middle || (button == sf::Mouse::Right && Canvas.contains(screen))) { panning_ = true; return; }
     if (button != sf::Mouse::Left) return;
-    if (Toolbar.contains(screen)) toolbarPressed(screen);
-    else if (ToolPanel.contains(screen)) toolsPressed(screen);
-    else if (Inspector.contains(screen)) inspectorPressed(screen);
+    if (Toolbar.contains(screen)) { context_.input.consumePointerPress(button); toolbarPressed(screen); }
+    else if (ToolPanel.contains(screen)) { context_.input.consumePointerPress(button); toolsPressed(screen); }
+    else if (Inspector.contains(screen)) { context_.input.consumePointerPress(button); inspectorPressed(screen); }
     else if (Canvas.contains(screen)) canvasPressed(screen);
 }
 
 void MapForgeScreen::mouseReleased(sf::Vector2f screen, sf::Mouse::Button button) {
+    if (dialog_ == Dialog::None) context_.input.capturePointer(false);
     if (button == sf::Mouse::Middle || button == sf::Mouse::Right) panning_ = false;
     if (button != sf::Mouse::Left) return;
     const auto world = clamped(snapped(camera_.screenToWorld(screen)));
@@ -488,7 +496,7 @@ void MapForgeScreen::commitTextField() {
 void MapForgeScreen::setStatus(std::string value) { statusMessage_ = std::move(value); statusTimer_ = 5.f; }
 
 void MapForgeScreen::drawToolbar() {
-    ui_.panel(Toolbar, sf::Color(10, 19, 29, 252), sf::Color(48, 78, 98));
+    ui_.card(Toolbar, ui::Orange, false);
     ui_.iconButton({8.f, 10.f, 104.f, 44.f}, "MENÜ", ui::UiIcon::ArrowLeft,
                    ui::IconPlacement::Left, ui::Cyan, false, 14);
     ui_.button({120.f, 10.f, 68.f, 44.f}, "NEU", ui::Green, false, 13);
@@ -506,19 +514,30 @@ void MapForgeScreen::drawToolbar() {
     ui_.button({862.f, 10.f, 72.f, 44.f}, "FIT", ui::Purple, false, 12);
     ui_.button({944.f, 10.f, 148.f, 44.f}, "KARTE TESTEN", ui::Orange, false, 13);
     ui_.text("MAP FORGE", 18, {1340.f, 32.f}, ui::Orange, true, true);
+    ui_.tooltip({120.f, 10.f, 68.f, 44.f}, "Neue Karte [Ctrl+N]", ui::Green);
+    ui_.tooltip({194.f, 10.f, 78.f, 44.f}, "Karte öffnen [Ctrl+O]", ui::Cyan);
+    ui_.tooltip({278.f, 10.f, 86.f, 44.f}, "Speichern [Ctrl+S]", ui::Gold);
+    ui_.tooltip({486.f, 10.f, 54.f, 44.f}, "Rückgängig [Ctrl+Z]", ui::Cyan);
+    ui_.tooltip({546.f, 10.f, 54.f, 44.f}, "Wiederholen [Ctrl+Y]", ui::Cyan);
+    ui_.tooltip({944.f, 10.f, 148.f, 44.f}, "Aktuelle Karte sofort testen", ui::Orange);
 }
 
 void MapForgeScreen::drawTools() {
-    ui_.panel(ToolPanel, sf::Color(11, 20, 30, 248), sf::Color(48, 78, 98));
+    ui_.card(ToolPanel, ui::Cyan, false);
     ui_.text("WERKZEUGE", 14, {90.f, 86.f}, ui::Muted, true, true);
-    for (std::size_t i = 0; i < Tools.size(); ++i)
-        ui_.button(toolRect(i), std::to_string(i + 1) + "  " + toolName(Tools[i]), Tools[i] == Tool::Erase ? ui::Red : ui::Cyan, model_.tool() == Tools[i], 13);
+    const std::array icons = {ui::UiIcon::Check, ui::UiIcon::ArrowRight, ui::UiIcon::Play, ui::UiIcon::Modified,
+                              ui::UiIcon::Settings, ui::UiIcon::Close, ui::UiIcon::ArrowDown, ui::UiIcon::Delete};
+    for (std::size_t i = 0; i < Tools.size(); ++i) {
+        ui_.iconButton(toolRect(i), std::to_string(i + 1) + "  " + toolName(Tools[i]), icons[i], ui::IconPlacement::Left,
+                       Tools[i] == Tool::Erase ? ui::Red : ui::Cyan, model_.tool() == Tools[i], 13);
+        ui_.tooltip(toolRect(i), std::string(toolName(Tools[i])) + " [" + std::to_string(i + 1) + "]", Tools[i] == Tool::Erase ? ui::Red : ui::Cyan);
+    }
     ui_.text("VORBEREITET", 12, {90.f, 598.f}, ui::Muted, true, true);
     ui_.panel({12.f, 618.f, 156.f, 84.f}, sf::Color(15, 25, 36), sf::Color(55, 70, 84));
     ui_.text("TERRAIN", 12, {28.f, 634.f}, ui::Muted, true);
     ui_.text("HEIGHT", 12, {28.f, 657.f}, ui::Muted, true);
     ui_.text("DECORATION", 12, {28.f, 680.f}, ui::Muted, true);
-    ui_.wrapped("Noch nicht aktiv in Phase 2", 11, {16.f, 730.f, 150.f, 50.f}, ui::Muted, 3.f);
+    ui_.wrapped("Für spätere Content-Phasen vorbereitet", 11, {16.f, 730.f, 150.f, 50.f}, ui::Muted, 3.f);
 }
 
 void MapForgeScreen::drawCanvas() {
@@ -620,7 +639,7 @@ void MapForgeScreen::drawMarker(core::Vec2 point, float radius, sf::Color fill, 
 }
 
 void MapForgeScreen::drawInspector() {
-    ui_.panel(Inspector, sf::Color(11, 20, 30, 250), sf::Color(48, 78, 98));
+    ui_.card(Inspector, ui::Purple, false);
     ui_.text(selection_.empty() ? "MAP PROPERTIES" : "INSPECTOR", 18, {1240.f, 88.f}, ui::Text, true);
     const auto& document = model_.document();
     if (selection_.empty()) {

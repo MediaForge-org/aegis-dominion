@@ -36,9 +36,16 @@ add_library(aegis_core
 target_include_directories(aegis_core PUBLIC src)
 target_link_libraries(aegis_core PUBLIC aegis_project_options)
 
-add_library(aegis_ui src/ui/TextService.cpp src/ui/UiRenderer.cpp)
+add_library(aegis_ui
+    src/logging/Logger.cpp
+    src/assets/AssetCatalog.cpp src/assets/AssetManager.cpp
+    src/input/InputSystem.cpp
+    src/ui/TextService.cpp src/ui/Theme.cpp src/ui/Layout.cpp src/ui/Interaction.cpp src/ui/UiRenderer.cpp
+    src/animation/Tween.cpp src/animation/SpriteAnimation.cpp
+    src/render/RenderContext.cpp
+    src/settings/Settings.cpp)
 target_include_directories(aegis_ui PUBLIC src)
-target_link_libraries(aegis_ui PUBLIC aegis_project_options sfml-graphics)
+target_link_libraries(aegis_ui PUBLIC aegis_project_options sfml-graphics sfml-window sfml-audio)
 
 add_executable(aegis_dominion
     src/main.cpp
@@ -60,12 +67,15 @@ add_executable(aegis_playtest_tests tests/playtest_conversion_tests.cpp)
 target_link_libraries(aegis_playtest_tests PRIVATE aegis_project_options aegis_core)
 
 add_executable(aegis_game_map_tests tests/game_map_projection_tests.cpp src/Map.cpp)
-target_link_libraries(aegis_game_map_tests PRIVATE aegis_project_options aegis_core sfml-graphics sfml-window sfml-system)
+target_link_libraries(aegis_game_map_tests PRIVATE aegis_project_options aegis_core aegis_ui sfml-graphics sfml-window sfml-system)
 target_include_directories(aegis_game_map_tests PRIVATE src)
 
 add_executable(aegis_text_tests tests/text_service_tests.cpp)
 target_link_libraries(aegis_text_tests PRIVATE aegis_project_options aegis_ui)
 target_compile_definitions(aegis_text_tests PRIVATE AEGIS_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
+add_executable(aegis_foundation_tests tests/foundation_tests.cpp)
+target_link_libraries(aegis_foundation_tests PRIVATE aegis_project_options aegis_ui)
 
 enable_testing()
 add_test(NAME aegis_core_tests COMMAND aegis_core_tests)
@@ -73,6 +83,7 @@ add_test(NAME aegis_editor_tests COMMAND aegis_editor_tests)
 add_test(NAME aegis_playtest_tests COMMAND aegis_playtest_tests)
 add_test(NAME aegis_game_map_tests COMMAND aegis_game_map_tests)
 add_test(NAME aegis_text_tests COMMAND aegis_text_tests)
+add_test(NAME aegis_foundation_tests COMMAND aegis_foundation_tests)
 
 add_custom_command(TARGET aegis_dominion POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:aegis_dominion>/assets

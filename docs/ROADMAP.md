@@ -26,9 +26,19 @@
 - GNU language extensions are disabled and unsupported requested standards fail configuration.
 - A later C++26 toolchain experiment requires only `-DAEGIS_CXX_STANDARD=26`; C++26 is not yet an official project requirement.
 
+## Completed presentation foundation (Phase 3)
+
+- Typed logical texture/font/sound IDs, central catalog, one-owner cache and explicit missing-resource fallbacks.
+- Shared DEBUG/INFO/WARNING/ERROR logger with `std::source_location` diagnostics.
+- Rebindable action mappings with Menu, Gameplay, MapForge and Modal contexts plus pointer consumption/capture.
+- Tactical theme tokens, stateful button logic, reusable component drawing, linear layout and reference-resolution scaling.
+- Main menu, tutorial, map selection, gameplay command UI and central MAP FORGE chrome migrated to shared styling/components.
+- Deterministic render-layer vocabulary, render context/queue, tween and sprite-animation playback, and parameter-driven effects.
+- Settings-ready model for scale, audio, VSync, FPS limit and screen shake.
+
 ## Recommended next bounded phase
 
-Build the reusable UI/input and typed asset-definition foundation before expanding content: extract map selection/tutorial into dedicated screens, introduce reusable forms/widgets and input actions, and establish typed asset IDs/fallbacks/logging. This reduces risk for later settings, codex, arsenal and professional presentation work.
+Extract renderer-facing snapshots from gameplay entities and move terrain/road/environment rendering into dedicated layer renderers. In the same bounded phase, introduce authored nine-slice UI art and data files for the asset/animation catalogs, then migrate the remaining gameplay HUD/modal surfaces without changing combat balance.
 
 ## Later phases
 

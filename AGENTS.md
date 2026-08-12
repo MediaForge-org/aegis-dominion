@@ -18,6 +18,10 @@ Build a polished, highly replayable C++ tower-defense game. The current SFML ver
 - Enemy silhouettes must be immediately distinguishable at gameplay zoom.
 - Turret bases and rotating weapon heads should remain separate where appropriate.
 - Effects must communicate damage type clearly without obscuring the battlefield.
+- Use the shared `ui::Theme`, `UiRenderer` components and typed `UiIcon`; screens must not introduce private color/button/icon systems.
+- New resource references use logical typed IDs registered in `AssetCatalog`; file loading belongs exclusively in `AssetManager`.
+- New keyboard shortcuts are `input::Action` bindings in an explicit context, not direct screen-owned key mappings.
+- Draw new presentation work through the fixed render-layer vocabulary; modal UI is always the last pass.
 
 ## Text / localization
 - Repository source files are UTF-8.

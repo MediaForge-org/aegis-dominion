@@ -6,7 +6,8 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
-#include <iostream>
+#include "logging/Logger.hpp"
+#include "render/RenderContext.hpp"
 #include <sstream>
 
 namespace aegis::screens {
@@ -30,13 +31,14 @@ sf::FloatRect towerCardRect(int index) {
 
 GameScreen::GameScreen(app::ScreenContext context, core::GameLaunchConfig launch)
     : Screen(context), ui_(context.window, context.assets), launch_(std::move(launch)) {
+    context_.input.setContext(input::Context::Gameplay);
     if (const auto* standard = std::get_if<core::StandardGameLaunch>(&launch_)) {
         map_.set(standard->mapIndex);
-        std::cout << "Starting game with map: " << map_.data().id << " / " << map_.data().name << '\n';
+        logging::log().info("Starting game with map: {} / {}", map_.data().id, map_.data().name);
     } else {
         const auto& playtest = std::get<core::MapForgePlaytestLaunch>(launch_);
         map_.loadFromPlayableMap(playtest.map);
-        std::cout << "Starting Map Forge playtest with map: " << playtest.map.id << " / " << playtest.map.name << '\n';
+        logging::log().info("Starting MAP FORGE playtest with map: {} / {}", playtest.map.id, playtest.map.name);
     }
     resetGameplay();
 }
@@ -62,24 +64,28 @@ void GameScreen::resetGameplay() {
 void GameScreen::handleEvent(const sf::Event& event) {
     if (event.type == sf::Event::Closed) { context_.screens.quit(); return; }
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape) {
+        if (context_.input.triggered(input::Action::Pause, event)) {
             if (helpOverlay_) helpOverlay_ = false;
             else paused_ = !paused_;
         }
-        if (event.key.code == sf::Keyboard::F1) helpOverlay_ = !helpOverlay_;
+        if (context_.input.triggered(input::Action::OpenHelp, event)) helpOverlay_ = !helpOverlay_;
         if (!gameOver_ && !victory_) {
-            if (event.key.code == sf::Keyboard::Space) startNextWave();
-            if (event.key.code == sf::Keyboard::P) paused_ = !paused_;
-            if (event.key.code == sf::Keyboard::F) speed_ = speed_ == 1 ? 2 : 1;
-            if (event.key.code == sf::Keyboard::U) upgradeSelected();
-            if (event.key.code == sf::Keyboard::T && selectedTower_ >= 0) towers_[static_cast<std::size_t>(selectedTower_)]->cycleTargetMode();
-            if (event.key.code == sf::Keyboard::S) sellSelected();
-            if (event.key.code >= sf::Keyboard::Num1 && event.key.code <= sf::Keyboard::Num6)
-                selectBuild(TowerOrder[static_cast<std::size_t>(event.key.code - sf::Keyboard::Num1)]);
+            if (context_.input.triggered(input::Action::StartWave, event)) startNextWave();
+            if (context_.input.triggered(input::Action::GameSpeedUp, event)) speed_ = speed_ == 1 ? 2 : 1;
+            if (context_.input.triggered(input::Action::UpgradeTower, event)) upgradeSelected();
+            if (context_.input.triggered(input::Action::ChangeTargeting, event) && selectedTower_ >= 0) towers_[static_cast<std::size_t>(selectedTower_)]->cycleTargetMode();
+            if (context_.input.triggered(input::Action::SellTower, event)) sellSelected();
+            const input::Action towerActions[] = {input::Action::Tower1, input::Action::Tower2, input::Action::Tower3,
+                                                  input::Action::Tower4, input::Action::Tower5, input::Action::Tower6};
+            for (std::size_t i = 0; i < TowerOrder.size(); ++i)
+                if (context_.input.triggered(towerActions[i], event)) selectBuild(TowerOrder[i]);
         }
     }
     if (event.type == sf::Event::MouseButtonPressed) {
-        processClick(context_.window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y}), event.mouseButton.button);
+        const auto position = context_.window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y});
+        if (position.x >= WORLD_W || paused_ || helpOverlay_ || gameOver_ || victory_)
+            context_.input.consumePointerPress(event.mouseButton.button);
+        processClick(position, event.mouseButton.button);
     }
 }
 
@@ -148,10 +154,16 @@ void GameScreen::update(float deltaSeconds) {
 }
 
 void GameScreen::render() {
+    render::RenderContext renderContext(context_.window);
+    render::WorldRenderer world(renderContext);
+    world.begin(render::Layer::Terrain);
     drawWorld();
+    world.begin(render::Layer::Effects);
+    effects_.draw(context_.window, context_.assets.text().loaded() ? &context_.assets.text() : nullptr);
+    world.begin(render::Layer::ScreenUi);
     drawHud();
     drawCommandPanel();
-    effects_.draw(context_.window, context_.assets.text().loaded() ? &context_.assets.text() : nullptr);
+    world.begin(render::Layer::ModalUi);
     if (helpOverlay_) drawHelpOverlay();
     else if (paused_) drawPauseOverlay();
     if (gameOver_ || victory_) drawEndOverlay();
@@ -332,12 +344,12 @@ void GameScreen::drawHud() {
 }
 
 void GameScreen::drawCommandPanel() {
-    ui_.panel({PANEL_X, 0.f, PANEL_W, WORLD_H}, ui::Panel, sf::Color(50, 82, 104));
+    ui_.card({PANEL_X, 0.f, PANEL_W, WORLD_H}, map_.data().accent, false);
     ui_.text(isPlaytest() ? "MAP FORGE PLAYTEST" : "AEGIS COMMAND", 22, {1230.f, 24.f}, ui::Text, true);
     ui_.button(StartWaveRect, waves_.active() ? "WELLE LÄUFT" : "WELLE STARTEN  [SPACE]", waves_.active() ? ui::Muted : ui::Green, waves_.active());
     ui_.button(SpeedRect, speed_ == 1 ? "ZEIT  1×" : "ZEIT  2×", ui::Gold, speed_ == 2, 16);
     ui_.button(PauseRect, "PAUSE", ui::Cyan, false, 16);
-    ui_.panel({1230.f, 198.f, 340.f, 132.f}, ui::PanelRaised, sf::Color(48, 78, 98));
+    ui_.card({1230.f, 198.f, 340.f, 132.f}, ui::Cyan, true);
     ui_.text("BEDROHUNGSANALYSE", 14, {1248.f, 214.f}, ui::Muted, true);
     ui_.text("Welle " + std::to_string(std::min(20, waves_.wave() + 1)), 22, {1248.f, 242.f}, ui::Text, true);
     int shown = 0;
@@ -348,7 +360,7 @@ void GameScreen::drawCommandPanel() {
     }
     if (selectedTower_ >= 0 && selectedTower_ < static_cast<int>(towers_.size())) drawSelectedTowerPanel();
     else {
-        ui_.panel({1230.f, 346.f, 340.f, 188.f}, sf::Color(14, 25, 36, 220), sf::Color(43, 73, 94));
+        ui_.card({1230.f, 346.f, 340.f, 188.f}, ui::Purple, true);
         ui_.text("BAUPLAN", 18, {1248.f, 365.f}, ui::Text, true);
         ui_.wrapped("Wähle unten einen Turm. Klicke auf einen gebauten Turm für Upgrades, Verkauf und Zielpriorität.", 15, {1248.f, 400.f, 300.f, 100.f}, ui::Muted, 5.f);
     }
@@ -359,7 +371,7 @@ void GameScreen::drawCommandPanel() {
 void GameScreen::drawSelectedTowerPanel() {
     auto& tower = *towers_[static_cast<std::size_t>(selectedTower_)];
     const auto stats = tower.stats();
-    ui_.panel({1230.f, 346.f, 340.f, 206.f}, sf::Color(14, 25, 36, 225), sf::Color(55, 93, 116));
+    ui_.card({1230.f, 346.f, 340.f, 206.f}, ui::Cyan, true);
     drawTowerIcon(tower.kind(), {1282.f, 392.f}, .55f, tower.rotation());
     ui_.text(towerName(tower.kind()) + "  L" + std::to_string(tower.level()), 21, {1325.f, 365.f}, ui::Text, true);
     ui_.text("DMG " + std::to_string(static_cast<int>(stats.damage)) + "  RNG " + std::to_string(static_cast<int>(stats.range)), 14, {1325.f, 405.f}, ui::Gold, true);

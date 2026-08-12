@@ -1,4 +1,5 @@
 #include "ui/TextService.hpp"
+#include "assets/AssetManager.hpp"
 
 #include <array>
 #include <filesystem>
@@ -20,14 +21,20 @@ void utf8ConversionPreservesGermanCodepoints() {
 }
 
 void discoveredFontSupportsGerman() {
+    aegis::assets::AssetManager assets;
     aegis::ui::TextService text;
-    require(text.load("assets"), "no font with German glyph coverage could be loaded");
+    const auto& font = assets.font(aegis::assets::FontId{"font.ui.default"});
+    text.bind(font, assets.hasFontFallback());
+    require(text.loaded(), "no font with German glyph coverage could be loaded");
     require(aegis::ui::TextService::supportsGerman(text.font()), "loaded font lacks German glyphs");
 }
 
 void textFactoryUsesUtf8Conversion() {
+    aegis::assets::AssetManager assets;
     aegis::ui::TextService text;
-    require(text.load("assets"), "font loading failed");
+    const auto& font = assets.font(aegis::assets::FontId{"font.ui.default"});
+    text.bind(font, assets.hasFontFallback());
+    require(text.loaded(), "font loading failed");
     const auto sfText = text.makeText("Mörsergröße", 18);
     require(sfText.getString() == aegis::ui::TextService::fromUtf8("Mörsergröße"), "text creation bypassed UTF-8 conversion");
 }

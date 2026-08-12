@@ -9,6 +9,16 @@ struct Particle { sf::Vector2f pos, vel; sf::Color color; float life=1.f,maxLife
 struct RingFx { sf::Vector2f pos; sf::Color color; float radius=8.f, maxRadius=80.f, life=.5f,maxLife=.5f; };
 struct TracerFx { sf::Vector2f a,b; sf::Color color; float life=.12f,maxLife=.12f; float width=3.f; };
 struct FloatTextFx { sf::Vector2f pos; std::string text; sf::Color color; float life=.9f,maxLife=.9f; };
+enum class EffectShape { Burst, Ring, Tracer };
+struct EffectDefinition {
+    EffectShape shape = EffectShape::Burst;
+    sf::Color color = sf::Color::White;
+    int count = 12;
+    float speed = 90.f;
+    float radius = 70.f;
+    float lifetime = .45f;
+    float width = 3.f;
+};
 
 class Effects {
 public:
@@ -18,6 +28,7 @@ public:
     void ring(sf::Vector2f pos, sf::Color c, float maxRadius=70.f, float life=.45f);
     void tracer(sf::Vector2f a,sf::Vector2f b,sf::Color c,float life=.12f,float width=3.f);
     void text(sf::Vector2f pos,const std::string& s,sf::Color c);
+    void emit(const EffectDefinition& definition, sf::Vector2f position, sf::Vector2f target = {});
     void clear();
 private:
     std::vector<Particle> particles_;

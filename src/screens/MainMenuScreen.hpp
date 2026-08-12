@@ -3,6 +3,7 @@
 #include "app/Screen.hpp"
 #include "Map.hpp"
 #include "ui/UiRenderer.hpp"
+#include "animation/Tween.hpp"
 
 #include <vector>
 
@@ -15,6 +16,7 @@ public:
     void handleEvent(const sf::Event& event) override;
     void update(float deltaSeconds) override;
     void render() override;
+    void onResume() override { context_.input.setContext(input::Context::Menu); }
 
 private:
     enum class Page { Menu, MapSelect, Tutorial };
@@ -30,6 +32,7 @@ private:
     Page page_ = Page::Menu;
     int tutorialPage_ = 0;
     std::vector<Particle> particles_;
+    animation::Tween pageAppear_{0.f, 1.f, .28f, animation::Easing::SmoothStep};
 };
 
 } // namespace aegis::screens

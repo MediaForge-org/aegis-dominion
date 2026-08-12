@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/GameLaunchConfig.hpp"
+#include "input/InputSystem.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <memory>
@@ -16,6 +17,7 @@ struct ScreenContext {
     sf::RenderWindow& window;
     Assets& assets;
     ScreenManager& screens;
+    input::InputSystem& input;
 };
 
 class Screen {

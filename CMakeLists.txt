@@ -21,10 +21,20 @@ endif()
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+option(AEGIS_ENABLE_SANITIZERS "Enable AddressSanitizer and UndefinedBehaviorSanitizer for project targets" OFF)
+
 add_library(aegis_project_options INTERFACE)
 target_compile_features(aegis_project_options INTERFACE ${AEGIS_CXX_FEATURE})
 target_compile_options(aegis_project_options INTERFACE
-  "$<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>:-Wall;-Wextra;-Wpedantic>")
+  "$<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>:-Wall;-Wextra;-Wpedantic>"
+  "$<$<AND:$<BOOL:${AEGIS_ENABLE_SANITIZERS}>,$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>>:-fsanitize=address,undefined;-fno-omit-frame-pointer>")
+target_link_options(aegis_project_options INTERFACE
+  "$<$<AND:$<BOOL:${AEGIS_ENABLE_SANITIZERS}>,$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>>:-fsanitize=address,undefined>")
+
+set(MEDIAFORGE_CXX_STANDARD ${AEGIS_CXX_STANDARD})
+set(MEDIAFORGE_ENABLE_SANITIZERS ${AEGIS_ENABLE_SANITIZERS})
+enable_testing()
+add_subdirectory(engine/mediaforge)
 
 find_package(SFML 2.5 COMPONENTS graphics window system audio REQUIRED)
 
@@ -55,7 +65,7 @@ add_executable(aegis_dominion
     src/editor/EditorCamera.cpp src/editor/MapForgeScreen.cpp
     src/Assets.cpp src/Map.cpp src/Enemy.cpp src/Tower.cpp src/Projectile.cpp src/Effects.cpp src/WaveManager.cpp)
 target_include_directories(aegis_dominion PRIVATE src)
-target_link_libraries(aegis_dominion PRIVATE aegis_project_options aegis_core aegis_ui sfml-graphics sfml-window sfml-system sfml-audio)
+target_link_libraries(aegis_dominion PRIVATE aegis_project_options aegis_core aegis_ui mediaforge_engine sfml-graphics sfml-window sfml-system sfml-audio)
 
 add_executable(aegis_core_tests tests/map_document_tests.cpp)
 target_link_libraries(aegis_core_tests PRIVATE aegis_project_options aegis_core)
@@ -82,7 +92,6 @@ add_executable(aegis_phase4_tests tests/phase4_render_tests.cpp)
 target_link_libraries(aegis_phase4_tests PRIVATE aegis_project_options aegis_core aegis_ui)
 target_compile_definitions(aegis_phase4_tests PRIVATE AEGIS_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
-enable_testing()
 add_test(NAME aegis_core_tests COMMAND aegis_core_tests)
 add_test(NAME aegis_editor_tests COMMAND aegis_editor_tests)
 add_test(NAME aegis_playtest_tests COMMAND aegis_playtest_tests)

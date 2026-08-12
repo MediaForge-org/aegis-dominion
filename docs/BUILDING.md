@@ -7,6 +7,8 @@ AEGIS DOMINION uses C++23 as its minimum and default project standard. A support
 - a modern GCC or Clang with C++23 language support;
 - CMake 3.25 or newer;
 - SFML 2.5 or newer with graphics, window, system and audio components.
+- SDL3 3.4.14 development files for MediaForge platform/GPU code.
+- shaderc/glslc 2026.1 for the graphical smoke shaders (headless tests do not require shader compilation).
 
 The verified Fedora toolchain is GCC 16.1.1 with SFML 2.6.2. GCC and Clang builds share standard CMake compile features and avoid GNU language extensions. Clang was not installed in the verification environment, so portability is configuration-supported but not claimed as locally tested.
 
@@ -25,8 +27,10 @@ Build and run scripts intentionally do not duplicate `-std=` flags; CMake remain
 ## Fedora dependencies
 
 ```bash
-sudo dnf install gcc-c++ cmake SFML-devel
+sudo dnf install gcc-c++ cmake SFML-devel SDL3-devel shaderc vulkan-loader-devel vulkan-validation-layers
 ```
+
+Package names can differ between Fedora releases. Confirm `glslc --version` reports shaderc 2026.1; MediaForge rejects a different build-tool version. If the exact SDL development package is unavailable, the default CMake path fetches the official `release-3.4.14` tag. See `DEPENDENCIES.md`.
 
 ## Debug build and tests
 
@@ -34,6 +38,7 @@ sudo dnf install gcc-c++ cmake SFML-devel
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build -j
 ctest --test-dir build --output-on-failure
+cmake --build build --target mediaforge_gpu_smoke
 ```
 
 ## Release build and tests
@@ -43,6 +48,18 @@ cmake -S . -B build-release -DCMAKE_BUILD_TYPE=Release
 cmake --build build-release -j
 ctest --test-dir build-release --output-on-failure
 ```
+
+Configure output records MediaForge Engine version, selected C++ standard, pinned SDL version, compiler and build type. The graphical smoke test is intentionally not a CTest because it needs a display and GPU session.
+
+## Manual Fedora GPU smoke
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+cmake --build build --target mediaforge_gpu_smoke -j
+./build/engine/mediaforge/mediaforge_gpu_smoke
+```
+
+Confirm that the window shows the clear background, colored triangle and checker-textured quad, closes via Escape/window close, and that the terminal reports the actual backend. With working Vulkan the line is `MediaForge GPU backend: vulkan`. A fallback name is evidence of fallback, never Vulkan success.
 
 `./build.sh` remains the short Release-build path, and `./run.sh` starts the executable from `build/` so copied assets and maps are found.
 
@@ -61,3 +78,13 @@ ctest --test-dir build-cxx26 --output-on-failure
 ```
 
 Changing the default later requires one source edit: change the cached default value in the top-level `CMakeLists.txt` from `23` to `26`. No individual target or runtime source should need a separate standard flag.
+
+## Optional sanitizers
+
+```bash
+cmake -S . -B build-asan -DCMAKE_BUILD_TYPE=Debug -DAEGIS_ENABLE_SANITIZERS=ON
+cmake --build build-asan -j
+ctest --test-dir build-asan --output-on-failure
+```
+
+This enables AddressSanitizer and UndefinedBehaviorSanitizer for project-owned AEGIS and MediaForge targets only.

@@ -4,6 +4,8 @@
 Build a polished, highly replayable C++ tower-defense game. The current SFML version is a prototype foundation, not the visual quality bar.
 
 ## Non-negotiable architecture rules
+- Dependency direction is strictly AEGIS DOMINION → MediaForge Engine → SDL3/SDL_GPU. Engine code below `engine/mediaforge/` must never include or link AEGIS code.
+- MediaForge APIs and assets are reusable and game-neutral. Towers, enemies, waves, AEGIS maps, economy, biomes and game UI remain in the game layer.
 - Keep gameplay simulation, map data, editor state, rendering and UI separated.
 - `src/core/` must remain renderer-agnostic: no SFML, OpenGL or engine-specific types.
 - Map files are data, never hard-coded screen coordinates inside gameplay classes.
@@ -11,6 +13,12 @@ Build a polished, highly replayable C++ tower-defense game. The current SFML ver
 - Design all map data so a future 3D renderer can consume the same maps. Do not bake 2D textures into gameplay rules.
 - Never remove working behavior just to simplify a refactor.
 - Prefer small testable systems over adding more logic to `Game.cpp`.
+
+## Renderer migration rule
+- **SFML IS TRANSITIONAL.** Existing SFML runtime behavior remains supported until the staged migration is complete.
+- Do not add new SFML dependencies to gameplay, `src/core/`, simulation or `MapDocument`.
+- New long-term platform and rendering infrastructure targets MediaForge Engine with SDL3/SDL_GPU.
+- SDL and GPU-native types stay behind MediaForge implementation boundaries; game data must not depend on them.
 
 ## Visual quality rules
 - Primitive rectangles/circles are acceptable only as editor/debug overlays or temporary fallbacks.

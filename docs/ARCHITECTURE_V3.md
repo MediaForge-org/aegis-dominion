@@ -1,5 +1,25 @@
 # AEGIS DOMINION architecture
 
+## MediaForge engine boundary
+
+The long-term runtime boundary is now explicit:
+
+```text
+AEGIS DOMINION game layer
+        │ uses
+        ▼
+MediaForge Engine (generic, extractable)
+        │ uses
+        ▼
+SDL3 platform + SDL_GPU
+```
+
+`engine/mediaforge/` is an independent CMake subtree with public headers rooted at `include/mediaforge/`. It never includes `src/`, never links an AEGIS target and contains no game concepts or game assets. The inverse link is represented concretely by `aegis_dominion` linking `mediaforge_engine`. A CTest scans Engine source/include files for forbidden AEGIS/SFML dependencies and CMake also owns only a private SDL3 link.
+
+MediaForge foundation/math and typed GPU resource descriptions are SDL-free. Window uses a private implementation, events translate SDL data into generic variants, and GPU resources are move-only RAII objects. The private E1 smoke implementation is the only code that uses native command encoding directly. This preserves a generic public boundary while the fuller renderer API is designed in E2.
+
+**SFML IS TRANSITIONAL.** The current AEGIS application, UI and world renderer remain operational and are not rewritten in E1. No new SFML dependency may enter gameplay simulation, map data or `src/core/`; long-term presentation work targets MediaForge.
+
 ## Runtime composition
 
 The Phase 3 runtime remains screen-based and composes presentation services explicitly:
@@ -84,3 +104,5 @@ Repository/map strings are UTF-8 `std::string`. `ui::TextService` converts them 
 - MAP FORGE previews terrain and stored decorations flow into playtest, but terrain painting, height sculpting and decoration placement tools are not active yet.
 - Current enemy sheets are single-pose transitional art; external clip definitions and state playback are ready for multi-frame replacements.
 - Waves, economy and balance remain hard-coded.
+- AEGIS presentation still runs through SFML; E1 adds the parallel SDL_GPU engine path but does not migrate gameplay rendering.
+- E1 ships a Vulkan/SPIR-V smoke shader path. Portable D3D12/Metal shader artifacts and the public batched renderer arrive in later MediaForge milestones without changing game data.

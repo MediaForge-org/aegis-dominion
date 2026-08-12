@@ -2,6 +2,12 @@
 
 > Dieses Repository entwickelt den spielbaren SFML-Prototyp schrittweise zu einer datengetriebenen Architektur weiter. Karten, Editorzustand und Rendering werden getrennt, damit MAP FORGE und ein späterer 3D-Renderer dieselben Inhalte verwenden können.
 
+## MediaForge Engine E1
+
+Dieses Repository enthält nun die wiederverwendbare **MediaForge Engine 0.1.0-dev** unter `engine/mediaforge/`. AEGIS DOMINION ist ihr erstes Spiel, die Engine selbst kennt jedoch keine AEGIS-Typen oder -Assets. Ein separates `mediaforge_engine`-Target stellt SDL3-Window/Event/Input und SDL_GPU bereit; der existierende spielbare SFML-Pfad bleibt während der schrittweisen Migration erhalten.
+
+SDL3 ist exakt auf 3.4.14 gepinnt. Der grafische Smoke-Test wird mit `cmake --build build --target mediaforge_gpu_smoke` gebaut und nach Installation von `glslc` 2026.1 aus dem Buildverzeichnis gestartet. Details stehen in `docs/MEDIAFORGE_ENGINE.md`, `docs/DEPENDENCIES.md` und `engine/mediaforge/README.md`.
+
 ## V3 milestones already included
 - zentrale UTF-8-/Font-Infrastruktur für deutsche Umlaute und ß
 - renderer-independent `MapDocument`
@@ -183,6 +189,11 @@ src/
   Map.*
   WaveManager.*
   main.cpp
+engine/mediaforge/
+  include/    wiederverwendbare öffentliche Engine-API
+  src/        SDL3-/SDL_GPU-Implementierung und Smoke-Test
+  shaders/    reproduzierbar kompilierte externe Shaderquellen
+  tests/      fensterlose Engine-Tests
 tools/
   generate_assets.py
 ```

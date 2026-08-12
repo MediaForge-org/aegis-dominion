@@ -46,14 +46,21 @@
 - External asset and animation definition files plus authored nine-slice surfaces used by HUD, cards, buttons and editor chrome.
 - MAP FORGE material/curve preview and gameplay/editor zone-visibility separation.
 
-## Recommended next bounded phase
+## MediaForge engine roadmap
 
-Complete renderer-agnostic combat simulation and turn the Phase-4 transitional art into multi-frame authored sprite sheets. Add MAP FORGE terrain/decoration authoring, compatible height metadata, richer water masks and profiled batching/post-processing without changing V1 map meaning silently.
+- **E1:** Engine boundary, SDL3, SDL_GPU, GPU bootstrap, triangle and textured quad.
+- **E2:** 2D renderer, sprite batching, camera, render targets and the first beautiful Verdant vertical slice.
+- **E3:** Terrain, road, water, environment, lighting and post processing.
+- **E4:** Enemies, towers, projectiles and VFX migration.
+- **E5:** UI, text and MAP FORGE rendering migration.
+- **E6:** Remove SFML after feature parity and regression verification.
+- **E7:** 3D mesh renderer, perspective camera and depth.
+- **E8:** Materials/PBR, lighting and shadows.
+- **E9:** 3D terrain, heightmaps and environment.
+- **E10:** 3D MAP FORGE.
 
-## Later phases
+The sequence may be adjusted when profiling or production evidence requires it, but dependency direction and data/renderer separation remain fixed.
 
-1. Extend the map format compatibly for terrain materials, elevation/height metadata, environment editing, decorations and wave sets.
-2. Separate gameplay simulation from SFML render views; then make combat, waves, difficulty and economy data-driven.
-3. Replace prototype visuals through a deliberate authored asset, animation, particle and lighting pipeline.
-4. Add enemy/tower breadth, bosses, progression, codex/arsenal, campaigns, statistics and savegames.
-5. Profile, pool high-volume objects and complete accessibility/polish before broad release content.
+## Immediate next milestone: MediaForge E2 – Beautiful Verdant Vertical Slice
+
+E2 integrates high-quality authored Verdant terrain and road, environment, Spawn Gate, AEGIS Core, Raider, Heavy Tank, Pulse Tower, one special tower, lighting, VFX and HUD through the MediaForge GPU renderer. The user accepts E2 visually from a real screenshot/video; E1 does not claim that art milestone.

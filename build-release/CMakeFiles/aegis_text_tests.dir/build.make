@@ -99,6 +99,7 @@ aegis_text_tests: CMakeFiles/aegis_text_tests.dir/compiler_depend.ts
 aegis_text_tests: libaegis_ui.a
 aegis_text_tests: /usr/lib64/libsfml-graphics.so.2.6.2
 aegis_text_tests: /usr/lib64/libsfml-window.so.2.6.2
+aegis_text_tests: /usr/lib64/libsfml-audio.so.2.6.2
 aegis_text_tests: /usr/lib64/libsfml-system.so.2.6.2
 aegis_text_tests: CMakeFiles/aegis_text_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable aegis_text_tests"

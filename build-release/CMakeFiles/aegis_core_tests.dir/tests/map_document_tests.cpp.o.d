@@ -25,13 +25,23 @@ CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o: \
  /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/locale_t.h \
  /usr/include/bits/types/__locale_t.h /usr/include/c++/16/type_traits \
- /usr/include/c++/16/bits/allocator.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/c++allocator.h \
- /usr/include/c++/16/bits/new_allocator.h /usr/include/c++/16/new \
+ /usr/include/c++/16/compare /usr/include/c++/16/concepts \
+ /usr/include/c++/16/bits/stl_construct.h /usr/include/c++/16/new \
  /usr/include/c++/16/bits/exception.h \
  /usr/include/c++/16/bits/new_except.h \
  /usr/include/c++/16/bits/exception_defines.h \
- /usr/include/c++/16/bits/new_throw.h /usr/include/c++/16/bits/move.h \
+ /usr/include/c++/16/bits/move.h \
+ /usr/include/c++/16/bits/stl_iterator_base_types.h \
+ /usr/include/c++/16/bits/iterator_concepts.h \
+ /usr/include/c++/16/bits/ptr_traits.h \
+ /usr/include/c++/16/bits/ranges_cmp.h \
+ /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/16/bits/concept_check.h \
+ /usr/include/c++/16/debug/assertions.h \
+ /usr/include/c++/16/bits/allocator.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/c++allocator.h \
+ /usr/include/c++/16/bits/new_allocator.h \
+ /usr/include/c++/16/bits/new_throw.h \
  /usr/include/c++/16/bits/cpp_type_traits.h \
  /usr/include/c++/16/bits/localefwd.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/c++locale.h \
@@ -42,31 +52,28 @@ CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o: \
  /usr/include/bits/time64.h /usr/include/bits/endian.h \
  /usr/include/bits/endianness.h /usr/include/c++/16/bits/ostream_insert.h \
  /usr/include/c++/16/bits/cxxabi_forced.h \
- /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
- /usr/include/c++/16/bits/concept_check.h \
- /usr/include/c++/16/debug/assertions.h \
- /usr/include/c++/16/bits/stl_iterator_base_types.h \
  /usr/include/c++/16/bits/stl_iterator.h \
- /usr/include/c++/16/ext/type_traits.h \
- /usr/include/c++/16/bits/ptr_traits.h \
+ /usr/include/c++/16/ext/type_traits.h /usr/include/c++/16/bits/utility.h \
  /usr/include/c++/16/bits/stl_function.h \
  /usr/include/c++/16/backward/binders.h \
  /usr/include/c++/16/ext/numeric_traits.h \
  /usr/include/c++/16/bits/stdexcept_throw.h \
  /usr/include/c++/16/bits/stdexcept_throwfwd.h \
  /usr/include/c++/16/bits/stl_algobase.h \
- /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/bits/utility.h \
- /usr/include/c++/16/debug/debug.h \
+ /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/debug/debug.h \
  /usr/include/c++/16/bits/predefined_ops.h /usr/include/c++/16/bit \
- /usr/include/c++/16/concepts /usr/include/c++/16/bits/range_access.h \
+ /usr/include/c++/16/bits/range_access.h \
  /usr/include/c++/16/initializer_list /usr/include/c++/16/bits/erase_if.h \
  /usr/include/c++/16/bits/basic_string.h \
  /usr/include/c++/16/ext/alloc_traits.h \
- /usr/include/c++/16/bits/alloc_traits.h \
- /usr/include/c++/16/bits/stl_construct.h /usr/include/c++/16/string_view \
+ /usr/include/c++/16/bits/alloc_traits.h /usr/include/c++/16/string_view \
  /usr/include/c++/16/bits/functional_hash.h \
  /usr/include/c++/16/bits/hash_bytes.h \
- /usr/include/c++/16/bits/string_view.tcc \
+ /usr/include/c++/16/bits/ranges_base.h \
+ /usr/include/c++/16/bits/max_size_type.h /usr/include/c++/16/numbers \
+ /usr/include/c++/16/limits /usr/include/c++/16/bits/string_view.tcc \
+ /usr/include/c++/16/bits/ranges_algobase.h \
+ /usr/include/c++/16/bits/invoke.h /usr/include/c++/16/bits/ranges_util.h \
  /usr/include/c++/16/ext/string_conversions.h /usr/include/c++/16/cstdlib \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
  /usr/include/bits/waitstatus.h /usr/include/sys/types.h \
@@ -98,17 +105,23 @@ CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o: \
  /usr/include/c++/16/bits/memory_resource.h /usr/include/c++/16/cstddef \
  /usr/include/c++/16/bits/uses_allocator.h \
  /usr/include/c++/16/bits/uses_allocator_args.h /usr/include/c++/16/tuple \
- /usr/include/c++/16/bits/invoke.h /usr/include/c++/16/vector \
- /usr/include/c++/16/bits/stl_uninitialized.h \
+ /usr/include/c++/16/vector /usr/include/c++/16/bits/stl_uninitialized.h \
  /usr/include/c++/16/bits/stl_vector.h \
  /usr/include/c++/16/bits/stl_bvector.h \
- /usr/include/c++/16/bits/vector.tcc /usr/include/c++/16/optional \
- /usr/include/c++/16/exception /usr/include/c++/16/bits/exception_ptr.h \
+ /usr/include/c++/16/bits/vector.tcc /usr/include/c++/16/bits/formatfwd.h \
+ /usr/include/c++/16/optional /usr/include/c++/16/exception \
+ /usr/include/c++/16/bits/exception_ptr.h \
  /usr/include/c++/16/bits/cxxabi_init_exception.h \
  /usr/include/c++/16/typeinfo /usr/include/c++/16/bits/nested_exception.h \
  /usr/include/c++/16/bits/enable_special_members.h \
- /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapEditorModel.hpp \
- /usr/include/c++/16/array /usr/include/c++/16/compare \
+ /usr/include/c++/16/algorithm /usr/include/c++/16/bits/stl_algo.h \
+ /usr/include/c++/16/bits/algorithmfwd.h \
+ /usr/include/c++/16/bits/stl_heap.h \
+ /usr/include/c++/16/bits/uniform_int_dist.h \
+ /usr/include/c++/16/bits/stl_tempbuf.h \
+ /usr/include/c++/16/bits/ranges_algo.h \
+ /usr/include/c++/16/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/16/pstl/execution_defs.h /usr/include/c++/16/array \
  /usr/include/c++/16/filesystem /usr/include/c++/16/bits/fs_fwd.h \
  /usr/include/c++/16/system_error \
  /usr/include/c++/16/x86_64-redhat-linux/bits/error_constants.h \
@@ -117,9 +130,9 @@ CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o: \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/bits/stdint-least.h /usr/include/c++/16/bits/chrono.h \
- /usr/include/c++/16/ratio /usr/include/c++/16/limits \
- /usr/include/c++/16/ctime /usr/include/time.h /usr/include/bits/time.h \
- /usr/include/bits/timex.h /usr/include/bits/types/struct_tm.h \
+ /usr/include/c++/16/ratio /usr/include/c++/16/ctime /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/timex.h \
+ /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_itimerspec.h \
  /usr/include/c++/16/bits/parse_numbers.h \
  /usr/include/c++/16/bits/fs_path.h /usr/include/c++/16/locale \
@@ -160,7 +173,10 @@ CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o: \
  /usr/include/c++/16/istream /usr/include/c++/16/ios \
  /usr/include/c++/16/bits/basic_ios.h \
  /usr/include/c++/16/bits/basic_ios.tcc /usr/include/c++/16/ostream \
- /usr/include/c++/16/bits/ostream.h \
+ /usr/include/c++/16/bits/ostream.h /usr/include/c++/16/format \
+ /usr/include/c++/16/charconv /usr/include/c++/16/span \
+ /usr/include/c++/16/bits/monostate.h /usr/include/c++/16/bits/unicode.h \
+ /usr/include/c++/16/bits/unicode-data.h \
  /usr/include/c++/16/bits/ostream_print.h \
  /usr/include/c++/16/bits/ostream.tcc \
  /usr/include/c++/16/bits/istream.tcc \
@@ -171,8 +187,16 @@ CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.o: \
  /usr/include/c++/16/bits/allocated_ptr.h \
  /usr/include/c++/16/bits/refwrap.h /usr/include/c++/16/bits/unique_ptr.h \
  /usr/include/c++/16/ext/aligned_buffer.h \
- /usr/include/c++/16/bits/fs_dir.h /usr/include/c++/16/bits/fs_ops.h \
- /usr/include/c++/16/fstream \
+ /usr/include/c++/16/bits/align.h /usr/include/c++/16/bits/fs_dir.h \
+ /usr/include/c++/16/bits/fs_ops.h /usr/include/c++/16/fstream \
  /usr/include/c++/16/x86_64-redhat-linux/bits/basic_file.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/c++io.h \
- /usr/include/c++/16/bits/fstream.tcc /usr/include/c++/16/iostream
+ /usr/include/c++/16/bits/fstream.tcc /usr/include/c++/16/functional \
+ /usr/include/c++/16/bits/std_function.h \
+ /usr/include/c++/16/unordered_map \
+ /usr/include/c++/16/bits/unordered_map.h \
+ /usr/include/c++/16/bits/hashtable.h \
+ /usr/include/c++/16/bits/hashtable_policy.h \
+ /usr/include/c++/16/bits/node_handle.h \
+ /usr/include/c++/16/bits/binders.h /usr/include/c++/16/bits/funcwrap.h \
+ /usr/include/c++/16/bits/mofunc_impl.h /usr/include/c++/16/iostream

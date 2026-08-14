@@ -13,6 +13,8 @@ namespace mf {
 
 class Window;
 
+enum class PresentMode { vsync, immediate, mailbox };
+
 class GPUDevice {
 public:
     GPUDevice() noexcept;
@@ -24,12 +26,14 @@ public:
 
     [[nodiscard]] static Result<GPUDevice> create(Window& window, const EngineConfig& config = {});
     [[nodiscard]] std::string backendName() const;
+    [[nodiscard]] Result<void> setPresentMode(Window& window, PresentMode mode);
+    [[nodiscard]] bool supportsPresentMode(const Window& window, PresentMode mode) const noexcept;
 
     [[nodiscard]] Result<Buffer> createBuffer(BufferUsage usage, std::span<const std::byte> initialData,
                                                std::string debugName = {});
     [[nodiscard]] Result<Texture> createTexture(const TextureDescription& description,
                                                 std::span<const std::byte> rgbaPixels);
-    [[nodiscard]] Result<Sampler> createSampler(std::string debugName = {});
+    [[nodiscard]] Result<Sampler> createSampler(const SamplerDescription& description = {});
     [[nodiscard]] Result<Shader> createShader(const std::filesystem::path& spirvPath,
                                               const ShaderDescription& description);
     [[nodiscard]] Result<GraphicsPipeline> createGraphicsPipeline(

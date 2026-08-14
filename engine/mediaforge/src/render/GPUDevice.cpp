@@ -16,6 +16,17 @@
 
 namespace mf {
 
+namespace {
+SDL_GPUPresentMode nativePresentMode(PresentMode mode) {
+    switch (mode) {
+        case PresentMode::vsync: return SDL_GPU_PRESENTMODE_VSYNC;
+        case PresentMode::immediate: return SDL_GPU_PRESENTMODE_IMMEDIATE;
+        case PresentMode::mailbox: return SDL_GPU_PRESENTMODE_MAILBOX;
+    }
+    return SDL_GPU_PRESENTMODE_VSYNC;
+}
+}
+
 struct Buffer::Impl { SDL_GPUDevice* device{}; SDL_GPUBuffer* value{}; ~Impl() { if (value) SDL_ReleaseGPUBuffer(device, value); } };
 struct Texture::Impl { SDL_GPUDevice* device{}; SDL_GPUTexture* value{}; ~Impl() { if (value) SDL_ReleaseGPUTexture(device, value); } };
 struct Sampler::Impl { SDL_GPUDevice* device{}; SDL_GPUSampler* value{}; ~Impl() { if (value) SDL_ReleaseGPUSampler(device, value); } };
@@ -84,6 +95,22 @@ std::string GPUDevice::backendName() const {
     if (!impl_) { return {}; }
     const char* name = SDL_GetGPUDeviceDriver(impl_->device);
     return name != nullptr ? name : "unknown";
+}
+
+bool GPUDevice::supportsPresentMode(const Window& window, PresentMode mode) const noexcept {
+    return impl_ && SDL_WindowSupportsGPUPresentMode(impl_->device,
+        static_cast<SDL_Window*>(window.nativeHandle()), nativePresentMode(mode));
+}
+
+Result<void> GPUDevice::setPresentMode(Window& window, PresentMode mode) {
+    if (!impl_) return fail(ErrorCode::invalidArgument, "Invalid GPU device");
+    const auto native = nativePresentMode(mode);
+    if (!supportsPresentMode(window, mode)) return fail(ErrorCode::gpuError, "Requested GPU present mode is unsupported");
+    if (!SDL_SetGPUSwapchainParameters(impl_->device, static_cast<SDL_Window*>(window.nativeHandle()),
+                                       SDL_GPU_SWAPCHAINCOMPOSITION_SDR, native)) {
+        return fail(ErrorCode::gpuError, std::format("Could not set GPU present mode: {}", SDL_GetError()));
+    }
+    return {};
 }
 
 namespace {
@@ -161,12 +188,15 @@ Result<Texture> GPUDevice::createTexture(const TextureDescription& description, 
     return Texture(std::move(resource));
 }
 
-Result<Sampler> GPUDevice::createSampler(std::string) {
+Result<Sampler> GPUDevice::createSampler(const SamplerDescription& description) {
     if (!impl_) { return fail(ErrorCode::invalidArgument, "Invalid GPU device"); }
     SDL_GPUSamplerCreateInfo info{};
-    info.min_filter = SDL_GPU_FILTER_NEAREST; info.mag_filter = SDL_GPU_FILTER_NEAREST;
-    info.mipmap_mode = SDL_GPU_SAMPLERMIPMAPMODE_NEAREST;
-    info.address_mode_u = info.address_mode_v = info.address_mode_w = SDL_GPU_SAMPLERADDRESSMODE_REPEAT;
+    info.min_filter = description.filter == FilterMode::linear ? SDL_GPU_FILTER_LINEAR : SDL_GPU_FILTER_NEAREST;
+    info.mag_filter = info.min_filter;
+    info.mipmap_mode = description.filter == FilterMode::linear ? SDL_GPU_SAMPLERMIPMAPMODE_LINEAR : SDL_GPU_SAMPLERMIPMAPMODE_NEAREST;
+    info.address_mode_u = description.wrapU == WrapMode::repeat ? SDL_GPU_SAMPLERADDRESSMODE_REPEAT : SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE;
+    info.address_mode_v = description.wrapV == WrapMode::repeat ? SDL_GPU_SAMPLERADDRESSMODE_REPEAT : SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE;
+    info.address_mode_w = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE;
     SDL_GPUSampler* native = SDL_CreateGPUSampler(impl_->device, &info);
     if (!native) { return fail(ErrorCode::gpuError, SDL_GetError()); }
     auto resource = std::make_unique<Sampler::Impl>(); resource->device = impl_->device; resource->value = native;
@@ -179,7 +209,7 @@ Result<Shader> GPUDevice::createShader(const std::filesystem::path& path, const 
     const std::vector<unsigned char> bytes(std::istreambuf_iterator<char>(input), {});
     const SDL_GPUShaderCreateInfo info{bytes.size(), bytes.data(), "main", SDL_GPU_SHADERFORMAT_SPIRV,
         description.stage == ShaderStage::vertex ? SDL_GPU_SHADERSTAGE_VERTEX : SDL_GPU_SHADERSTAGE_FRAGMENT,
-        description.samplerCount, 0, 0, 0, 0};
+        description.samplerCount, 0, 0, description.uniformBufferCount, 0};
     SDL_GPUShader* native = SDL_CreateGPUShader(impl_->device, &info);
     if (!native) { return fail(ErrorCode::gpuError, std::format("Shader creation failed ({}): {}", path.string(), SDL_GetError())); }
     auto resource = std::make_unique<Shader::Impl>(); resource->device = impl_->device; resource->value = native;
@@ -228,6 +258,7 @@ SDL_GPUDevice* NativeAccess::device(const GPUDevice& value) noexcept { return va
 SDL_GPUBuffer* NativeAccess::buffer(const Buffer& value) noexcept { return value.impl_ ? value.impl_->value : nullptr; }
 SDL_GPUTexture* NativeAccess::texture(const Texture& value) noexcept { return value.impl_ ? value.impl_->value : nullptr; }
 SDL_GPUSampler* NativeAccess::sampler(const Sampler& value) noexcept { return value.impl_ ? value.impl_->value : nullptr; }
+SDL_GPUShader* NativeAccess::shader(const Shader& value) noexcept { return value.impl_ ? value.impl_->value : nullptr; }
 SDL_GPUGraphicsPipeline* NativeAccess::pipeline(const GraphicsPipeline& value) noexcept { return value.impl_ ? value.impl_->value : nullptr; }
 } // namespace detail
 

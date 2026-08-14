@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src
+CXX_INCLUDES = -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/engine/mediaforge/include
 
-CXX_FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic
+CXX_FLAGS = -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic
 

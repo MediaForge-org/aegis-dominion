@@ -18,6 +18,10 @@ SDL3 platform + SDL_GPU
 
 MediaForge foundation/math and typed GPU resource descriptions are SDL-free. Window uses a private implementation, events translate SDL data into generic variants, and GPU resources are move-only RAII objects. The private E1 smoke implementation is the only code that uses native command encoding directly. This preserves a generic public boundary while the fuller renderer API is designed in E2.
 
+E2 now adds the generic public renderer: `Camera2D`, sprite/geometry submissions, batching, offscreen targets, particle data and linear composite settings remain SDL-free. `Renderer2D.cpp` privately encodes SDL_GPU commands. The AEGIS reference adapter lives under `src/mediaforge/`, translates existing immutable snapshots and owns every Verdant/entity/HUD concept; the Engine still contains none.
+
+E2.1 adds generic `mf::ui::Canvas`, `Rect` and `Context` contracts for aspect-correct pointer mapping, button state, pointer capture, keyboard focus preparation and input consumption. `mf::ui::SegmentedLevelIndicator` adds game-neutral index/count geometry and generic widget-state/pulse styling. These components contain no AEGIS screen names, setting IDs or copy. `MediaForgeAppModel`, the screen stack, stable setting IDs, categories, types, option lists, German UTF-8 text atlas, main-menu layout and settings composition remain in `src/mediaforge/` and `assets/e2/`. Normal MediaForge startup enters that model; the scripted renderer reference is selected explicitly with `--e2-showcase`.
+
 **SFML IS TRANSITIONAL.** The current AEGIS application, UI and world renderer remain operational and are not rewritten in E1. No new SFML dependency may enter gameplay simulation, map data or `src/core/`; long-term presentation work targets MediaForge.
 
 ## Runtime composition
@@ -104,5 +108,5 @@ Repository/map strings are UTF-8 `std::string`. `ui::TextService` converts them 
 - MAP FORGE previews terrain and stored decorations flow into playtest, but terrain painting, height sculpting and decoration placement tools are not active yet.
 - Current enemy sheets are single-pose transitional art; external clip definitions and state playback are ready for multi-frame replacements.
 - Waves, economy and balance remain hard-coded.
-- AEGIS presentation still runs through SFML; E1 adds the parallel SDL_GPU engine path but does not migrate gameplay rendering.
+- Full gameplay and MAP FORGE still present through SFML. E2.1 adds the real MediaForge menu and secondary-screen flow, but map selection, live simulation and editor migration remain future bounded work.
 - E1 ships a Vulkan/SPIR-V smoke shader path. Portable D3D12/Metal shader artifacts and the public batched renderer arrive in later MediaForge milestones without changing game data.

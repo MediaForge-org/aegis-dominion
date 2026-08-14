@@ -23,3 +23,9 @@ source art / procedural source
 Runtime code never opens texture/sound/font files. New IDs use `domain.subject.variant`, for example `terrain.grass.surface`, `world.aegis_core` or `tower.pulse.turret`. Source art is kept separate from exported runtime files when introduced; `tools/generate_phase4_assets.py` is the reproducible source for current terrain/world/environment intermediates.
 
 `assets/animations.aegis` uses `AEGIS_ANIMATIONS_V1`. A clip row defines logical clip ID, sprite-sheet asset ID, loop/once, sequential frame count, first frame rectangle and duration. `AnimationCatalog` rejects malformed and duplicate definitions; the WorldRenderer consumes state timing without owning gameplay state.
+
+## E2 MediaForge manifest
+
+`assets/e2/manifest.mfassets` records each logical ID's path, atlas/source dimensions, filter/wrap, pivot, scale, material and optional emissive/normal/animation references. The AEGIS catalog validates it, loads each PNG once through MediaForge and uploads eight resident textures; renderer code contains no individual file paths.
+
+Sources remain under `assets/e2/source/`: a 1672×941 battlefield, 1254–1536-class structures/units/environment/VFX/HUD, and a 1024×1536 separate tower-parts atlas. IDs/metadata allow commissioned replacements without renderer changes.

@@ -86,24 +86,94 @@ CMakeFiles/aegis_dominion.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/main.cpp -o CMakeFiles/aegis_dominion.dir/src/main.cpp.s
 
-CMakeFiles/aegis_dominion.dir/src/Game.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
-CMakeFiles/aegis_dominion.dir/src/Game.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Game.cpp
-CMakeFiles/aegis_dominion.dir/src/Game.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Game.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Game.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Game.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Game.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Game.cpp
+CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
+CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/Application.cpp
+CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/Application.cpp
 
-CMakeFiles/aegis_dominion.dir/src/Game.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/Game.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Game.cpp > CMakeFiles/aegis_dominion.dir/src/Game.cpp.i
+CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/Application.cpp > CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.i
 
-CMakeFiles/aegis_dominion.dir/src/Game.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/Game.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Game.cpp -o CMakeFiles/aegis_dominion.dir/src/Game.cpp.s
+CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/Application.cpp -o CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.s
+
+CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
+CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/ScreenManager.cpp
+CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/ScreenManager.cpp
+
+CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/ScreenManager.cpp > CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.i
+
+CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/app/ScreenManager.cpp -o CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.s
+
+CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
+CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/MainMenuScreen.cpp
+CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/MainMenuScreen.cpp
+
+CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/MainMenuScreen.cpp > CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.i
+
+CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/MainMenuScreen.cpp -o CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.s
+
+CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
+CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/GameScreen.cpp
+CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/GameScreen.cpp
+
+CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/GameScreen.cpp > CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.i
+
+CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/screens/GameScreen.cpp -o CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.s
+
+CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
+CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/EditorCamera.cpp
+CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/EditorCamera.cpp
+
+CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/EditorCamera.cpp > CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.i
+
+CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/EditorCamera.cpp -o CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.s
+
+CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
+CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapForgeScreen.cpp
+CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapForgeScreen.cpp
+
+CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapForgeScreen.cpp > CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.i
+
+CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapForgeScreen.cpp -o CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.s
 
 CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Assets.cpp
 CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Assets.cpp
 
 CMakeFiles/aegis_dominion.dir/src/Assets.cpp.i: cmake_force
@@ -117,7 +187,7 @@ CMakeFiles/aegis_dominion.dir/src/Assets.cpp.s: cmake_force
 CMakeFiles/aegis_dominion.dir/src/Map.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/Map.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Map.cpp
 CMakeFiles/aegis_dominion.dir/src/Map.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Map.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Map.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Map.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Map.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Map.cpp
 
 CMakeFiles/aegis_dominion.dir/src/Map.cpp.i: cmake_force
@@ -131,7 +201,7 @@ CMakeFiles/aegis_dominion.dir/src/Map.cpp.s: cmake_force
 CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Enemy.cpp
 CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Enemy.cpp
 
 CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.i: cmake_force
@@ -145,7 +215,7 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.s: cmake_force
 CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Tower.cpp
 CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Tower.cpp
 
 CMakeFiles/aegis_dominion.dir/src/Tower.cpp.i: cmake_force
@@ -159,7 +229,7 @@ CMakeFiles/aegis_dominion.dir/src/Tower.cpp.s: cmake_force
 CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Projectile.cpp
 CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Projectile.cpp
 
 CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.i: cmake_force
@@ -173,7 +243,7 @@ CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.s: cmake_force
 CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Effects.cpp
 CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Effects.cpp
 
 CMakeFiles/aegis_dominion.dir/src/Effects.cpp.i: cmake_force
@@ -187,7 +257,7 @@ CMakeFiles/aegis_dominion.dir/src/Effects.cpp.s: cmake_force
 CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o: CMakeFiles/aegis_dominion.dir/flags.make
 CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/WaveManager.cpp
 CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o -MF CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o.d -o CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/WaveManager.cpp
 
 CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.i: cmake_force
@@ -201,7 +271,12 @@ CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.s: cmake_force
 # Object files for target aegis_dominion
 aegis_dominion_OBJECTS = \
 "CMakeFiles/aegis_dominion.dir/src/main.cpp.o" \
-"CMakeFiles/aegis_dominion.dir/src/Game.cpp.o" \
+"CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o" \
+"CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o" \
+"CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o" \
+"CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o" \
+"CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o" \
+"CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o" \
 "CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o" \
 "CMakeFiles/aegis_dominion.dir/src/Map.cpp.o" \
 "CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o" \
@@ -214,7 +289,12 @@ aegis_dominion_OBJECTS = \
 aegis_dominion_EXTERNAL_OBJECTS =
 
 aegis_dominion: CMakeFiles/aegis_dominion.dir/src/main.cpp.o
-aegis_dominion: CMakeFiles/aegis_dominion.dir/src/Game.cpp.o
+aegis_dominion: CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o
+aegis_dominion: CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o
+aegis_dominion: CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o
+aegis_dominion: CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o
+aegis_dominion: CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o
+aegis_dominion: CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o
 aegis_dominion: CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o
 aegis_dominion: CMakeFiles/aegis_dominion.dir/src/Map.cpp.o
 aegis_dominion: CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o
@@ -226,12 +306,16 @@ aegis_dominion: CMakeFiles/aegis_dominion.dir/build.make
 aegis_dominion: CMakeFiles/aegis_dominion.dir/compiler_depend.ts
 aegis_dominion: libaegis_core.a
 aegis_dominion: libaegis_ui.a
+aegis_dominion: engine/mediaforge/libmediaforge_engine.a
 aegis_dominion: /usr/lib64/libsfml-graphics.so.2.6.2
 aegis_dominion: /usr/lib64/libsfml-window.so.2.6.2
 aegis_dominion: /usr/lib64/libsfml-audio.so.2.6.2
 aegis_dominion: /usr/lib64/libsfml-system.so.2.6.2
+aegis_dominion: engine/mediaforge/libmediaforge_foundation.a
+aegis_dominion: _deps/mediaforge_sdl3-build/libSDL3.so.0.4.14
+aegis_dominion: _deps/mediaforge_sdl3-src/src/dynapi/SDL_dynapi.sym
 aegis_dominion: CMakeFiles/aegis_dominion.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable aegis_dominion"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable aegis_dominion"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/aegis_dominion.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E copy_directory /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/assets /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/assets
 	/usr/bin/cmake -E copy_directory /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/maps /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/maps

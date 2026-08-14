@@ -14,6 +14,7 @@ public:
     static SDL_GPUBuffer* buffer(const Buffer& value) noexcept;
     static SDL_GPUTexture* texture(const Texture& value) noexcept;
     static SDL_GPUSampler* sampler(const Sampler& value) noexcept;
+    static SDL_GPUShader* shader(const Shader& value) noexcept;
     static SDL_GPUGraphicsPipeline* pipeline(const GraphicsPipeline& value) noexcept;
 };
 

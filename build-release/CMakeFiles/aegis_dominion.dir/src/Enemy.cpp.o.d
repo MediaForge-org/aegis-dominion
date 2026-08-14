@@ -38,7 +38,15 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/c++/16/new /usr/include/c++/16/bits/new_except.h \
  /usr/include/c++/16/bits/move.h /usr/include/c++/16/type_traits \
  /usr/include/c++/16/bits/nested_exception.h \
- /usr/include/c++/16/bits/char_traits.h \
+ /usr/include/c++/16/bits/char_traits.h /usr/include/c++/16/compare \
+ /usr/include/c++/16/concepts /usr/include/c++/16/bits/stl_construct.h \
+ /usr/include/c++/16/bits/stl_iterator_base_types.h \
+ /usr/include/c++/16/bits/iterator_concepts.h \
+ /usr/include/c++/16/bits/ptr_traits.h \
+ /usr/include/c++/16/bits/ranges_cmp.h \
+ /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/16/bits/concept_check.h \
+ /usr/include/c++/16/debug/assertions.h \
  /usr/include/c++/16/bits/localefwd.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/c++locale.h \
  /usr/include/c++/16/clocale /usr/include/locale.h \
@@ -82,30 +90,27 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/c++/16/bits/cpp_type_traits.h \
  /usr/include/c++/16/bits/ostream_insert.h \
  /usr/include/c++/16/bits/cxxabi_forced.h \
- /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
- /usr/include/c++/16/bits/concept_check.h \
- /usr/include/c++/16/debug/assertions.h \
- /usr/include/c++/16/bits/stl_iterator_base_types.h \
  /usr/include/c++/16/bits/stl_iterator.h \
- /usr/include/c++/16/ext/type_traits.h \
- /usr/include/c++/16/bits/ptr_traits.h \
+ /usr/include/c++/16/ext/type_traits.h /usr/include/c++/16/bits/utility.h \
  /usr/include/c++/16/bits/stl_function.h \
  /usr/include/c++/16/backward/binders.h \
  /usr/include/c++/16/ext/numeric_traits.h \
  /usr/include/c++/16/bits/stdexcept_throw.h \
  /usr/include/c++/16/bits/stdexcept_throwfwd.h \
  /usr/include/c++/16/bits/stl_algobase.h \
- /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/bits/utility.h \
- /usr/include/c++/16/debug/debug.h \
+ /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/debug/debug.h \
  /usr/include/c++/16/bits/predefined_ops.h /usr/include/c++/16/bit \
- /usr/include/c++/16/concepts /usr/include/c++/16/bits/range_access.h \
+ /usr/include/c++/16/bits/range_access.h \
  /usr/include/c++/16/initializer_list /usr/include/c++/16/bits/erase_if.h \
  /usr/include/c++/16/bits/basic_string.h \
  /usr/include/c++/16/ext/alloc_traits.h \
- /usr/include/c++/16/bits/alloc_traits.h \
- /usr/include/c++/16/bits/stl_construct.h /usr/include/c++/16/string_view \
+ /usr/include/c++/16/bits/alloc_traits.h /usr/include/c++/16/string_view \
  /usr/include/c++/16/bits/functional_hash.h \
- /usr/include/c++/16/bits/string_view.tcc \
+ /usr/include/c++/16/bits/ranges_base.h \
+ /usr/include/c++/16/bits/max_size_type.h /usr/include/c++/16/numbers \
+ /usr/include/c++/16/limits /usr/include/c++/16/bits/string_view.tcc \
+ /usr/include/c++/16/bits/ranges_algobase.h \
+ /usr/include/c++/16/bits/invoke.h /usr/include/c++/16/bits/ranges_util.h \
  /usr/include/c++/16/ext/string_conversions.h /usr/include/c++/16/cstdlib \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
  /usr/include/bits/waitstatus.h /usr/include/sys/types.h \
@@ -129,7 +134,6 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/c++/16/bits/memory_resource.h /usr/include/c++/16/cstddef \
  /usr/include/c++/16/bits/uses_allocator.h \
  /usr/include/c++/16/bits/uses_allocator_args.h /usr/include/c++/16/tuple \
- /usr/include/c++/16/bits/invoke.h \
  /usr/include/c++/16/bits/locale_classes.tcc \
  /usr/include/c++/16/system_error \
  /usr/include/c++/16/x86_64-redhat-linux/bits/error_constants.h \
@@ -143,7 +147,27 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/c++/16/bits/streambuf_iterator.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/ctype_inline.h \
  /usr/include/c++/16/bits/locale_facets.tcc \
- /usr/include/c++/16/bits/basic_ios.tcc \
+ /usr/include/c++/16/bits/basic_ios.tcc /usr/include/c++/16/format \
+ /usr/include/c++/16/array /usr/include/c++/16/charconv \
+ /usr/include/c++/16/locale \
+ /usr/include/c++/16/bits/locale_facets_nonio.h /usr/include/c++/16/ctime \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/time_members.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/16/bits/codecvt.h \
+ /usr/include/c++/16/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/16/bits/locale_conv.h /usr/include/c++/16/optional \
+ /usr/include/c++/16/bits/enable_special_members.h \
+ /usr/include/c++/16/span /usr/include/c++/16/bits/monostate.h \
+ /usr/include/c++/16/bits/formatfwd.h /usr/include/c++/16/bits/unicode.h \
+ /usr/include/c++/16/cstdint \
+ /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h /usr/include/c++/16/bits/stl_algo.h \
+ /usr/include/c++/16/bits/algorithmfwd.h \
+ /usr/include/c++/16/bits/stl_heap.h \
+ /usr/include/c++/16/bits/uniform_int_dist.h \
+ /usr/include/c++/16/bits/stl_tempbuf.h \
+ /usr/include/c++/16/bits/unicode-data.h \
  /usr/include/c++/16/bits/ostream_print.h \
  /usr/include/c++/16/bits/ostream.tcc \
  /usr/include/SFML/System/FileInputStream.hpp \
@@ -153,20 +177,11 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/SFML/System/MemoryInputStream.hpp \
  /usr/include/SFML/System/Mutex.hpp /usr/include/SFML/System/Sleep.hpp \
  /usr/include/SFML/System/String.hpp /usr/include/SFML/System/Utf.hpp \
- /usr/include/c++/16/algorithm /usr/include/c++/16/bits/stl_algo.h \
- /usr/include/c++/16/bits/algorithmfwd.h \
- /usr/include/c++/16/bits/stl_heap.h \
- /usr/include/c++/16/bits/uniform_int_dist.h \
- /usr/include/c++/16/bits/stl_tempbuf.h \
+ /usr/include/c++/16/algorithm /usr/include/c++/16/bits/ranges_algo.h \
  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
- /usr/include/c++/16/pstl/execution_defs.h /usr/include/c++/16/locale \
- /usr/include/c++/16/bits/locale_facets_nonio.h /usr/include/c++/16/ctime \
- /usr/include/c++/16/x86_64-redhat-linux/bits/time_members.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/16/bits/codecvt.h \
- /usr/include/c++/16/bits/locale_facets_nonio.tcc \
- /usr/include/c++/16/bits/locale_conv.h /usr/include/SFML/System/Utf.inl \
- /usr/include/c++/16/iterator /usr/include/c++/16/bits/stream_iterator.h \
+ /usr/include/c++/16/pstl/execution_defs.h \
+ /usr/include/SFML/System/Utf.inl /usr/include/c++/16/iterator \
+ /usr/include/c++/16/bits/stream_iterator.h \
  /usr/include/SFML/System/String.inl /usr/include/SFML/System/Thread.hpp \
  /usr/include/SFML/System/Thread.inl \
  /usr/include/SFML/System/ThreadLocal.hpp \
@@ -192,9 +207,6 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/SFML/Window/WindowBase.hpp \
  /usr/include/SFML/Window/Vulkan.hpp \
  /usr/include/SFML/Window/WindowHandle.hpp \
- /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h \
  /usr/include/SFML/Window/WindowStyle.hpp \
  /usr/include/SFML/Graphics/BlendMode.hpp \
  /usr/include/SFML/Graphics/Export.hpp \
@@ -235,7 +247,7 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/bits/mathcalls-helper-functions.h \
  /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
  /usr/include/bits/iscanonical.h /usr/include/c++/16/bits/specfun.h \
- /usr/include/c++/16/limits /usr/include/c++/16/tr1/gamma.tcc \
+ /usr/include/c++/16/tr1/gamma.tcc \
  /usr/include/c++/16/tr1/special_function_util.h \
  /usr/include/c++/16/tr1/bessel_function.tcc \
  /usr/include/c++/16/tr1/beta_function.tcc \
@@ -248,28 +260,11 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/c++/16/tr1/poly_laguerre.tcc \
  /usr/include/c++/16/tr1/riemann_zeta.tcc \
  /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Map.hpp \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.hpp \
  /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.hpp \
- /usr/include/c++/16/optional \
- /usr/include/c++/16/bits/enable_special_members.h \
- /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/Assets.hpp \
- /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/ui/TextService.hpp \
- /usr/include/SFML/Audio.hpp /usr/include/SFML/Audio/InputSoundFile.hpp \
- /usr/include/SFML/Audio/Export.hpp /usr/include/SFML/Audio/Listener.hpp \
- /usr/include/SFML/Audio/Music.hpp \
- /usr/include/SFML/Audio/SoundStream.hpp \
- /usr/include/SFML/Audio/SoundSource.hpp \
- /usr/include/SFML/Audio/AlResource.hpp \
- /usr/include/SFML/Audio/OutputSoundFile.hpp \
- /usr/include/SFML/Audio/Sound.hpp \
- /usr/include/SFML/Audio/SoundBuffer.hpp /usr/include/c++/16/set \
- /usr/include/c++/16/bits/stl_set.h \
- /usr/include/c++/16/bits/stl_multiset.h \
- /usr/include/SFML/Audio/SoundBufferRecorder.hpp \
- /usr/include/SFML/Audio/SoundRecorder.hpp \
- /usr/include/SFML/Audio/SoundFileFactory.hpp \
- /usr/include/SFML/Audio/SoundFileFactory.inl \
- /usr/include/SFML/Audio/SoundFileReader.hpp \
- /usr/include/SFML/Audio/SoundFileWriter.hpp /usr/include/c++/16/memory \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/render/RenderSnapshot.hpp \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/render/RenderLayer.hpp \
+ /usr/include/c++/16/memory \
  /usr/include/c++/16/bits/stl_raw_storage_iter.h \
  /usr/include/c++/16/bits/align.h /usr/include/c++/16/bits/unique_ptr.h \
  /usr/include/c++/16/bits/shared_ptr.h \
@@ -279,5 +274,8 @@ CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o: \
  /usr/include/c++/16/bits/shared_ptr_atomic.h \
  /usr/include/c++/16/bits/atomic_base.h \
  /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/16/bits/atomic_wait.h \
  /usr/include/c++/16/backward/auto_ptr.h \
+ /usr/include/c++/16/bits/ranges_uninitialized.h \
+ /usr/include/c++/16/bits/out_ptr.h \
  /usr/include/c++/16/pstl/glue_memory_defs.h

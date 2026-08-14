@@ -1,6 +1,8 @@
-# MediaForge Engine 0.1.0-dev
+# MediaForge Engine 0.2.0-dev
 
-MediaForge is a reusable C++23 game engine built on SDL3 and SDL_GPU. AEGIS DOMINION is its first consumer, not part of the Engine. Game rules, content names, maps, UI copy and game art must never enter this directory.
+MediaForge is a reusable C++23 game engine built on SDL3 and SDL_GPU. E2 adds generic Camera2D, batched Renderer2D, offscreen targets, linear emissive/post composition, particles and statistics. AEGIS DOMINION is its first consumer, not part of the Engine. Game rules, content names, maps, UI copy and game art must never enter this directory.
+
+E2.1 adds generic `ui::Canvas`, `ui::Rect` and `ui::Context` primitives for letterboxed coordinate mapping, button hover/press/disabled/focus state, pointer capture and input consumption. It also provides `ui::SegmentedLevelIndicator`: a game-neutral current-index/segment-count model plus compact rectangle geometry, style, widget-state highlighting and bounded caller-driven pulse rendering. It does not know setting IDs, categories, labels, option enums or persistence. Screen composition, localized text, setting definitions and application navigation deliberately remain consumer-owned.
 
 ## Dependencies
 
@@ -28,6 +30,8 @@ cmake --build build-mediaforge --target mediaforge_gpu_smoke
 ```
 
 From the AEGIS root build the executable is under `build/engine/mediaforge/`. On Fedora install the SDL3 development package, shaderc/glslc 2026.1, Vulkan loader/driver and validation layers. A successful default development run logs the actual line `MediaForge GPU backend: vulkan` and displays a dark clear, colored triangle and checker-textured translucent quad. Escape or window close exits cleanly.
+
+The AEGIS Verdant slice is intentionally not part of this standalone subtree. From the game root its target is `aegis_mediaforge_slice`; only the generic engine underneath is extractable.
 
 ## Repository extraction
 

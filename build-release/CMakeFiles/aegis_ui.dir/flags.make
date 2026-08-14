@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src
 
-CXX_FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic
+CXX_FLAGS = -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic
 

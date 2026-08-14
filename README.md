@@ -2,11 +2,28 @@
 
 > Dieses Repository entwickelt den spielbaren SFML-Prototyp schrittweise zu einer datengetriebenen Architektur weiter. Karten, Editorzustand und Rendering werden getrennt, damit MAP FORGE und ein späterer 3D-Renderer dieselben Inhalte verwenden können.
 
-## MediaForge Engine E1
+## MediaForge Engine E2.1
 
-Dieses Repository enthält nun die wiederverwendbare **MediaForge Engine 0.1.0-dev** unter `engine/mediaforge/`. AEGIS DOMINION ist ihr erstes Spiel, die Engine selbst kennt jedoch keine AEGIS-Typen oder -Assets. Ein separates `mediaforge_engine`-Target stellt SDL3-Window/Event/Input und SDL_GPU bereit; der existierende spielbare SFML-Pfad bleibt während der schrittweisen Migration erhalten.
+Dieses Repository enthält nun die wiederverwendbare **MediaForge Engine 0.2.0-dev** unter `engine/mediaforge/`. E2 ergänzt E1 um `Camera2D`, einen sortierten/batched `Renderer2D`, Alpha/Additiv-Blending, dynamische Frame-Uploads, Offscreen-RenderTargets, explizite Renderpässe, lineare Licht-/Emissive-Flächen, Bloom/Vignette/Tonemapping, Partikelverträge und Renderstatistiken. Unter `engine/mediaforge/` liegen weiterhin keine Spieltypen oder AEGIS-Assets.
 
-SDL3 ist exakt auf 3.4.14 gepinnt. Der grafische Smoke-Test wird mit `cmake --build build --target mediaforge_gpu_smoke` gebaut und nach Installation von `glslc` 2026.1 aus dem Buildverzeichnis gestartet. Details stehen in `docs/MEDIAFORGE_ENGINE.md`, `docs/DEPENDENCIES.md` und `engine/mediaforge/README.md`.
+Der erste interaktive MediaForge-Pfad startet jetzt standardmäßig im echten AEGIS-Hauptmenü:
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j$(nproc) --target aegis_mediaforge_slice
+cd build
+./aegis_mediaforge_slice
+```
+
+Das Menü bietet `SPIELEN`, `MAP FORGE`, `ANLEITUNG`, `EINSTELLUNGEN` und `BEENDEN`. Maus-Hover/Press, Tastaturfokus, Zurück-Navigation sowie VSync-, FPS-Limit- und Qualitätsänderungen sind funktional. `SPIELEN` öffnet die interaktive E2.2-Kartenauswahl-Vorschau; `MAP FORGE` öffnet den klar gekennzeichneten Migrationshinweis. Der bestehende SFML-Editor bleibt erhalten.
+
+Die schöne, weiterhin gesondert abzunehmende Verdant-E2-Referenz wird ausdrücklich gestartet:
+
+```bash
+./aegis_mediaforge_slice --e2-showcase
+```
+
+Der SFML-Pfad (`./aegis_dominion`) und E1s Diagnose (`./engine/mediaforge/mediaforge_gpu_smoke`) bleiben erhalten. SDL3 ist exakt auf 3.4.14, `glslc` auf shaderc 2026.1 gepinnt. E2 bleibt offen; E2.1 etabliert nur den ersten funktionalen interaktiven MediaForge-Spielfluss.
 
 ## V3 milestones already included
 - zentrale UTF-8-/Font-Infrastruktur für deutsche Umlaute und ß
@@ -194,6 +211,7 @@ engine/mediaforge/
   src/        SDL3-/SDL_GPU-Implementierung und Smoke-Test
   shaders/    reproduzierbar kompilierte externe Shaderquellen
   tests/      fensterlose Engine-Tests
+src/mediaforge/ AEGIS-spezifischer E2-Snapshotadapter und Verdant-Referenzlauf
 tools/
   generate_assets.py
 ```

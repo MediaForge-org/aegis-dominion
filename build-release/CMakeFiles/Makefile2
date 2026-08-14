@@ -66,29 +66,113 @@ CMAKE_BINARY_DIR = /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-re
 all: CMakeFiles/aegis_core.dir/all
 all: CMakeFiles/aegis_ui.dir/all
 all: CMakeFiles/aegis_dominion.dir/all
+all: CMakeFiles/aegis_mediaforge_slice.dir/all
 all: CMakeFiles/aegis_core_tests.dir/all
+all: CMakeFiles/aegis_editor_tests.dir/all
+all: CMakeFiles/aegis_playtest_tests.dir/all
+all: CMakeFiles/aegis_game_map_tests.dir/all
 all: CMakeFiles/aegis_text_tests.dir/all
+all: CMakeFiles/aegis_foundation_tests.dir/all
+all: CMakeFiles/aegis_phase4_tests.dir/all
+all: CMakeFiles/aegis_e2_slice_tests.dir/all
+all: engine/mediaforge/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/aegis_core.dir/codegen
 codegen: CMakeFiles/aegis_ui.dir/codegen
 codegen: CMakeFiles/aegis_dominion.dir/codegen
+codegen: CMakeFiles/aegis_mediaforge_slice.dir/codegen
 codegen: CMakeFiles/aegis_core_tests.dir/codegen
+codegen: CMakeFiles/aegis_editor_tests.dir/codegen
+codegen: CMakeFiles/aegis_playtest_tests.dir/codegen
+codegen: CMakeFiles/aegis_game_map_tests.dir/codegen
 codegen: CMakeFiles/aegis_text_tests.dir/codegen
+codegen: CMakeFiles/aegis_foundation_tests.dir/codegen
+codegen: CMakeFiles/aegis_phase4_tests.dir/codegen
+codegen: CMakeFiles/aegis_e2_slice_tests.dir/codegen
+codegen: engine/mediaforge/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: engine/mediaforge/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/aegis_core.dir/clean
 clean: CMakeFiles/aegis_ui.dir/clean
 clean: CMakeFiles/aegis_dominion.dir/clean
+clean: CMakeFiles/aegis_mediaforge_slice.dir/clean
 clean: CMakeFiles/aegis_core_tests.dir/clean
+clean: CMakeFiles/aegis_editor_tests.dir/clean
+clean: CMakeFiles/aegis_playtest_tests.dir/clean
+clean: CMakeFiles/aegis_game_map_tests.dir/clean
 clean: CMakeFiles/aegis_text_tests.dir/clean
+clean: CMakeFiles/aegis_foundation_tests.dir/clean
+clean: CMakeFiles/aegis_phase4_tests.dir/clean
+clean: CMakeFiles/aegis_e2_slice_tests.dir/clean
+clean: engine/mediaforge/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory _deps/mediaforge_sdl3-build
+
+# Recursive "all" directory target.
+_deps/mediaforge_sdl3-build/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+_deps/mediaforge_sdl3-build/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/all
+_deps/mediaforge_sdl3-build/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/all
+.PHONY : _deps/mediaforge_sdl3-build/all
+
+# Recursive "codegen" directory target.
+_deps/mediaforge_sdl3-build/codegen: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/codegen
+_deps/mediaforge_sdl3-build/codegen: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/codegen
+_deps/mediaforge_sdl3-build/codegen: _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/codegen
+.PHONY : _deps/mediaforge_sdl3-build/codegen
+
+# Recursive "preinstall" directory target.
+_deps/mediaforge_sdl3-build/preinstall:
+.PHONY : _deps/mediaforge_sdl3-build/preinstall
+
+# Recursive "clean" directory target.
+_deps/mediaforge_sdl3-build/clean: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/clean
+_deps/mediaforge_sdl3-build/clean: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/clean
+_deps/mediaforge_sdl3-build/clean: _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/clean
+.PHONY : _deps/mediaforge_sdl3-build/clean
+
+#=============================================================================
+# Directory level rules for directory engine/mediaforge
+
+# Recursive "all" directory target.
+engine/mediaforge/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+engine/mediaforge/all: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+engine/mediaforge/all: engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all
+engine/mediaforge/all: engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/all
+engine/mediaforge/all: engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/all
+engine/mediaforge/all: _deps/mediaforge_sdl3-build/all
+.PHONY : engine/mediaforge/all
+
+# Recursive "codegen" directory target.
+engine/mediaforge/codegen: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/codegen
+engine/mediaforge/codegen: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/codegen
+engine/mediaforge/codegen: engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/codegen
+engine/mediaforge/codegen: engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/codegen
+engine/mediaforge/codegen: engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/codegen
+engine/mediaforge/codegen: _deps/mediaforge_sdl3-build/codegen
+.PHONY : engine/mediaforge/codegen
+
+# Recursive "preinstall" directory target.
+engine/mediaforge/preinstall: _deps/mediaforge_sdl3-build/preinstall
+.PHONY : engine/mediaforge/preinstall
+
+# Recursive "clean" directory target.
+engine/mediaforge/clean: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/clean
+engine/mediaforge/clean: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/clean
+engine/mediaforge/clean: engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/clean
+engine/mediaforge/clean: engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/clean
+engine/mediaforge/clean: engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/clean
+engine/mediaforge/clean: engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/clean
+engine/mediaforge/clean: _deps/mediaforge_sdl3-build/clean
+.PHONY : engine/mediaforge/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/aegis_core.dir
@@ -97,12 +181,12 @@ clean: CMakeFiles/aegis_text_tests.dir/clean
 CMakeFiles/aegis_core.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=1,2,3 "Built target aegis_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=81,82 "Built target aegis_core"
 .PHONY : CMakeFiles/aegis_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/aegis_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
 .PHONY : CMakeFiles/aegis_core.dir/rule
@@ -114,7 +198,7 @@ aegis_core: CMakeFiles/aegis_core.dir/rule
 # codegen rule for target.
 CMakeFiles/aegis_core.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=1,2,3 "Finished codegen for target aegis_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=81,82 "Finished codegen for target aegis_core"
 .PHONY : CMakeFiles/aegis_core.dir/codegen
 
 # clean rule for target.
@@ -129,12 +213,12 @@ CMakeFiles/aegis_core.dir/clean:
 CMakeFiles/aegis_ui.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=18,19 "Built target aegis_ui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=92,93,94 "Built target aegis_ui"
 .PHONY : CMakeFiles/aegis_ui.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/aegis_ui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_ui.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
 .PHONY : CMakeFiles/aegis_ui.dir/rule
@@ -146,7 +230,7 @@ aegis_ui: CMakeFiles/aegis_ui.dir/rule
 # codegen rule for target.
 CMakeFiles/aegis_ui.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=18,19 "Finished codegen for target aegis_ui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=92,93,94 "Finished codegen for target aegis_ui"
 .PHONY : CMakeFiles/aegis_ui.dir/codegen
 
 # clean rule for target.
@@ -158,16 +242,19 @@ CMakeFiles/aegis_ui.dir/clean:
 # Target rules for target CMakeFiles/aegis_dominion.dir
 
 # All Build rule for target.
+CMakeFiles/aegis_dominion.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+CMakeFiles/aegis_dominion.dir/all: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+CMakeFiles/aegis_dominion.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
 CMakeFiles/aegis_dominion.dir/all: CMakeFiles/aegis_core.dir/all
 CMakeFiles/aegis_dominion.dir/all: CMakeFiles/aegis_ui.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15 "Built target aegis_dominion"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=83,84,85 "Built target aegis_dominion"
 .PHONY : CMakeFiles/aegis_dominion.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/aegis_dominion.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 89
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_dominion.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
 .PHONY : CMakeFiles/aegis_dominion.dir/rule
@@ -179,7 +266,7 @@ aegis_dominion: CMakeFiles/aegis_dominion.dir/rule
 # codegen rule for target.
 CMakeFiles/aegis_dominion.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15 "Finished codegen for target aegis_dominion"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=83,84,85 "Finished codegen for target aegis_dominion"
 .PHONY : CMakeFiles/aegis_dominion.dir/codegen
 
 # clean rule for target.
@@ -188,18 +275,54 @@ CMakeFiles/aegis_dominion.dir/clean:
 .PHONY : CMakeFiles/aegis_dominion.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/aegis_mediaforge_slice.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_mediaforge_slice.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+CMakeFiles/aegis_mediaforge_slice.dir/all: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+CMakeFiles/aegis_mediaforge_slice.dir/all: engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all
+CMakeFiles/aegis_mediaforge_slice.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+CMakeFiles/aegis_mediaforge_slice.dir/all: CMakeFiles/aegis_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=89 "Built target aegis_mediaforge_slice"
+.PHONY : CMakeFiles/aegis_mediaforge_slice.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_mediaforge_slice.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 86
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_mediaforge_slice.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_mediaforge_slice.dir/rule
+
+# Convenience name for target.
+aegis_mediaforge_slice: CMakeFiles/aegis_mediaforge_slice.dir/rule
+.PHONY : aegis_mediaforge_slice
+
+# codegen rule for target.
+CMakeFiles/aegis_mediaforge_slice.dir/codegen: engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=89 "Finished codegen for target aegis_mediaforge_slice"
+.PHONY : CMakeFiles/aegis_mediaforge_slice.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_mediaforge_slice.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/clean
+.PHONY : CMakeFiles/aegis_mediaforge_slice.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/aegis_core_tests.dir
 
 # All Build rule for target.
 CMakeFiles/aegis_core_tests.dir/all: CMakeFiles/aegis_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core_tests.dir/build.make CMakeFiles/aegis_core_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core_tests.dir/build.make CMakeFiles/aegis_core_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=4,5 "Built target aegis_core_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Built target aegis_core_tests"
 .PHONY : CMakeFiles/aegis_core_tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/aegis_core_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_core_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
 .PHONY : CMakeFiles/aegis_core_tests.dir/rule
@@ -211,7 +334,7 @@ aegis_core_tests: CMakeFiles/aegis_core_tests.dir/rule
 # codegen rule for target.
 CMakeFiles/aegis_core_tests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core_tests.dir/build.make CMakeFiles/aegis_core_tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=4,5 "Finished codegen for target aegis_core_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Finished codegen for target aegis_core_tests"
 .PHONY : CMakeFiles/aegis_core_tests.dir/codegen
 
 # clean rule for target.
@@ -220,13 +343,110 @@ CMakeFiles/aegis_core_tests.dir/clean:
 .PHONY : CMakeFiles/aegis_core_tests.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/aegis_editor_tests.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_editor_tests.dir/all: CMakeFiles/aegis_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=87 "Built target aegis_editor_tests"
+.PHONY : CMakeFiles/aegis_editor_tests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_editor_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_editor_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_editor_tests.dir/rule
+
+# Convenience name for target.
+aegis_editor_tests: CMakeFiles/aegis_editor_tests.dir/rule
+.PHONY : aegis_editor_tests
+
+# codegen rule for target.
+CMakeFiles/aegis_editor_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=87 "Finished codegen for target aegis_editor_tests"
+.PHONY : CMakeFiles/aegis_editor_tests.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_editor_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/clean
+.PHONY : CMakeFiles/aegis_editor_tests.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/aegis_playtest_tests.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_playtest_tests.dir/all: CMakeFiles/aegis_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Built target aegis_playtest_tests"
+.PHONY : CMakeFiles/aegis_playtest_tests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_playtest_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_playtest_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_playtest_tests.dir/rule
+
+# Convenience name for target.
+aegis_playtest_tests: CMakeFiles/aegis_playtest_tests.dir/rule
+.PHONY : aegis_playtest_tests
+
+# codegen rule for target.
+CMakeFiles/aegis_playtest_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Finished codegen for target aegis_playtest_tests"
+.PHONY : CMakeFiles/aegis_playtest_tests.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_playtest_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/clean
+.PHONY : CMakeFiles/aegis_playtest_tests.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/aegis_game_map_tests.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_game_map_tests.dir/all: CMakeFiles/aegis_core.dir/all
+CMakeFiles/aegis_game_map_tests.dir/all: CMakeFiles/aegis_ui.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=88 "Built target aegis_game_map_tests"
+.PHONY : CMakeFiles/aegis_game_map_tests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_game_map_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_game_map_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_game_map_tests.dir/rule
+
+# Convenience name for target.
+aegis_game_map_tests: CMakeFiles/aegis_game_map_tests.dir/rule
+.PHONY : aegis_game_map_tests
+
+# codegen rule for target.
+CMakeFiles/aegis_game_map_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=88 "Finished codegen for target aegis_game_map_tests"
+.PHONY : CMakeFiles/aegis_game_map_tests.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_game_map_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/clean
+.PHONY : CMakeFiles/aegis_game_map_tests.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/aegis_text_tests.dir
 
 # All Build rule for target.
 CMakeFiles/aegis_text_tests.dir/all: CMakeFiles/aegis_ui.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=16,17 "Built target aegis_text_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=91 "Built target aegis_text_tests"
 .PHONY : CMakeFiles/aegis_text_tests.dir/all
 
 # Build rule for subdir invocation for target.
@@ -243,7 +463,7 @@ aegis_text_tests: CMakeFiles/aegis_text_tests.dir/rule
 # codegen rule for target.
 CMakeFiles/aegis_text_tests.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=16,17 "Finished codegen for target aegis_text_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=91 "Finished codegen for target aegis_text_tests"
 .PHONY : CMakeFiles/aegis_text_tests.dir/codegen
 
 # clean rule for target.
@@ -252,12 +472,407 @@ CMakeFiles/aegis_text_tests.dir/clean:
 .PHONY : CMakeFiles/aegis_text_tests.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/aegis_foundation_tests.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_foundation_tests.dir/all: CMakeFiles/aegis_ui.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Built target aegis_foundation_tests"
+.PHONY : CMakeFiles/aegis_foundation_tests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_foundation_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_foundation_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_foundation_tests.dir/rule
+
+# Convenience name for target.
+aegis_foundation_tests: CMakeFiles/aegis_foundation_tests.dir/rule
+.PHONY : aegis_foundation_tests
+
+# codegen rule for target.
+CMakeFiles/aegis_foundation_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Finished codegen for target aegis_foundation_tests"
+.PHONY : CMakeFiles/aegis_foundation_tests.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_foundation_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/clean
+.PHONY : CMakeFiles/aegis_foundation_tests.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/aegis_phase4_tests.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_phase4_tests.dir/all: CMakeFiles/aegis_core.dir/all
+CMakeFiles/aegis_phase4_tests.dir/all: CMakeFiles/aegis_ui.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=90 "Built target aegis_phase4_tests"
+.PHONY : CMakeFiles/aegis_phase4_tests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_phase4_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_phase4_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_phase4_tests.dir/rule
+
+# Convenience name for target.
+aegis_phase4_tests: CMakeFiles/aegis_phase4_tests.dir/rule
+.PHONY : aegis_phase4_tests
+
+# codegen rule for target.
+CMakeFiles/aegis_phase4_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=90 "Finished codegen for target aegis_phase4_tests"
+.PHONY : CMakeFiles/aegis_phase4_tests.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_phase4_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/clean
+.PHONY : CMakeFiles/aegis_phase4_tests.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/aegis_e2_slice_tests.dir
+
+# All Build rule for target.
+CMakeFiles/aegis_e2_slice_tests.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+CMakeFiles/aegis_e2_slice_tests.dir/all: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+CMakeFiles/aegis_e2_slice_tests.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+CMakeFiles/aegis_e2_slice_tests.dir/all: CMakeFiles/aegis_core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=86 "Built target aegis_e2_slice_tests"
+.PHONY : CMakeFiles/aegis_e2_slice_tests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/aegis_e2_slice_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 84
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/aegis_e2_slice_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : CMakeFiles/aegis_e2_slice_tests.dir/rule
+
+# Convenience name for target.
+aegis_e2_slice_tests: CMakeFiles/aegis_e2_slice_tests.dir/rule
+.PHONY : aegis_e2_slice_tests
+
+# codegen rule for target.
+CMakeFiles/aegis_e2_slice_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=86 "Finished codegen for target aegis_e2_slice_tests"
+.PHONY : CMakeFiles/aegis_e2_slice_tests.dir/codegen
+
+# clean rule for target.
+CMakeFiles/aegis_e2_slice_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/clean
+.PHONY : CMakeFiles/aegis_e2_slice_tests.dir/clean
+
+#=============================================================================
+# Target rules for target engine/mediaforge/CMakeFiles/mediaforge_foundation.dir
+
+# All Build rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/depend
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=97 "Built target mediaforge_foundation"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+
+# Build rule for subdir invocation for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/rule
+
+# Convenience name for target.
+mediaforge_foundation: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/rule
+.PHONY : mediaforge_foundation
+
+# codegen rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=97 "Finished codegen for target mediaforge_foundation"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/codegen
+
+# clean rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/clean:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/clean
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/clean
+
+#=============================================================================
+# Target rules for target engine/mediaforge/CMakeFiles/mediaforge_engine.dir
+
+# All Build rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_engine.dir/depend
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=95,96 "Built target mediaforge_engine"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+
+# Build rule for subdir invocation for target.
+engine/mediaforge/CMakeFiles/mediaforge_engine.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 81
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_engine.dir/rule
+
+# Convenience name for target.
+mediaforge_engine: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/rule
+.PHONY : mediaforge_engine
+
+# codegen rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_engine.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_engine.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=95,96 "Finished codegen for target mediaforge_engine"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_engine.dir/codegen
+
+# clean rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_engine.dir/clean:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_engine.dir/clean
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_engine.dir/clean
+
+#=============================================================================
+# Target rules for target engine/mediaforge/CMakeFiles/mediaforge_shaders.dir
+
+# All Build rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/depend
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=99,100 "Built target mediaforge_shaders"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all
+
+# Build rule for subdir invocation for target.
+engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/rule
+
+# Convenience name for target.
+mediaforge_shaders: engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/rule
+.PHONY : mediaforge_shaders
+
+# codegen rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=99,100 "Finished codegen for target mediaforge_shaders"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/codegen
+
+# clean rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/clean:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/clean
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/clean
+
+#=============================================================================
+# Target rules for target engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir
+
+# All Build rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all: engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=98 "Built target mediaforge_gpu_smoke"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 84
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/rule
+
+# Convenience name for target.
+mediaforge_gpu_smoke: engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/rule
+.PHONY : mediaforge_gpu_smoke
+
+# codegen rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/codegen: engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/all
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=98 "Finished codegen for target mediaforge_gpu_smoke"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/codegen
+
+# clean rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/clean
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir
+
+# All Build rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Built target mediaforge_foundation_tests"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/all
+
+# Build rule for subdir invocation for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/rule
+
+# Convenience name for target.
+mediaforge_foundation_tests: engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/rule
+.PHONY : mediaforge_foundation_tests
+
+# codegen rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Finished codegen for target mediaforge_foundation_tests"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/codegen
+
+# clean rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/clean
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/clean
+
+#=============================================================================
+# Target rules for target engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir
+
+# All Build rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/all: engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/all
+engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/all: engine/mediaforge/CMakeFiles/mediaforge_engine.dir/all
+engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/depend
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Built target mediaforge_render_tests"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/all
+
+# Build rule for subdir invocation for target.
+engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 81
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/rule
+
+# Convenience name for target.
+mediaforge_render_tests: engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/rule
+.PHONY : mediaforge_render_tests
+
+# codegen rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num= "Finished codegen for target mediaforge_render_tests"
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/codegen
+
+# clean rule for target.
+engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/clean
+.PHONY : engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/clean
+
+#=============================================================================
+# Target rules for target _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir
+
+# All Build rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all: _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/all
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/depend
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73 "Built target SDL3-shared"
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+
+# Build rule for subdir invocation for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 78
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/rule
+
+# Convenience name for target.
+SDL3-shared: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/rule
+.PHONY : SDL3-shared
+
+# codegen rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73 "Finished codegen for target SDL3-shared"
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/codegen
+
+# clean rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/clean:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/clean
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/clean
+
+#=============================================================================
+# Target rules for target _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir
+
+# All Build rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/all:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=74,75 "Built target SDL3_test"
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/all
+
+# Build rule for subdir invocation for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/rule
+
+# Convenience name for target.
+SDL3_test: _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/rule
+.PHONY : SDL3_test
+
+# codegen rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=74,75 "Finished codegen for target SDL3_test"
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/codegen
+
+# clean rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/clean
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/clean
+
+#=============================================================================
+# Target rules for target _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir
+
+# All Build rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/all:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/depend
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=76,77,78,79,80 "Built target SDL_uclibc"
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/all
+
+# Build rule for subdir invocation for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles 0
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/rule
+
+# Convenience name for target.
+SDL_uclibc: _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/rule
+.PHONY : SDL_uclibc
+
+# codegen rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=76,77,78,79,80 "Finished codegen for target SDL_uclibc"
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/codegen
+
+# clean rule for target.
+_deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/clean:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/clean
+.PHONY : _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/clean
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

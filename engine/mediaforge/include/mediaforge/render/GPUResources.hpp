@@ -15,6 +15,8 @@ namespace detail { class NativeAccess; }
 enum class BufferUsage { vertex, index };
 enum class ShaderStage { vertex, fragment };
 enum class VertexFormat { float2, float4 };
+enum class FilterMode { nearest, linear };
+enum class WrapMode { clamp, repeat };
 
 struct TextureDescription {
     std::uint32_t width{};
@@ -25,6 +27,14 @@ struct TextureDescription {
 struct ShaderDescription {
     ShaderStage stage{ShaderStage::vertex};
     std::uint32_t samplerCount{};
+    std::string debugName;
+    std::uint32_t uniformBufferCount{};
+};
+
+struct SamplerDescription {
+    FilterMode filter{FilterMode::linear};
+    WrapMode wrapU{WrapMode::clamp};
+    WrapMode wrapV{WrapMode::clamp};
     std::string debugName;
 };
 

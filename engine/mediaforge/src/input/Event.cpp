@@ -6,6 +6,12 @@ namespace mf {
 
 std::vector<Event> EventPump::poll() {
     std::vector<Event> events;
+    poll(events);
+    return events;
+}
+
+void EventPump::poll(std::vector<Event>& events) {
+    events.clear();
     SDL_Event native{};
     while (SDL_PollEvent(&native)) {
         switch (native.type) {
@@ -16,6 +22,18 @@ std::vector<Event> EventPump::poll() {
         case SDL_EVENT_WINDOW_RESIZED:
         case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED:
             events.emplace_back(WindowResizeEvent{native.window.data1, native.window.data2});
+            break;
+        case SDL_EVENT_WINDOW_MINIMIZED:
+            events.emplace_back(WindowActivityEvent{false, true});
+            break;
+        case SDL_EVENT_WINDOW_RESTORED:
+            events.emplace_back(WindowActivityEvent{true, false});
+            break;
+        case SDL_EVENT_WINDOW_FOCUS_GAINED:
+            events.emplace_back(WindowActivityEvent{true, false});
+            break;
+        case SDL_EVENT_WINDOW_FOCUS_LOST:
+            events.emplace_back(WindowActivityEvent{false, false});
             break;
         case SDL_EVENT_KEY_DOWN:
         case SDL_EVENT_KEY_UP:
@@ -39,7 +57,6 @@ std::vector<Event> EventPump::poll() {
             break;
         }
     }
-    return events;
 }
 
 } // namespace mf

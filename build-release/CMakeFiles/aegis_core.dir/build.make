@@ -72,10 +72,24 @@ include CMakeFiles/aegis_core.dir/flags.make
 CMakeFiles/aegis_core.dir/codegen:
 .PHONY : CMakeFiles/aegis_core.dir/codegen
 
+CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o: CMakeFiles/aegis_core.dir/flags.make
+CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/GameLaunchConfig.cpp
+CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o: CMakeFiles/aegis_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o -MF CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o.d -o CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/GameLaunchConfig.cpp
+
+CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/GameLaunchConfig.cpp > CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.i
+
+CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/GameLaunchConfig.cpp -o CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.s
+
 CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o: CMakeFiles/aegis_core.dir/flags.make
 CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.cpp
 CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o: CMakeFiles/aegis_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o -MF CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o.d -o CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.cpp
 
 CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.i: cmake_force
@@ -86,10 +100,38 @@ CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.cpp -o CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.s
 
+CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o: CMakeFiles/aegis_core.dir/flags.make
+CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PathCurve.cpp
+CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o: CMakeFiles/aegis_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o -MF CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o.d -o CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PathCurve.cpp
+
+CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PathCurve.cpp > CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.i
+
+CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PathCurve.cpp -o CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.s
+
+CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o: CMakeFiles/aegis_core.dir/flags.make
+CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.cpp
+CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o: CMakeFiles/aegis_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o -MF CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o.d -o CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.cpp
+
+CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.cpp > CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.i
+
+CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.cpp -o CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.s
+
 CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o: CMakeFiles/aegis_core.dir/flags.make
 CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapEditorModel.cpp
 CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o: CMakeFiles/aegis_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o -MF CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o.d -o CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o -c /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/editor/MapEditorModel.cpp
 
 CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.i: cmake_force
@@ -102,17 +144,23 @@ CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.s: cmake_force
 
 # Object files for target aegis_core
 aegis_core_OBJECTS = \
+"CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o" \
 "CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o" \
+"CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o" \
+"CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o" \
 "CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o"
 
 # External object files for target aegis_core
 aegis_core_EXTERNAL_OBJECTS =
 
+libaegis_core.a: CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o
 libaegis_core.a: CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o
+libaegis_core.a: CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o
+libaegis_core.a: CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o
 libaegis_core.a: CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.o
 libaegis_core.a: CMakeFiles/aegis_core.dir/build.make
 libaegis_core.a: CMakeFiles/aegis_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libaegis_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libaegis_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/aegis_core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/aegis_core.dir/link.txt --verbose=$(VERBOSE)
 

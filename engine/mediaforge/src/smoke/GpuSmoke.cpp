@@ -94,7 +94,8 @@ int main() {
     auto triangleBufferResult = device.createBuffer(mf::BufferUsage::vertex, bytes(triangle), "SmokeTriangleVertices");
     auto quadBufferResult = device.createBuffer(mf::BufferUsage::vertex, bytes(quad), "TexturedQuadVertices");
     auto textureResult = device.createTexture({4, 4, "SmokeCheckerTexture"}, std::as_bytes(std::span(checker)));
-    auto samplerResult = device.createSampler("SmokeNearestSampler");
+    auto samplerResult = device.createSampler({mf::FilterMode::nearest, mf::WrapMode::repeat, mf::WrapMode::repeat,
+                                                "SmokeNearestSampler"});
     if (!triangleBufferResult) return report(triangleBufferResult.error());
     if (!quadBufferResult) return report(quadBufferResult.error());
     if (!textureResult) return report(textureResult.error());

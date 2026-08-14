@@ -1,7 +1,9 @@
 {
 	"InstallScripts" : 
 	[
-		"/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/cmake_install.cmake"
+		"/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/cmake_install.cmake",
+		"/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/engine/mediaforge/cmake_install.cmake",
+		"/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/_deps/mediaforge_sdl3-build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

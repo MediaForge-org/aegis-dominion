@@ -22,25 +22,29 @@ CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o: \
  /usr/include/c++/16/ext/type_traits.h \
  /usr/include/c++/16/ext/numeric_traits.h \
  /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/bits/move.h \
- /usr/include/c++/16/bits/utility.h \
+ /usr/include/c++/16/bits/utility.h /usr/include/c++/16/compare \
+ /usr/include/c++/16/concepts \
  /usr/include/c++/16/bits/stl_iterator_base_types.h \
+ /usr/include/c++/16/bits/iterator_concepts.h \
+ /usr/include/c++/16/bits/ptr_traits.h \
+ /usr/include/c++/16/bits/ranges_cmp.h \
  /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
  /usr/include/c++/16/bits/concept_check.h \
  /usr/include/c++/16/debug/assertions.h \
- /usr/include/c++/16/bits/stl_iterator.h \
- /usr/include/c++/16/bits/ptr_traits.h /usr/include/c++/16/debug/debug.h \
- /usr/include/c++/16/bits/predefined_ops.h \
- /usr/include/c++/16/bits/stl_function.h \
- /usr/include/c++/16/backward/binders.h /usr/include/c++/16/bit \
- /usr/include/c++/16/concepts /usr/include/c++/16/bits/stl_algo.h \
- /usr/include/c++/16/bits/algorithmfwd.h \
- /usr/include/c++/16/initializer_list /usr/include/c++/16/bits/stl_heap.h \
- /usr/include/c++/16/bits/uniform_int_dist.h \
- /usr/include/c++/16/bits/stl_tempbuf.h /usr/include/c++/16/new \
+ /usr/include/c++/16/bits/stl_iterator.h /usr/include/c++/16/new \
  /usr/include/c++/16/bits/exception.h \
  /usr/include/c++/16/bits/new_except.h \
  /usr/include/c++/16/bits/exception_defines.h \
- /usr/include/c++/16/bits/stl_construct.h /usr/include/c++/16/cstdlib \
+ /usr/include/c++/16/bits/stl_construct.h \
+ /usr/include/c++/16/debug/debug.h \
+ /usr/include/c++/16/bits/predefined_ops.h \
+ /usr/include/c++/16/bits/stl_function.h \
+ /usr/include/c++/16/backward/binders.h /usr/include/c++/16/bit \
+ /usr/include/c++/16/bits/stl_algo.h \
+ /usr/include/c++/16/bits/algorithmfwd.h \
+ /usr/include/c++/16/initializer_list /usr/include/c++/16/bits/stl_heap.h \
+ /usr/include/c++/16/bits/uniform_int_dist.h \
+ /usr/include/c++/16/bits/stl_tempbuf.h /usr/include/c++/16/cstdlib \
  /usr/include/stdlib.h /usr/include/bits/libc-header-start.h \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
@@ -63,6 +67,18 @@ CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o: \
  /usr/include/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
  /usr/include/c++/16/bits/std_abs.h \
+ /usr/include/c++/16/bits/ranges_algo.h /usr/include/c++/16/optional \
+ /usr/include/c++/16/exception /usr/include/c++/16/bits/exception_ptr.h \
+ /usr/include/c++/16/bits/cxxabi_init_exception.h \
+ /usr/include/c++/16/typeinfo /usr/include/c++/16/bits/hash_bytes.h \
+ /usr/include/c++/16/bits/nested_exception.h \
+ /usr/include/c++/16/bits/enable_special_members.h \
+ /usr/include/c++/16/bits/functional_hash.h \
+ /usr/include/c++/16/bits/invoke.h \
+ /usr/include/c++/16/bits/ranges_algobase.h \
+ /usr/include/c++/16/bits/ranges_base.h \
+ /usr/include/c++/16/bits/max_size_type.h /usr/include/c++/16/numbers \
+ /usr/include/c++/16/limits /usr/include/c++/16/bits/ranges_util.h \
  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
  /usr/include/c++/16/pstl/execution_defs.h \
  /usr/include/SFML/Graphics/Rect.inl \
@@ -97,8 +113,6 @@ CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o: \
  /usr/include/c++/16/bits/basic_string.h \
  /usr/include/c++/16/ext/alloc_traits.h \
  /usr/include/c++/16/bits/alloc_traits.h /usr/include/c++/16/string_view \
- /usr/include/c++/16/bits/functional_hash.h \
- /usr/include/c++/16/bits/hash_bytes.h \
  /usr/include/c++/16/bits/string_view.tcc \
  /usr/include/c++/16/ext/string_conversions.h /usr/include/c++/16/cstdio \
  /usr/include/stdio.h /usr/include/bits/types/__fpos_t.h \
@@ -115,11 +129,10 @@ CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o: \
  /usr/include/c++/16/bits/memory_resource.h /usr/include/c++/16/cstddef \
  /usr/include/c++/16/bits/uses_allocator.h \
  /usr/include/c++/16/bits/uses_allocator_args.h /usr/include/c++/16/tuple \
- /usr/include/c++/16/bits/invoke.h /usr/include/c++/16/vector \
- /usr/include/c++/16/bits/stl_uninitialized.h \
+ /usr/include/c++/16/vector /usr/include/c++/16/bits/stl_uninitialized.h \
  /usr/include/c++/16/bits/stl_vector.h \
  /usr/include/c++/16/bits/stl_bvector.h \
- /usr/include/c++/16/bits/vector.tcc \
+ /usr/include/c++/16/bits/vector.tcc /usr/include/c++/16/bits/formatfwd.h \
  /usr/include/SFML/Window/GlResource.hpp \
  /usr/include/SFML/Window/Export.hpp \
  /usr/include/SFML/System/NonCopyable.hpp \
@@ -165,10 +178,7 @@ CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o: \
  /usr/include/c++/16/x86_64-redhat-linux/bits/ctype_base.h \
  /usr/include/c++/16/bits/ios_base.h /usr/include/c++/16/system_error \
  /usr/include/c++/16/x86_64-redhat-linux/bits/error_constants.h \
- /usr/include/c++/16/stdexcept /usr/include/c++/16/exception \
- /usr/include/c++/16/bits/exception_ptr.h \
- /usr/include/c++/16/bits/cxxabi_init_exception.h \
- /usr/include/c++/16/typeinfo /usr/include/c++/16/bits/nested_exception.h \
+ /usr/include/c++/16/stdexcept \
  /usr/include/c++/16/bits/stdexcept_except.h \
  /usr/include/c++/16/streambuf /usr/include/c++/16/bits/streambuf.tcc \
  /usr/include/c++/16/bits/streambuf_iterator.h \
@@ -181,11 +191,112 @@ CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.o: \
  /usr/include/c++/16/bits/locale_facets_nonio.tcc \
  /usr/include/c++/16/bits/locale_conv.h /usr/include/SFML/System/Utf.inl \
  /usr/include/c++/16/iterator /usr/include/c++/16/bits/stream_iterator.h \
- /usr/include/SFML/System/String.inl /usr/include/c++/16/array \
- /usr/include/c++/16/compare /usr/include/c++/16/iostream \
- /usr/include/c++/16/ostream /usr/include/c++/16/bits/ostream.h \
- /usr/include/c++/16/ios /usr/include/c++/16/bits/basic_ios.h \
- /usr/include/c++/16/bits/basic_ios.tcc \
+ /usr/include/SFML/System/String.inl \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/assets/AssetManager.hpp \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/assets/AssetCatalog.hpp \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/assets/AssetId.hpp \
+ /usr/include/c++/16/filesystem /usr/include/c++/16/bits/fs_fwd.h \
+ /usr/include/c++/16/cstdint \
+ /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h /usr/include/c++/16/bits/chrono.h \
+ /usr/include/c++/16/ratio /usr/include/c++/16/bits/parse_numbers.h \
+ /usr/include/c++/16/bits/fs_path.h /usr/include/c++/16/iomanip \
+ /usr/include/c++/16/bits/quoted_string.h /usr/include/c++/16/sstream \
+ /usr/include/c++/16/istream /usr/include/c++/16/ios \
+ /usr/include/c++/16/bits/basic_ios.h \
+ /usr/include/c++/16/bits/basic_ios.tcc /usr/include/c++/16/ostream \
+ /usr/include/c++/16/bits/ostream.h /usr/include/c++/16/format \
+ /usr/include/c++/16/array /usr/include/c++/16/charconv \
+ /usr/include/c++/16/span /usr/include/c++/16/bits/monostate.h \
+ /usr/include/c++/16/bits/unicode.h \
+ /usr/include/c++/16/bits/unicode-data.h \
  /usr/include/c++/16/bits/ostream_print.h \
- /usr/include/c++/16/bits/ostream.tcc /usr/include/c++/16/istream \
- /usr/include/c++/16/bits/istream.tcc
+ /usr/include/c++/16/bits/ostream.tcc \
+ /usr/include/c++/16/bits/istream.tcc \
+ /usr/include/c++/16/bits/sstream.tcc /usr/include/c++/16/codecvt \
+ /usr/include/c++/16/ext/concurrence.h \
+ /usr/include/c++/16/bits/shared_ptr.h \
+ /usr/include/c++/16/bits/shared_ptr_base.h \
+ /usr/include/c++/16/bits/allocated_ptr.h \
+ /usr/include/c++/16/bits/refwrap.h /usr/include/c++/16/bits/unique_ptr.h \
+ /usr/include/c++/16/bits/align.h /usr/include/c++/16/bits/fs_dir.h \
+ /usr/include/c++/16/bits/fs_ops.h /usr/include/c++/16/unordered_map \
+ /usr/include/c++/16/bits/unordered_map.h \
+ /usr/include/c++/16/bits/hashtable.h \
+ /usr/include/c++/16/bits/hashtable_policy.h \
+ /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/assets/ResourceCache.hpp \
+ /usr/include/c++/16/memory \
+ /usr/include/c++/16/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/16/bits/shared_ptr_atomic.h \
+ /usr/include/c++/16/bits/atomic_base.h \
+ /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/16/bits/atomic_wait.h \
+ /usr/include/c++/16/backward/auto_ptr.h \
+ /usr/include/c++/16/bits/ranges_uninitialized.h \
+ /usr/include/c++/16/bits/out_ptr.h \
+ /usr/include/c++/16/pstl/glue_memory_defs.h /usr/include/SFML/Audio.hpp \
+ /usr/include/SFML/System.hpp /usr/include/SFML/System/Clock.hpp \
+ /usr/include/SFML/System/Time.hpp /usr/include/SFML/System/Err.hpp \
+ /usr/include/SFML/System/FileInputStream.hpp \
+ /usr/include/SFML/System/InputStream.hpp \
+ /usr/include/SFML/System/Lock.hpp \
+ /usr/include/SFML/System/MemoryInputStream.hpp \
+ /usr/include/SFML/System/Mutex.hpp /usr/include/SFML/System/Sleep.hpp \
+ /usr/include/SFML/System/Thread.hpp /usr/include/SFML/System/Thread.inl \
+ /usr/include/SFML/System/ThreadLocal.hpp \
+ /usr/include/SFML/System/ThreadLocalPtr.hpp \
+ /usr/include/SFML/System/ThreadLocalPtr.inl \
+ /usr/include/SFML/System/Vector3.hpp \
+ /usr/include/SFML/System/Vector3.inl \
+ /usr/include/SFML/Audio/InputSoundFile.hpp \
+ /usr/include/SFML/Audio/Export.hpp /usr/include/SFML/Audio/Listener.hpp \
+ /usr/include/SFML/Audio/Music.hpp \
+ /usr/include/SFML/Audio/SoundStream.hpp \
+ /usr/include/SFML/Audio/SoundSource.hpp \
+ /usr/include/SFML/Audio/AlResource.hpp \
+ /usr/include/SFML/Audio/OutputSoundFile.hpp \
+ /usr/include/SFML/Audio/Sound.hpp \
+ /usr/include/SFML/Audio/SoundBuffer.hpp /usr/include/c++/16/set \
+ /usr/include/c++/16/bits/stl_set.h \
+ /usr/include/c++/16/bits/stl_multiset.h \
+ /usr/include/SFML/Audio/SoundBufferRecorder.hpp \
+ /usr/include/SFML/Audio/SoundRecorder.hpp \
+ /usr/include/SFML/Audio/SoundFileFactory.hpp \
+ /usr/include/SFML/Audio/SoundFileFactory.inl \
+ /usr/include/SFML/Audio/SoundFileReader.hpp \
+ /usr/include/SFML/Audio/SoundFileWriter.hpp \
+ /usr/include/SFML/Graphics.hpp /usr/include/SFML/Window.hpp \
+ /usr/include/SFML/Window/Clipboard.hpp \
+ /usr/include/SFML/Window/Context.hpp \
+ /usr/include/SFML/Window/ContextSettings.hpp \
+ /usr/include/SFML/Window/Cursor.hpp /usr/include/SFML/Window/Event.hpp \
+ /usr/include/SFML/Window/Joystick.hpp \
+ /usr/include/SFML/Window/Keyboard.hpp /usr/include/SFML/Window/Mouse.hpp \
+ /usr/include/SFML/Window/Sensor.hpp /usr/include/SFML/Window/Touch.hpp \
+ /usr/include/SFML/Window/VideoMode.hpp \
+ /usr/include/SFML/Window/Window.hpp \
+ /usr/include/SFML/Window/WindowBase.hpp \
+ /usr/include/SFML/Window/Vulkan.hpp \
+ /usr/include/SFML/Window/WindowHandle.hpp \
+ /usr/include/SFML/Window/WindowStyle.hpp \
+ /usr/include/SFML/Graphics/CircleShape.hpp \
+ /usr/include/SFML/Graphics/Shape.hpp \
+ /usr/include/SFML/Graphics/ConvexShape.hpp \
+ /usr/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/include/SFML/Graphics/View.hpp \
+ /usr/include/SFML/Graphics/RenderTexture.hpp \
+ /usr/include/SFML/Graphics/RenderWindow.hpp \
+ /usr/include/SFML/Graphics/Shader.hpp \
+ /usr/include/SFML/Graphics/Glsl.hpp /usr/include/SFML/Graphics/Glsl.inl \
+ /usr/include/SFML/Graphics/Sprite.hpp \
+ /usr/include/SFML/Graphics/VertexBuffer.hpp \
+ /usr/include/c++/16/unordered_set \
+ /usr/include/c++/16/bits/unordered_set.h /usr/include/c++/16/fstream \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/basic_file.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/c++io.h \
+ /usr/include/c++/16/bits/fstream.tcc /usr/include/c++/16/functional \
+ /usr/include/c++/16/bits/std_function.h \
+ /usr/include/c++/16/bits/binders.h /usr/include/c++/16/bits/funcwrap.h \
+ /usr/include/c++/16/bits/mofunc_impl.h /usr/include/c++/16/iostream

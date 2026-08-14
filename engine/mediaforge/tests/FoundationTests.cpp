@@ -25,7 +25,7 @@ bool near(float left, float right) { return std::abs(left - right) < 0.0001F; }
 }
 
 int main() {
-    check(mf::versionString == "0.1.0-dev", "independent engine version");
+    check(mf::versionString == "0.2.0-dev", "independent engine version");
     mf::TextureHandle invalid;
     mf::TextureHandle first(7);
     check(!invalid.valid(), "default handle invalid");

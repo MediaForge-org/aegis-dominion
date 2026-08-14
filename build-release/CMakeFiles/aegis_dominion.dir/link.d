@@ -3,7 +3,12 @@ aegis_dominion: \
   /usr/lib/gcc/x86_64-redhat-linux/16/../../../../lib64/crti.o \
   /usr/lib/gcc/x86_64-redhat-linux/16/crtbegin.o \
   CMakeFiles/aegis_dominion.dir/src/main.cpp.o \
-  CMakeFiles/aegis_dominion.dir/src/Game.cpp.o \
+  CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o \
+  CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o \
+  CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o \
+  CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o \
+  CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o \
+  CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o \
   CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o \
   CMakeFiles/aegis_dominion.dir/src/Map.cpp.o \
   CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o \
@@ -13,10 +18,13 @@ aegis_dominion: \
   CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.o \
   libaegis_core.a \
   libaegis_ui.a \
+  engine/mediaforge/libmediaforge_engine.a \
   /usr/lib64/libsfml-graphics.so.2.6.2 \
   /usr/lib64/libsfml-window.so.2.6.2 \
   /usr/lib64/libsfml-audio.so.2.6.2 \
   /usr/lib64/libsfml-system.so.2.6.2 \
+  engine/mediaforge/libmediaforge_foundation.a \
+  _deps/mediaforge_sdl3-build/libSDL3.so.0.4.14 \
   /usr/lib/gcc/x86_64-redhat-linux/16/libstdc++.so \
   /usr/lib/gcc/x86_64-redhat-linux/16/../../../../lib64/libm.so \
   /usr/lib/gcc/x86_64-redhat-linux/16/../../../../lib64/libm.so \
@@ -86,7 +94,17 @@ aegis_dominion: \
 
 CMakeFiles/aegis_dominion.dir/src/main.cpp.o:
 
-CMakeFiles/aegis_dominion.dir/src/Game.cpp.o:
+CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o:
+
+CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o:
+
+CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o:
+
+CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o:
+
+CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o:
+
+CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o:
 
 CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o:
 
@@ -106,6 +124,8 @@ libaegis_core.a:
 
 libaegis_ui.a:
 
+engine/mediaforge/libmediaforge_engine.a:
+
 /usr/lib64/libsfml-graphics.so.2.6.2:
 
 /usr/lib64/libsfml-window.so.2.6.2:
@@ -113,6 +133,10 @@ libaegis_ui.a:
 /usr/lib64/libsfml-audio.so.2.6.2:
 
 /usr/lib64/libsfml-system.so.2.6.2:
+
+engine/mediaforge/libmediaforge_foundation.a:
+
+_deps/mediaforge_sdl3-build/libSDL3.so.0.4.14:
 
 /usr/lib/gcc/x86_64-redhat-linux/16/libstdc++.so:
 

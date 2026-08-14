@@ -45,6 +45,7 @@ The integrated editor must eventually support terrain/biomes, paths, multiple sp
 - Keep `-Wall -Wextra -Wpedantic` clean.
 - Run core tests after changes to map/editor serialization.
 - Never silently change `.aegismap` semantics; bump the map format version when compatibility breaks.
+- Keep `aegis_mediaforge_slice` as the explicit E2 visual reference path; technical completion never implies artistic acceptance without the Fedora screenshot/video review in `docs/E2_VISUAL_ACCEPTANCE.md`.
 
 ## Work style
 For any change touching more than one subsystem, first update or create an ExecPlan in `docs/plans/` with goal, files, invariants, implementation steps and verification. Then implement it in bounded phases.

@@ -123,6 +123,7 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -166,6 +167,19 @@ aegis_dominion/fast:
 .PHONY : aegis_dominion/fast
 
 #=============================================================================
+# Target rules for targets named aegis_mediaforge_slice
+
+# Build rule for target.
+aegis_mediaforge_slice: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_mediaforge_slice
+.PHONY : aegis_mediaforge_slice
+
+# fast build rule for target.
+aegis_mediaforge_slice/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/build
+.PHONY : aegis_mediaforge_slice/fast
+
+#=============================================================================
 # Target rules for targets named aegis_core_tests
 
 # Build rule for target.
@@ -179,6 +193,45 @@ aegis_core_tests/fast:
 .PHONY : aegis_core_tests/fast
 
 #=============================================================================
+# Target rules for targets named aegis_editor_tests
+
+# Build rule for target.
+aegis_editor_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_editor_tests
+.PHONY : aegis_editor_tests
+
+# fast build rule for target.
+aegis_editor_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/build
+.PHONY : aegis_editor_tests/fast
+
+#=============================================================================
+# Target rules for targets named aegis_playtest_tests
+
+# Build rule for target.
+aegis_playtest_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_playtest_tests
+.PHONY : aegis_playtest_tests
+
+# fast build rule for target.
+aegis_playtest_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/build
+.PHONY : aegis_playtest_tests/fast
+
+#=============================================================================
+# Target rules for targets named aegis_game_map_tests
+
+# Build rule for target.
+aegis_game_map_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_game_map_tests
+.PHONY : aegis_game_map_tests
+
+# fast build rule for target.
+aegis_game_map_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/build
+.PHONY : aegis_game_map_tests/fast
+
+#=============================================================================
 # Target rules for targets named aegis_text_tests
 
 # Build rule for target.
@@ -190,6 +243,162 @@ aegis_text_tests: cmake_check_build_system
 aegis_text_tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/build
 .PHONY : aegis_text_tests/fast
+
+#=============================================================================
+# Target rules for targets named aegis_foundation_tests
+
+# Build rule for target.
+aegis_foundation_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_foundation_tests
+.PHONY : aegis_foundation_tests
+
+# fast build rule for target.
+aegis_foundation_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/build
+.PHONY : aegis_foundation_tests/fast
+
+#=============================================================================
+# Target rules for targets named aegis_phase4_tests
+
+# Build rule for target.
+aegis_phase4_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_phase4_tests
+.PHONY : aegis_phase4_tests
+
+# fast build rule for target.
+aegis_phase4_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/build
+.PHONY : aegis_phase4_tests/fast
+
+#=============================================================================
+# Target rules for targets named aegis_e2_slice_tests
+
+# Build rule for target.
+aegis_e2_slice_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_e2_slice_tests
+.PHONY : aegis_e2_slice_tests
+
+# fast build rule for target.
+aegis_e2_slice_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/build
+.PHONY : aegis_e2_slice_tests/fast
+
+#=============================================================================
+# Target rules for targets named mediaforge_foundation
+
+# Build rule for target.
+mediaforge_foundation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaforge_foundation
+.PHONY : mediaforge_foundation
+
+# fast build rule for target.
+mediaforge_foundation/fast:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation.dir/build
+.PHONY : mediaforge_foundation/fast
+
+#=============================================================================
+# Target rules for targets named mediaforge_engine
+
+# Build rule for target.
+mediaforge_engine: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaforge_engine
+.PHONY : mediaforge_engine
+
+# fast build rule for target.
+mediaforge_engine/fast:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_engine.dir/build
+.PHONY : mediaforge_engine/fast
+
+#=============================================================================
+# Target rules for targets named mediaforge_shaders
+
+# Build rule for target.
+mediaforge_shaders: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaforge_shaders
+.PHONY : mediaforge_shaders
+
+# fast build rule for target.
+mediaforge_shaders/fast:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_shaders.dir/build
+.PHONY : mediaforge_shaders/fast
+
+#=============================================================================
+# Target rules for targets named mediaforge_gpu_smoke
+
+# Build rule for target.
+mediaforge_gpu_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaforge_gpu_smoke
+.PHONY : mediaforge_gpu_smoke
+
+# fast build rule for target.
+mediaforge_gpu_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_gpu_smoke.dir/build
+.PHONY : mediaforge_gpu_smoke/fast
+
+#=============================================================================
+# Target rules for targets named mediaforge_foundation_tests
+
+# Build rule for target.
+mediaforge_foundation_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaforge_foundation_tests
+.PHONY : mediaforge_foundation_tests
+
+# fast build rule for target.
+mediaforge_foundation_tests/fast:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_foundation_tests.dir/build
+.PHONY : mediaforge_foundation_tests/fast
+
+#=============================================================================
+# Target rules for targets named mediaforge_render_tests
+
+# Build rule for target.
+mediaforge_render_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaforge_render_tests
+.PHONY : mediaforge_render_tests
+
+# fast build rule for target.
+mediaforge_render_tests/fast:
+	$(MAKE) $(MAKESILENT) -f engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build.make engine/mediaforge/CMakeFiles/mediaforge_render_tests.dir/build
+.PHONY : mediaforge_render_tests/fast
+
+#=============================================================================
+# Target rules for targets named SDL3-shared
+
+# Build rule for target.
+SDL3-shared: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL3-shared
+.PHONY : SDL3-shared
+
+# fast build rule for target.
+SDL3-shared/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3-shared.dir/build
+.PHONY : SDL3-shared/fast
+
+#=============================================================================
+# Target rules for targets named SDL3_test
+
+# Build rule for target.
+SDL3_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL3_test
+.PHONY : SDL3_test
+
+# fast build rule for target.
+SDL3_test/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL3_test.dir/build
+.PHONY : SDL3_test/fast
+
+#=============================================================================
+# Target rules for targets named SDL_uclibc
+
+# Build rule for target.
+SDL_uclibc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL_uclibc
+.PHONY : SDL_uclibc
+
+# fast build rule for target.
+SDL_uclibc/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build.make _deps/mediaforge_sdl3-build/CMakeFiles/SDL_uclibc.dir/build
+.PHONY : SDL_uclibc/fast
 
 src/Assets.o: src/Assets.cpp.o
 .PHONY : src/Assets.o
@@ -263,36 +472,13 @@ src/Enemy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.s
 .PHONY : src/Enemy.cpp.s
 
-src/Game.o: src/Game.cpp.o
-.PHONY : src/Game.o
-
-# target to build an object file
-src/Game.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Game.cpp.o
-.PHONY : src/Game.cpp.o
-
-src/Game.i: src/Game.cpp.i
-.PHONY : src/Game.i
-
-# target to preprocess a source file
-src/Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Game.cpp.i
-.PHONY : src/Game.cpp.i
-
-src/Game.s: src/Game.cpp.s
-.PHONY : src/Game.s
-
-# target to generate assembly for a file
-src/Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Game.cpp.s
-.PHONY : src/Game.cpp.s
-
 src/Map.o: src/Map.cpp.o
 .PHONY : src/Map.o
 
 # target to build an object file
 src/Map.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/src/Map.cpp.o
 .PHONY : src/Map.cpp.o
 
 src/Map.i: src/Map.cpp.i
@@ -301,6 +487,7 @@ src/Map.i: src/Map.cpp.i
 # target to preprocess a source file
 src/Map.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/src/Map.cpp.i
 .PHONY : src/Map.cpp.i
 
 src/Map.s: src/Map.cpp.s
@@ -309,6 +496,7 @@ src/Map.s: src/Map.cpp.s
 # target to generate assembly for a file
 src/Map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/src/Map.cpp.s
 .PHONY : src/Map.cpp.s
 
 src/Projectile.o: src/Projectile.cpp.o
@@ -383,6 +571,198 @@ src/WaveManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/WaveManager.cpp.s
 .PHONY : src/WaveManager.cpp.s
 
+src/animation/AnimationCatalog.o: src/animation/AnimationCatalog.cpp.o
+.PHONY : src/animation/AnimationCatalog.o
+
+# target to build an object file
+src/animation/AnimationCatalog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/AnimationCatalog.cpp.o
+.PHONY : src/animation/AnimationCatalog.cpp.o
+
+src/animation/AnimationCatalog.i: src/animation/AnimationCatalog.cpp.i
+.PHONY : src/animation/AnimationCatalog.i
+
+# target to preprocess a source file
+src/animation/AnimationCatalog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/AnimationCatalog.cpp.i
+.PHONY : src/animation/AnimationCatalog.cpp.i
+
+src/animation/AnimationCatalog.s: src/animation/AnimationCatalog.cpp.s
+.PHONY : src/animation/AnimationCatalog.s
+
+# target to generate assembly for a file
+src/animation/AnimationCatalog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/AnimationCatalog.cpp.s
+.PHONY : src/animation/AnimationCatalog.cpp.s
+
+src/animation/SpriteAnimation.o: src/animation/SpriteAnimation.cpp.o
+.PHONY : src/animation/SpriteAnimation.o
+
+# target to build an object file
+src/animation/SpriteAnimation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/SpriteAnimation.cpp.o
+.PHONY : src/animation/SpriteAnimation.cpp.o
+
+src/animation/SpriteAnimation.i: src/animation/SpriteAnimation.cpp.i
+.PHONY : src/animation/SpriteAnimation.i
+
+# target to preprocess a source file
+src/animation/SpriteAnimation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/SpriteAnimation.cpp.i
+.PHONY : src/animation/SpriteAnimation.cpp.i
+
+src/animation/SpriteAnimation.s: src/animation/SpriteAnimation.cpp.s
+.PHONY : src/animation/SpriteAnimation.s
+
+# target to generate assembly for a file
+src/animation/SpriteAnimation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/SpriteAnimation.cpp.s
+.PHONY : src/animation/SpriteAnimation.cpp.s
+
+src/animation/Tween.o: src/animation/Tween.cpp.o
+.PHONY : src/animation/Tween.o
+
+# target to build an object file
+src/animation/Tween.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/Tween.cpp.o
+.PHONY : src/animation/Tween.cpp.o
+
+src/animation/Tween.i: src/animation/Tween.cpp.i
+.PHONY : src/animation/Tween.i
+
+# target to preprocess a source file
+src/animation/Tween.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/Tween.cpp.i
+.PHONY : src/animation/Tween.cpp.i
+
+src/animation/Tween.s: src/animation/Tween.cpp.s
+.PHONY : src/animation/Tween.s
+
+# target to generate assembly for a file
+src/animation/Tween.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/animation/Tween.cpp.s
+.PHONY : src/animation/Tween.cpp.s
+
+src/app/Application.o: src/app/Application.cpp.o
+.PHONY : src/app/Application.o
+
+# target to build an object file
+src/app/Application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.o
+.PHONY : src/app/Application.cpp.o
+
+src/app/Application.i: src/app/Application.cpp.i
+.PHONY : src/app/Application.i
+
+# target to preprocess a source file
+src/app/Application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.i
+.PHONY : src/app/Application.cpp.i
+
+src/app/Application.s: src/app/Application.cpp.s
+.PHONY : src/app/Application.s
+
+# target to generate assembly for a file
+src/app/Application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/app/Application.cpp.s
+.PHONY : src/app/Application.cpp.s
+
+src/app/ScreenManager.o: src/app/ScreenManager.cpp.o
+.PHONY : src/app/ScreenManager.o
+
+# target to build an object file
+src/app/ScreenManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.o
+.PHONY : src/app/ScreenManager.cpp.o
+
+src/app/ScreenManager.i: src/app/ScreenManager.cpp.i
+.PHONY : src/app/ScreenManager.i
+
+# target to preprocess a source file
+src/app/ScreenManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.i
+.PHONY : src/app/ScreenManager.cpp.i
+
+src/app/ScreenManager.s: src/app/ScreenManager.cpp.s
+.PHONY : src/app/ScreenManager.s
+
+# target to generate assembly for a file
+src/app/ScreenManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/app/ScreenManager.cpp.s
+.PHONY : src/app/ScreenManager.cpp.s
+
+src/assets/AssetCatalog.o: src/assets/AssetCatalog.cpp.o
+.PHONY : src/assets/AssetCatalog.o
+
+# target to build an object file
+src/assets/AssetCatalog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/assets/AssetCatalog.cpp.o
+.PHONY : src/assets/AssetCatalog.cpp.o
+
+src/assets/AssetCatalog.i: src/assets/AssetCatalog.cpp.i
+.PHONY : src/assets/AssetCatalog.i
+
+# target to preprocess a source file
+src/assets/AssetCatalog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/assets/AssetCatalog.cpp.i
+.PHONY : src/assets/AssetCatalog.cpp.i
+
+src/assets/AssetCatalog.s: src/assets/AssetCatalog.cpp.s
+.PHONY : src/assets/AssetCatalog.s
+
+# target to generate assembly for a file
+src/assets/AssetCatalog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/assets/AssetCatalog.cpp.s
+.PHONY : src/assets/AssetCatalog.cpp.s
+
+src/assets/AssetManager.o: src/assets/AssetManager.cpp.o
+.PHONY : src/assets/AssetManager.o
+
+# target to build an object file
+src/assets/AssetManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/assets/AssetManager.cpp.o
+.PHONY : src/assets/AssetManager.cpp.o
+
+src/assets/AssetManager.i: src/assets/AssetManager.cpp.i
+.PHONY : src/assets/AssetManager.i
+
+# target to preprocess a source file
+src/assets/AssetManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/assets/AssetManager.cpp.i
+.PHONY : src/assets/AssetManager.cpp.i
+
+src/assets/AssetManager.s: src/assets/AssetManager.cpp.s
+.PHONY : src/assets/AssetManager.s
+
+# target to generate assembly for a file
+src/assets/AssetManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/assets/AssetManager.cpp.s
+.PHONY : src/assets/AssetManager.cpp.s
+
+src/core/GameLaunchConfig.o: src/core/GameLaunchConfig.cpp.o
+.PHONY : src/core/GameLaunchConfig.o
+
+# target to build an object file
+src/core/GameLaunchConfig.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o
+.PHONY : src/core/GameLaunchConfig.cpp.o
+
+src/core/GameLaunchConfig.i: src/core/GameLaunchConfig.cpp.i
+.PHONY : src/core/GameLaunchConfig.i
+
+# target to preprocess a source file
+src/core/GameLaunchConfig.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.i
+.PHONY : src/core/GameLaunchConfig.cpp.i
+
+src/core/GameLaunchConfig.s: src/core/GameLaunchConfig.cpp.s
+.PHONY : src/core/GameLaunchConfig.s
+
+# target to generate assembly for a file
+src/core/GameLaunchConfig.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.s
+.PHONY : src/core/GameLaunchConfig.cpp.s
+
 src/core/MapDocument.o: src/core/MapDocument.cpp.o
 .PHONY : src/core/MapDocument.o
 
@@ -406,6 +786,78 @@ src/core/MapDocument.s: src/core/MapDocument.cpp.s
 src/core/MapDocument.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.s
 .PHONY : src/core/MapDocument.cpp.s
+
+src/core/PathCurve.o: src/core/PathCurve.cpp.o
+.PHONY : src/core/PathCurve.o
+
+# target to build an object file
+src/core/PathCurve.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o
+.PHONY : src/core/PathCurve.cpp.o
+
+src/core/PathCurve.i: src/core/PathCurve.cpp.i
+.PHONY : src/core/PathCurve.i
+
+# target to preprocess a source file
+src/core/PathCurve.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.i
+.PHONY : src/core/PathCurve.cpp.i
+
+src/core/PathCurve.s: src/core/PathCurve.cpp.s
+.PHONY : src/core/PathCurve.s
+
+# target to generate assembly for a file
+src/core/PathCurve.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.s
+.PHONY : src/core/PathCurve.cpp.s
+
+src/core/PlayableMap.o: src/core/PlayableMap.cpp.o
+.PHONY : src/core/PlayableMap.o
+
+# target to build an object file
+src/core/PlayableMap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o
+.PHONY : src/core/PlayableMap.cpp.o
+
+src/core/PlayableMap.i: src/core/PlayableMap.cpp.i
+.PHONY : src/core/PlayableMap.i
+
+# target to preprocess a source file
+src/core/PlayableMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.i
+.PHONY : src/core/PlayableMap.cpp.i
+
+src/core/PlayableMap.s: src/core/PlayableMap.cpp.s
+.PHONY : src/core/PlayableMap.s
+
+# target to generate assembly for a file
+src/core/PlayableMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.s
+.PHONY : src/core/PlayableMap.cpp.s
+
+src/editor/EditorCamera.o: src/editor/EditorCamera.cpp.o
+.PHONY : src/editor/EditorCamera.o
+
+# target to build an object file
+src/editor/EditorCamera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.o
+.PHONY : src/editor/EditorCamera.cpp.o
+
+src/editor/EditorCamera.i: src/editor/EditorCamera.cpp.i
+.PHONY : src/editor/EditorCamera.i
+
+# target to preprocess a source file
+src/editor/EditorCamera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.i
+.PHONY : src/editor/EditorCamera.cpp.i
+
+src/editor/EditorCamera.s: src/editor/EditorCamera.cpp.s
+.PHONY : src/editor/EditorCamera.s
+
+# target to generate assembly for a file
+src/editor/EditorCamera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/editor/EditorCamera.cpp.s
+.PHONY : src/editor/EditorCamera.cpp.s
 
 src/editor/MapEditorModel.o: src/editor/MapEditorModel.cpp.o
 .PHONY : src/editor/MapEditorModel.o
@@ -431,6 +883,78 @@ src/editor/MapEditorModel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/editor/MapEditorModel.cpp.s
 .PHONY : src/editor/MapEditorModel.cpp.s
 
+src/editor/MapForgeScreen.o: src/editor/MapForgeScreen.cpp.o
+.PHONY : src/editor/MapForgeScreen.o
+
+# target to build an object file
+src/editor/MapForgeScreen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.o
+.PHONY : src/editor/MapForgeScreen.cpp.o
+
+src/editor/MapForgeScreen.i: src/editor/MapForgeScreen.cpp.i
+.PHONY : src/editor/MapForgeScreen.i
+
+# target to preprocess a source file
+src/editor/MapForgeScreen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.i
+.PHONY : src/editor/MapForgeScreen.cpp.i
+
+src/editor/MapForgeScreen.s: src/editor/MapForgeScreen.cpp.s
+.PHONY : src/editor/MapForgeScreen.s
+
+# target to generate assembly for a file
+src/editor/MapForgeScreen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/editor/MapForgeScreen.cpp.s
+.PHONY : src/editor/MapForgeScreen.cpp.s
+
+src/input/InputSystem.o: src/input/InputSystem.cpp.o
+.PHONY : src/input/InputSystem.o
+
+# target to build an object file
+src/input/InputSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/input/InputSystem.cpp.o
+.PHONY : src/input/InputSystem.cpp.o
+
+src/input/InputSystem.i: src/input/InputSystem.cpp.i
+.PHONY : src/input/InputSystem.i
+
+# target to preprocess a source file
+src/input/InputSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/input/InputSystem.cpp.i
+.PHONY : src/input/InputSystem.cpp.i
+
+src/input/InputSystem.s: src/input/InputSystem.cpp.s
+.PHONY : src/input/InputSystem.s
+
+# target to generate assembly for a file
+src/input/InputSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/input/InputSystem.cpp.s
+.PHONY : src/input/InputSystem.cpp.s
+
+src/logging/Logger.o: src/logging/Logger.cpp.o
+.PHONY : src/logging/Logger.o
+
+# target to build an object file
+src/logging/Logger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/logging/Logger.cpp.o
+.PHONY : src/logging/Logger.cpp.o
+
+src/logging/Logger.i: src/logging/Logger.cpp.i
+.PHONY : src/logging/Logger.i
+
+# target to preprocess a source file
+src/logging/Logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/logging/Logger.cpp.i
+.PHONY : src/logging/Logger.cpp.i
+
+src/logging/Logger.s: src/logging/Logger.cpp.s
+.PHONY : src/logging/Logger.s
+
+# target to generate assembly for a file
+src/logging/Logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/logging/Logger.cpp.s
+.PHONY : src/logging/Logger.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -454,6 +978,375 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/mediaforge/E2AssetCatalog.o: src/mediaforge/E2AssetCatalog.cpp.o
+.PHONY : src/mediaforge/E2AssetCatalog.o
+
+# target to build an object file
+src/mediaforge/E2AssetCatalog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2AssetCatalog.cpp.o
+.PHONY : src/mediaforge/E2AssetCatalog.cpp.o
+
+src/mediaforge/E2AssetCatalog.i: src/mediaforge/E2AssetCatalog.cpp.i
+.PHONY : src/mediaforge/E2AssetCatalog.i
+
+# target to preprocess a source file
+src/mediaforge/E2AssetCatalog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2AssetCatalog.cpp.i
+.PHONY : src/mediaforge/E2AssetCatalog.cpp.i
+
+src/mediaforge/E2AssetCatalog.s: src/mediaforge/E2AssetCatalog.cpp.s
+.PHONY : src/mediaforge/E2AssetCatalog.s
+
+# target to generate assembly for a file
+src/mediaforge/E2AssetCatalog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2AssetCatalog.cpp.s
+.PHONY : src/mediaforge/E2AssetCatalog.cpp.s
+
+src/mediaforge/E2Performance.o: src/mediaforge/E2Performance.cpp.o
+.PHONY : src/mediaforge/E2Performance.o
+
+# target to build an object file
+src/mediaforge/E2Performance.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2Performance.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/E2Performance.cpp.o
+.PHONY : src/mediaforge/E2Performance.cpp.o
+
+src/mediaforge/E2Performance.i: src/mediaforge/E2Performance.cpp.i
+.PHONY : src/mediaforge/E2Performance.i
+
+# target to preprocess a source file
+src/mediaforge/E2Performance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2Performance.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/E2Performance.cpp.i
+.PHONY : src/mediaforge/E2Performance.cpp.i
+
+src/mediaforge/E2Performance.s: src/mediaforge/E2Performance.cpp.s
+.PHONY : src/mediaforge/E2Performance.s
+
+# target to generate assembly for a file
+src/mediaforge/E2Performance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2Performance.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/E2Performance.cpp.s
+.PHONY : src/mediaforge/E2Performance.cpp.s
+
+src/mediaforge/MediaForgeAppModel.o: src/mediaforge/MediaForgeAppModel.cpp.o
+.PHONY : src/mediaforge/MediaForgeAppModel.o
+
+# target to build an object file
+src/mediaforge/MediaForgeAppModel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeAppModel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.o
+.PHONY : src/mediaforge/MediaForgeAppModel.cpp.o
+
+src/mediaforge/MediaForgeAppModel.i: src/mediaforge/MediaForgeAppModel.cpp.i
+.PHONY : src/mediaforge/MediaForgeAppModel.i
+
+# target to preprocess a source file
+src/mediaforge/MediaForgeAppModel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeAppModel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.i
+.PHONY : src/mediaforge/MediaForgeAppModel.cpp.i
+
+src/mediaforge/MediaForgeAppModel.s: src/mediaforge/MediaForgeAppModel.cpp.s
+.PHONY : src/mediaforge/MediaForgeAppModel.s
+
+# target to generate assembly for a file
+src/mediaforge/MediaForgeAppModel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeAppModel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.s
+.PHONY : src/mediaforge/MediaForgeAppModel.cpp.s
+
+src/mediaforge/MediaForgeMain.o: src/mediaforge/MediaForgeMain.cpp.o
+.PHONY : src/mediaforge/MediaForgeMain.o
+
+# target to build an object file
+src/mediaforge/MediaForgeMain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeMain.cpp.o
+.PHONY : src/mediaforge/MediaForgeMain.cpp.o
+
+src/mediaforge/MediaForgeMain.i: src/mediaforge/MediaForgeMain.cpp.i
+.PHONY : src/mediaforge/MediaForgeMain.i
+
+# target to preprocess a source file
+src/mediaforge/MediaForgeMain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeMain.cpp.i
+.PHONY : src/mediaforge/MediaForgeMain.cpp.i
+
+src/mediaforge/MediaForgeMain.s: src/mediaforge/MediaForgeMain.cpp.s
+.PHONY : src/mediaforge/MediaForgeMain.s
+
+# target to generate assembly for a file
+src/mediaforge/MediaForgeMain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeMain.cpp.s
+.PHONY : src/mediaforge/MediaForgeMain.cpp.s
+
+src/mediaforge/MediaForgeMenu.o: src/mediaforge/MediaForgeMenu.cpp.o
+.PHONY : src/mediaforge/MediaForgeMenu.o
+
+# target to build an object file
+src/mediaforge/MediaForgeMenu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeMenu.cpp.o
+.PHONY : src/mediaforge/MediaForgeMenu.cpp.o
+
+src/mediaforge/MediaForgeMenu.i: src/mediaforge/MediaForgeMenu.cpp.i
+.PHONY : src/mediaforge/MediaForgeMenu.i
+
+# target to preprocess a source file
+src/mediaforge/MediaForgeMenu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeMenu.cpp.i
+.PHONY : src/mediaforge/MediaForgeMenu.cpp.i
+
+src/mediaforge/MediaForgeMenu.s: src/mediaforge/MediaForgeMenu.cpp.s
+.PHONY : src/mediaforge/MediaForgeMenu.s
+
+# target to generate assembly for a file
+src/mediaforge/MediaForgeMenu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeMenu.cpp.s
+.PHONY : src/mediaforge/MediaForgeMenu.cpp.s
+
+src/mediaforge/VerdantSliceData.o: src/mediaforge/VerdantSliceData.cpp.o
+.PHONY : src/mediaforge/VerdantSliceData.o
+
+# target to build an object file
+src/mediaforge/VerdantSliceData.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/VerdantSliceData.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/VerdantSliceData.cpp.o
+.PHONY : src/mediaforge/VerdantSliceData.cpp.o
+
+src/mediaforge/VerdantSliceData.i: src/mediaforge/VerdantSliceData.cpp.i
+.PHONY : src/mediaforge/VerdantSliceData.i
+
+# target to preprocess a source file
+src/mediaforge/VerdantSliceData.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/VerdantSliceData.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/VerdantSliceData.cpp.i
+.PHONY : src/mediaforge/VerdantSliceData.cpp.i
+
+src/mediaforge/VerdantSliceData.s: src/mediaforge/VerdantSliceData.cpp.s
+.PHONY : src/mediaforge/VerdantSliceData.s
+
+# target to generate assembly for a file
+src/mediaforge/VerdantSliceData.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/VerdantSliceData.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/VerdantSliceData.cpp.s
+.PHONY : src/mediaforge/VerdantSliceData.cpp.s
+
+src/mediaforge/VerdantSliceMain.o: src/mediaforge/VerdantSliceMain.cpp.o
+.PHONY : src/mediaforge/VerdantSliceMain.o
+
+# target to build an object file
+src/mediaforge/VerdantSliceMain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/VerdantSliceMain.cpp.o
+.PHONY : src/mediaforge/VerdantSliceMain.cpp.o
+
+src/mediaforge/VerdantSliceMain.i: src/mediaforge/VerdantSliceMain.cpp.i
+.PHONY : src/mediaforge/VerdantSliceMain.i
+
+# target to preprocess a source file
+src/mediaforge/VerdantSliceMain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/VerdantSliceMain.cpp.i
+.PHONY : src/mediaforge/VerdantSliceMain.cpp.i
+
+src/mediaforge/VerdantSliceMain.s: src/mediaforge/VerdantSliceMain.cpp.s
+.PHONY : src/mediaforge/VerdantSliceMain.s
+
+# target to generate assembly for a file
+src/mediaforge/VerdantSliceMain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/VerdantSliceMain.cpp.s
+.PHONY : src/mediaforge/VerdantSliceMain.cpp.s
+
+src/render/RenderContext.o: src/render/RenderContext.cpp.o
+.PHONY : src/render/RenderContext.o
+
+# target to build an object file
+src/render/RenderContext.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/RenderContext.cpp.o
+.PHONY : src/render/RenderContext.cpp.o
+
+src/render/RenderContext.i: src/render/RenderContext.cpp.i
+.PHONY : src/render/RenderContext.i
+
+# target to preprocess a source file
+src/render/RenderContext.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/RenderContext.cpp.i
+.PHONY : src/render/RenderContext.cpp.i
+
+src/render/RenderContext.s: src/render/RenderContext.cpp.s
+.PHONY : src/render/RenderContext.s
+
+# target to generate assembly for a file
+src/render/RenderContext.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/RenderContext.cpp.s
+.PHONY : src/render/RenderContext.cpp.s
+
+src/render/WorldRenderData.o: src/render/WorldRenderData.cpp.o
+.PHONY : src/render/WorldRenderData.o
+
+# target to build an object file
+src/render/WorldRenderData.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/WorldRenderData.cpp.o
+.PHONY : src/render/WorldRenderData.cpp.o
+
+src/render/WorldRenderData.i: src/render/WorldRenderData.cpp.i
+.PHONY : src/render/WorldRenderData.i
+
+# target to preprocess a source file
+src/render/WorldRenderData.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/WorldRenderData.cpp.i
+.PHONY : src/render/WorldRenderData.cpp.i
+
+src/render/WorldRenderData.s: src/render/WorldRenderData.cpp.s
+.PHONY : src/render/WorldRenderData.s
+
+# target to generate assembly for a file
+src/render/WorldRenderData.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/WorldRenderData.cpp.s
+.PHONY : src/render/WorldRenderData.cpp.s
+
+src/render/WorldRenderer.o: src/render/WorldRenderer.cpp.o
+.PHONY : src/render/WorldRenderer.o
+
+# target to build an object file
+src/render/WorldRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/WorldRenderer.cpp.o
+.PHONY : src/render/WorldRenderer.cpp.o
+
+src/render/WorldRenderer.i: src/render/WorldRenderer.cpp.i
+.PHONY : src/render/WorldRenderer.i
+
+# target to preprocess a source file
+src/render/WorldRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/WorldRenderer.cpp.i
+.PHONY : src/render/WorldRenderer.cpp.i
+
+src/render/WorldRenderer.s: src/render/WorldRenderer.cpp.s
+.PHONY : src/render/WorldRenderer.s
+
+# target to generate assembly for a file
+src/render/WorldRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/render/WorldRenderer.cpp.s
+.PHONY : src/render/WorldRenderer.cpp.s
+
+src/screens/GameScreen.o: src/screens/GameScreen.cpp.o
+.PHONY : src/screens/GameScreen.o
+
+# target to build an object file
+src/screens/GameScreen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.o
+.PHONY : src/screens/GameScreen.cpp.o
+
+src/screens/GameScreen.i: src/screens/GameScreen.cpp.i
+.PHONY : src/screens/GameScreen.i
+
+# target to preprocess a source file
+src/screens/GameScreen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.i
+.PHONY : src/screens/GameScreen.cpp.i
+
+src/screens/GameScreen.s: src/screens/GameScreen.cpp.s
+.PHONY : src/screens/GameScreen.s
+
+# target to generate assembly for a file
+src/screens/GameScreen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/screens/GameScreen.cpp.s
+.PHONY : src/screens/GameScreen.cpp.s
+
+src/screens/MainMenuScreen.o: src/screens/MainMenuScreen.cpp.o
+.PHONY : src/screens/MainMenuScreen.o
+
+# target to build an object file
+src/screens/MainMenuScreen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.o
+.PHONY : src/screens/MainMenuScreen.cpp.o
+
+src/screens/MainMenuScreen.i: src/screens/MainMenuScreen.cpp.i
+.PHONY : src/screens/MainMenuScreen.i
+
+# target to preprocess a source file
+src/screens/MainMenuScreen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.i
+.PHONY : src/screens/MainMenuScreen.cpp.i
+
+src/screens/MainMenuScreen.s: src/screens/MainMenuScreen.cpp.s
+.PHONY : src/screens/MainMenuScreen.s
+
+# target to generate assembly for a file
+src/screens/MainMenuScreen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/screens/MainMenuScreen.cpp.s
+.PHONY : src/screens/MainMenuScreen.cpp.s
+
+src/settings/Settings.o: src/settings/Settings.cpp.o
+.PHONY : src/settings/Settings.o
+
+# target to build an object file
+src/settings/Settings.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/settings/Settings.cpp.o
+.PHONY : src/settings/Settings.cpp.o
+
+src/settings/Settings.i: src/settings/Settings.cpp.i
+.PHONY : src/settings/Settings.i
+
+# target to preprocess a source file
+src/settings/Settings.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/settings/Settings.cpp.i
+.PHONY : src/settings/Settings.cpp.i
+
+src/settings/Settings.s: src/settings/Settings.cpp.s
+.PHONY : src/settings/Settings.s
+
+# target to generate assembly for a file
+src/settings/Settings.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/settings/Settings.cpp.s
+.PHONY : src/settings/Settings.cpp.s
+
+src/ui/Interaction.o: src/ui/Interaction.cpp.o
+.PHONY : src/ui/Interaction.o
+
+# target to build an object file
+src/ui/Interaction.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Interaction.cpp.o
+.PHONY : src/ui/Interaction.cpp.o
+
+src/ui/Interaction.i: src/ui/Interaction.cpp.i
+.PHONY : src/ui/Interaction.i
+
+# target to preprocess a source file
+src/ui/Interaction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Interaction.cpp.i
+.PHONY : src/ui/Interaction.cpp.i
+
+src/ui/Interaction.s: src/ui/Interaction.cpp.s
+.PHONY : src/ui/Interaction.s
+
+# target to generate assembly for a file
+src/ui/Interaction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Interaction.cpp.s
+.PHONY : src/ui/Interaction.cpp.s
+
+src/ui/Layout.o: src/ui/Layout.cpp.o
+.PHONY : src/ui/Layout.o
+
+# target to build an object file
+src/ui/Layout.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Layout.cpp.o
+.PHONY : src/ui/Layout.cpp.o
+
+src/ui/Layout.i: src/ui/Layout.cpp.i
+.PHONY : src/ui/Layout.i
+
+# target to preprocess a source file
+src/ui/Layout.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Layout.cpp.i
+.PHONY : src/ui/Layout.cpp.i
+
+src/ui/Layout.s: src/ui/Layout.cpp.s
+.PHONY : src/ui/Layout.s
+
+# target to generate assembly for a file
+src/ui/Layout.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Layout.cpp.s
+.PHONY : src/ui/Layout.cpp.s
 
 src/ui/TextService.o: src/ui/TextService.cpp.o
 .PHONY : src/ui/TextService.o
@@ -479,6 +1372,150 @@ src/ui/TextService.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/TextService.cpp.s
 .PHONY : src/ui/TextService.cpp.s
 
+src/ui/Theme.o: src/ui/Theme.cpp.o
+.PHONY : src/ui/Theme.o
+
+# target to build an object file
+src/ui/Theme.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Theme.cpp.o
+.PHONY : src/ui/Theme.cpp.o
+
+src/ui/Theme.i: src/ui/Theme.cpp.i
+.PHONY : src/ui/Theme.i
+
+# target to preprocess a source file
+src/ui/Theme.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Theme.cpp.i
+.PHONY : src/ui/Theme.cpp.i
+
+src/ui/Theme.s: src/ui/Theme.cpp.s
+.PHONY : src/ui/Theme.s
+
+# target to generate assembly for a file
+src/ui/Theme.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/Theme.cpp.s
+.PHONY : src/ui/Theme.cpp.s
+
+src/ui/UiRenderer.o: src/ui/UiRenderer.cpp.o
+.PHONY : src/ui/UiRenderer.o
+
+# target to build an object file
+src/ui/UiRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/UiRenderer.cpp.o
+.PHONY : src/ui/UiRenderer.cpp.o
+
+src/ui/UiRenderer.i: src/ui/UiRenderer.cpp.i
+.PHONY : src/ui/UiRenderer.i
+
+# target to preprocess a source file
+src/ui/UiRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/UiRenderer.cpp.i
+.PHONY : src/ui/UiRenderer.cpp.i
+
+src/ui/UiRenderer.s: src/ui/UiRenderer.cpp.s
+.PHONY : src/ui/UiRenderer.s
+
+# target to generate assembly for a file
+src/ui/UiRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/UiRenderer.cpp.s
+.PHONY : src/ui/UiRenderer.cpp.s
+
+tests/e2_slice_tests.o: tests/e2_slice_tests.cpp.o
+.PHONY : tests/e2_slice_tests.o
+
+# target to build an object file
+tests/e2_slice_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/tests/e2_slice_tests.cpp.o
+.PHONY : tests/e2_slice_tests.cpp.o
+
+tests/e2_slice_tests.i: tests/e2_slice_tests.cpp.i
+.PHONY : tests/e2_slice_tests.i
+
+# target to preprocess a source file
+tests/e2_slice_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/tests/e2_slice_tests.cpp.i
+.PHONY : tests/e2_slice_tests.cpp.i
+
+tests/e2_slice_tests.s: tests/e2_slice_tests.cpp.s
+.PHONY : tests/e2_slice_tests.s
+
+# target to generate assembly for a file
+tests/e2_slice_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/tests/e2_slice_tests.cpp.s
+.PHONY : tests/e2_slice_tests.cpp.s
+
+tests/editor_model_tests.o: tests/editor_model_tests.cpp.o
+.PHONY : tests/editor_model_tests.o
+
+# target to build an object file
+tests/editor_model_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/tests/editor_model_tests.cpp.o
+.PHONY : tests/editor_model_tests.cpp.o
+
+tests/editor_model_tests.i: tests/editor_model_tests.cpp.i
+.PHONY : tests/editor_model_tests.i
+
+# target to preprocess a source file
+tests/editor_model_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/tests/editor_model_tests.cpp.i
+.PHONY : tests/editor_model_tests.cpp.i
+
+tests/editor_model_tests.s: tests/editor_model_tests.cpp.s
+.PHONY : tests/editor_model_tests.s
+
+# target to generate assembly for a file
+tests/editor_model_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_editor_tests.dir/build.make CMakeFiles/aegis_editor_tests.dir/tests/editor_model_tests.cpp.s
+.PHONY : tests/editor_model_tests.cpp.s
+
+tests/foundation_tests.o: tests/foundation_tests.cpp.o
+.PHONY : tests/foundation_tests.o
+
+# target to build an object file
+tests/foundation_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/tests/foundation_tests.cpp.o
+.PHONY : tests/foundation_tests.cpp.o
+
+tests/foundation_tests.i: tests/foundation_tests.cpp.i
+.PHONY : tests/foundation_tests.i
+
+# target to preprocess a source file
+tests/foundation_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/tests/foundation_tests.cpp.i
+.PHONY : tests/foundation_tests.cpp.i
+
+tests/foundation_tests.s: tests/foundation_tests.cpp.s
+.PHONY : tests/foundation_tests.s
+
+# target to generate assembly for a file
+tests/foundation_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_foundation_tests.dir/build.make CMakeFiles/aegis_foundation_tests.dir/tests/foundation_tests.cpp.s
+.PHONY : tests/foundation_tests.cpp.s
+
+tests/game_map_projection_tests.o: tests/game_map_projection_tests.cpp.o
+.PHONY : tests/game_map_projection_tests.o
+
+# target to build an object file
+tests/game_map_projection_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/tests/game_map_projection_tests.cpp.o
+.PHONY : tests/game_map_projection_tests.cpp.o
+
+tests/game_map_projection_tests.i: tests/game_map_projection_tests.cpp.i
+.PHONY : tests/game_map_projection_tests.i
+
+# target to preprocess a source file
+tests/game_map_projection_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/tests/game_map_projection_tests.cpp.i
+.PHONY : tests/game_map_projection_tests.cpp.i
+
+tests/game_map_projection_tests.s: tests/game_map_projection_tests.cpp.s
+.PHONY : tests/game_map_projection_tests.s
+
+# target to generate assembly for a file
+tests/game_map_projection_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/tests/game_map_projection_tests.cpp.s
+.PHONY : tests/game_map_projection_tests.cpp.s
+
 tests/map_document_tests.o: tests/map_document_tests.cpp.o
 .PHONY : tests/map_document_tests.o
 
@@ -502,6 +1539,54 @@ tests/map_document_tests.s: tests/map_document_tests.cpp.s
 tests/map_document_tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core_tests.dir/build.make CMakeFiles/aegis_core_tests.dir/tests/map_document_tests.cpp.s
 .PHONY : tests/map_document_tests.cpp.s
+
+tests/phase4_render_tests.o: tests/phase4_render_tests.cpp.o
+.PHONY : tests/phase4_render_tests.o
+
+# target to build an object file
+tests/phase4_render_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/tests/phase4_render_tests.cpp.o
+.PHONY : tests/phase4_render_tests.cpp.o
+
+tests/phase4_render_tests.i: tests/phase4_render_tests.cpp.i
+.PHONY : tests/phase4_render_tests.i
+
+# target to preprocess a source file
+tests/phase4_render_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/tests/phase4_render_tests.cpp.i
+.PHONY : tests/phase4_render_tests.cpp.i
+
+tests/phase4_render_tests.s: tests/phase4_render_tests.cpp.s
+.PHONY : tests/phase4_render_tests.s
+
+# target to generate assembly for a file
+tests/phase4_render_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_phase4_tests.dir/build.make CMakeFiles/aegis_phase4_tests.dir/tests/phase4_render_tests.cpp.s
+.PHONY : tests/phase4_render_tests.cpp.s
+
+tests/playtest_conversion_tests.o: tests/playtest_conversion_tests.cpp.o
+.PHONY : tests/playtest_conversion_tests.o
+
+# target to build an object file
+tests/playtest_conversion_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/tests/playtest_conversion_tests.cpp.o
+.PHONY : tests/playtest_conversion_tests.cpp.o
+
+tests/playtest_conversion_tests.i: tests/playtest_conversion_tests.cpp.i
+.PHONY : tests/playtest_conversion_tests.i
+
+# target to preprocess a source file
+tests/playtest_conversion_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/tests/playtest_conversion_tests.cpp.i
+.PHONY : tests/playtest_conversion_tests.cpp.i
+
+tests/playtest_conversion_tests.s: tests/playtest_conversion_tests.cpp.s
+.PHONY : tests/playtest_conversion_tests.s
+
+# target to generate assembly for a file
+tests/playtest_conversion_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_playtest_tests.dir/build.make CMakeFiles/aegis_playtest_tests.dir/tests/playtest_conversion_tests.cpp.s
+.PHONY : tests/playtest_conversion_tests.cpp.s
 
 tests/text_service_tests.o: tests/text_service_tests.cpp.o
 .PHONY : tests/text_service_tests.o
@@ -536,11 +1621,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... mediaforge_shaders"
+	@echo "... SDL3-shared"
+	@echo "... SDL3_test"
+	@echo "... SDL_uclibc"
 	@echo "... aegis_core"
 	@echo "... aegis_core_tests"
 	@echo "... aegis_dominion"
+	@echo "... aegis_e2_slice_tests"
+	@echo "... aegis_editor_tests"
+	@echo "... aegis_foundation_tests"
+	@echo "... aegis_game_map_tests"
+	@echo "... aegis_mediaforge_slice"
+	@echo "... aegis_phase4_tests"
+	@echo "... aegis_playtest_tests"
 	@echo "... aegis_text_tests"
 	@echo "... aegis_ui"
+	@echo "... mediaforge_engine"
+	@echo "... mediaforge_foundation"
+	@echo "... mediaforge_foundation_tests"
+	@echo "... mediaforge_gpu_smoke"
+	@echo "... mediaforge_render_tests"
 	@echo "... src/Assets.o"
 	@echo "... src/Assets.i"
 	@echo "... src/Assets.s"
@@ -550,9 +1651,6 @@ help:
 	@echo "... src/Enemy.o"
 	@echo "... src/Enemy.i"
 	@echo "... src/Enemy.s"
-	@echo "... src/Game.o"
-	@echo "... src/Game.i"
-	@echo "... src/Game.s"
 	@echo "... src/Map.o"
 	@echo "... src/Map.i"
 	@echo "... src/Map.s"
@@ -565,21 +1663,132 @@ help:
 	@echo "... src/WaveManager.o"
 	@echo "... src/WaveManager.i"
 	@echo "... src/WaveManager.s"
+	@echo "... src/animation/AnimationCatalog.o"
+	@echo "... src/animation/AnimationCatalog.i"
+	@echo "... src/animation/AnimationCatalog.s"
+	@echo "... src/animation/SpriteAnimation.o"
+	@echo "... src/animation/SpriteAnimation.i"
+	@echo "... src/animation/SpriteAnimation.s"
+	@echo "... src/animation/Tween.o"
+	@echo "... src/animation/Tween.i"
+	@echo "... src/animation/Tween.s"
+	@echo "... src/app/Application.o"
+	@echo "... src/app/Application.i"
+	@echo "... src/app/Application.s"
+	@echo "... src/app/ScreenManager.o"
+	@echo "... src/app/ScreenManager.i"
+	@echo "... src/app/ScreenManager.s"
+	@echo "... src/assets/AssetCatalog.o"
+	@echo "... src/assets/AssetCatalog.i"
+	@echo "... src/assets/AssetCatalog.s"
+	@echo "... src/assets/AssetManager.o"
+	@echo "... src/assets/AssetManager.i"
+	@echo "... src/assets/AssetManager.s"
+	@echo "... src/core/GameLaunchConfig.o"
+	@echo "... src/core/GameLaunchConfig.i"
+	@echo "... src/core/GameLaunchConfig.s"
 	@echo "... src/core/MapDocument.o"
 	@echo "... src/core/MapDocument.i"
 	@echo "... src/core/MapDocument.s"
+	@echo "... src/core/PathCurve.o"
+	@echo "... src/core/PathCurve.i"
+	@echo "... src/core/PathCurve.s"
+	@echo "... src/core/PlayableMap.o"
+	@echo "... src/core/PlayableMap.i"
+	@echo "... src/core/PlayableMap.s"
+	@echo "... src/editor/EditorCamera.o"
+	@echo "... src/editor/EditorCamera.i"
+	@echo "... src/editor/EditorCamera.s"
 	@echo "... src/editor/MapEditorModel.o"
 	@echo "... src/editor/MapEditorModel.i"
 	@echo "... src/editor/MapEditorModel.s"
+	@echo "... src/editor/MapForgeScreen.o"
+	@echo "... src/editor/MapForgeScreen.i"
+	@echo "... src/editor/MapForgeScreen.s"
+	@echo "... src/input/InputSystem.o"
+	@echo "... src/input/InputSystem.i"
+	@echo "... src/input/InputSystem.s"
+	@echo "... src/logging/Logger.o"
+	@echo "... src/logging/Logger.i"
+	@echo "... src/logging/Logger.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/mediaforge/E2AssetCatalog.o"
+	@echo "... src/mediaforge/E2AssetCatalog.i"
+	@echo "... src/mediaforge/E2AssetCatalog.s"
+	@echo "... src/mediaforge/E2Performance.o"
+	@echo "... src/mediaforge/E2Performance.i"
+	@echo "... src/mediaforge/E2Performance.s"
+	@echo "... src/mediaforge/MediaForgeAppModel.o"
+	@echo "... src/mediaforge/MediaForgeAppModel.i"
+	@echo "... src/mediaforge/MediaForgeAppModel.s"
+	@echo "... src/mediaforge/MediaForgeMain.o"
+	@echo "... src/mediaforge/MediaForgeMain.i"
+	@echo "... src/mediaforge/MediaForgeMain.s"
+	@echo "... src/mediaforge/MediaForgeMenu.o"
+	@echo "... src/mediaforge/MediaForgeMenu.i"
+	@echo "... src/mediaforge/MediaForgeMenu.s"
+	@echo "... src/mediaforge/VerdantSliceData.o"
+	@echo "... src/mediaforge/VerdantSliceData.i"
+	@echo "... src/mediaforge/VerdantSliceData.s"
+	@echo "... src/mediaforge/VerdantSliceMain.o"
+	@echo "... src/mediaforge/VerdantSliceMain.i"
+	@echo "... src/mediaforge/VerdantSliceMain.s"
+	@echo "... src/render/RenderContext.o"
+	@echo "... src/render/RenderContext.i"
+	@echo "... src/render/RenderContext.s"
+	@echo "... src/render/WorldRenderData.o"
+	@echo "... src/render/WorldRenderData.i"
+	@echo "... src/render/WorldRenderData.s"
+	@echo "... src/render/WorldRenderer.o"
+	@echo "... src/render/WorldRenderer.i"
+	@echo "... src/render/WorldRenderer.s"
+	@echo "... src/screens/GameScreen.o"
+	@echo "... src/screens/GameScreen.i"
+	@echo "... src/screens/GameScreen.s"
+	@echo "... src/screens/MainMenuScreen.o"
+	@echo "... src/screens/MainMenuScreen.i"
+	@echo "... src/screens/MainMenuScreen.s"
+	@echo "... src/settings/Settings.o"
+	@echo "... src/settings/Settings.i"
+	@echo "... src/settings/Settings.s"
+	@echo "... src/ui/Interaction.o"
+	@echo "... src/ui/Interaction.i"
+	@echo "... src/ui/Interaction.s"
+	@echo "... src/ui/Layout.o"
+	@echo "... src/ui/Layout.i"
+	@echo "... src/ui/Layout.s"
 	@echo "... src/ui/TextService.o"
 	@echo "... src/ui/TextService.i"
 	@echo "... src/ui/TextService.s"
+	@echo "... src/ui/Theme.o"
+	@echo "... src/ui/Theme.i"
+	@echo "... src/ui/Theme.s"
+	@echo "... src/ui/UiRenderer.o"
+	@echo "... src/ui/UiRenderer.i"
+	@echo "... src/ui/UiRenderer.s"
+	@echo "... tests/e2_slice_tests.o"
+	@echo "... tests/e2_slice_tests.i"
+	@echo "... tests/e2_slice_tests.s"
+	@echo "... tests/editor_model_tests.o"
+	@echo "... tests/editor_model_tests.i"
+	@echo "... tests/editor_model_tests.s"
+	@echo "... tests/foundation_tests.o"
+	@echo "... tests/foundation_tests.i"
+	@echo "... tests/foundation_tests.s"
+	@echo "... tests/game_map_projection_tests.o"
+	@echo "... tests/game_map_projection_tests.i"
+	@echo "... tests/game_map_projection_tests.s"
 	@echo "... tests/map_document_tests.o"
 	@echo "... tests/map_document_tests.i"
 	@echo "... tests/map_document_tests.s"
+	@echo "... tests/phase4_render_tests.o"
+	@echo "... tests/phase4_render_tests.i"
+	@echo "... tests/phase4_render_tests.s"
+	@echo "... tests/playtest_conversion_tests.o"
+	@echo "... tests/playtest_conversion_tests.i"
+	@echo "... tests/playtest_conversion_tests.s"
 	@echo "... tests/text_service_tests.o"
 	@echo "... tests/text_service_tests.i"
 	@echo "... tests/text_service_tests.s"
@@ -594,6 +1803,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -1,3 +1,12 @@
-aegis_core_tests 1 0.00380352
-aegis_text_tests 1 0.0145061
+aegis_core_tests 9 0.00083599
+aegis_text_tests 9 0.00406747
+aegis_editor_tests 8 0.00069933
+aegis_playtest_tests 8 0.000763766
+aegis_game_map_tests 8 0.00188479
+aegis_foundation_tests 8 0.00197139
+aegis_phase4_tests 8 0.00315801
+aegis_e2_slice_tests 8 0.00119047
+mediaforge_foundation_tests 8 0.000461924
+mediaforge_render_tests 8 0.000576193
+mediaforge_architecture_audit 8 0.0091915
 ---

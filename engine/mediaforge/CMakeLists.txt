@@ -10,7 +10,7 @@ elseif(NOT DEFINED MEDIAFORGE_CXX_STANDARD)
   set(MEDIAFORGE_CXX_STANDARD 23)
 endif()
 
-set(MEDIAFORGE_VERSION "0.1.0-dev")
+set(MEDIAFORGE_VERSION "0.2.0-dev")
 set(MEDIAFORGE_SDL_VERSION "3.4.14" CACHE STRING "Exactly pinned stable SDL3 version")
 set(MEDIAFORGE_SHADERC_VERSION "2026.1" CACHE STRING "Exactly pinned stable shaderc tool version")
 option(MEDIAFORGE_FETCH_DEPENDENCIES "Fetch exact official dependency tags when system packages are unavailable" ON)
@@ -75,7 +75,14 @@ add_library(MediaForge::Foundation ALIAS mediaforge_foundation)
 add_library(mediaforge_engine STATIC
   src/platform/Window.cpp
   src/input/Event.cpp
-  src/render/GPUDevice.cpp)
+  src/render/GPUDevice.cpp
+  src/render/Camera2D.cpp
+  src/render/Image.cpp
+  src/render/ParticleSystem2D.cpp
+  src/render/RenderQueue2D.cpp
+  src/render/Renderer2D.cpp
+  src/ui/SegmentedLevelIndicator.cpp
+  src/ui/Ui.cpp)
 target_include_directories(mediaforge_engine PUBLIC include PRIVATE src)
 target_link_libraries(mediaforge_engine PUBLIC mediaforge_foundation PRIVATE SDL3::SDL3)
 add_library(MediaForge::Engine ALIAS mediaforge_engine)
@@ -95,7 +102,7 @@ if(MEDIAFORGE_BUILD_GPU_SMOKE)
     if(NOT GLSLC_VERSION_OUTPUT MATCHES "${MEDIAFORGE_SHADERC_VERSION}")
       message(FATAL_ERROR "glslc must be stable shaderc ${MEDIAFORGE_SHADERC_VERSION}: ${GLSLC_VERSION_OUTPUT}")
     endif()
-    foreach(SHADER smoke.vert color.frag sprite.frag)
+    foreach(SHADER smoke.vert color.frag sprite.frag renderer.vert sprite_linear.frag composite.frag)
       set(SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/shaders/${SHADER}")
       set(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/shaders/${SHADER}.spv")
       add_custom_command(OUTPUT "${OUTPUT}"
@@ -126,6 +133,9 @@ if(MEDIAFORGE_BUILD_TESTS)
   add_executable(mediaforge_foundation_tests tests/FoundationTests.cpp)
   target_link_libraries(mediaforge_foundation_tests PRIVATE mediaforge_foundation)
   add_test(NAME mediaforge_foundation_tests COMMAND mediaforge_foundation_tests)
+  add_executable(mediaforge_render_tests tests/RenderTests.cpp)
+  target_link_libraries(mediaforge_render_tests PRIVATE mediaforge_engine)
+  add_test(NAME mediaforge_render_tests COMMAND mediaforge_render_tests)
   add_test(NAME mediaforge_architecture_audit
     COMMAND ${CMAKE_COMMAND} -DMEDIAFORGE_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
             -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ArchitectureAudit.cmake)

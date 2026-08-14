@@ -11,6 +11,8 @@ Versions are centralized in `engine/mediaforge/CMakeLists.txt`. Upgrade `MEDIAFO
 
 SDL 3.4.14 and shaderc 2026.1 were the latest official stable tags checked on 2026-08-12. `SDL_shadercross` is deliberately not used because its official repository has no stable releases. No preview, RC, nightly or unpinned branch is used.
 
+E2 retained both central pins after re-verification; it added no runtime dependency. PNG decode uses SDL3's stable built-in `SDL_LoadPNG`, so SDL_image is not introduced.
+
 Resolution order for SDL is an exact matching system CMake package, then official `FetchContent` from `release-3.4.14`. Offline/package-less verification may pass explicit include/library cache paths; these are toolchain inputs and are never embedded in source. Third-party targets are external/system includes.
 
 The shader sources stay under `engine/mediaforge/shaders/`. CMake accepts only a `glslc` whose version output contains 2026.1 and compiles each source once into the build tree. If the tool is absent, the smoke executable builds as an honest diagnostic stub; engine/headless tests remain buildable and the configure step warns explicitly.

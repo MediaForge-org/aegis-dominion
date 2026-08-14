@@ -67,6 +67,23 @@ add_executable(aegis_dominion
 target_include_directories(aegis_dominion PRIVATE src)
 target_link_libraries(aegis_dominion PRIVATE aegis_project_options aegis_core aegis_ui mediaforge_engine sfml-graphics sfml-window sfml-system sfml-audio)
 
+add_executable(aegis_mediaforge_slice
+    src/mediaforge/E2AssetCatalog.cpp
+    src/mediaforge/E2Performance.cpp
+    src/mediaforge/MediaForgeAppModel.cpp
+    src/mediaforge/MediaForgeMain.cpp
+    src/mediaforge/MediaForgeMenu.cpp
+    src/mediaforge/VerdantSliceData.cpp
+    src/mediaforge/VerdantSliceMain.cpp)
+target_include_directories(aegis_mediaforge_slice PRIVATE src)
+target_link_libraries(aegis_mediaforge_slice PRIVATE aegis_project_options aegis_core mediaforge_engine)
+target_compile_definitions(aegis_mediaforge_slice PRIVATE
+    AEGIS_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+    MEDIAFORGE_SHADER_DIRECTORY="${CMAKE_CURRENT_BINARY_DIR}/engine/mediaforge/shaders")
+if(TARGET mediaforge_shaders)
+  add_dependencies(aegis_mediaforge_slice mediaforge_shaders)
+endif()
+
 add_executable(aegis_core_tests tests/map_document_tests.cpp)
 target_link_libraries(aegis_core_tests PRIVATE aegis_project_options aegis_core)
 target_compile_definitions(aegis_core_tests PRIVATE AEGIS_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
@@ -92,6 +109,13 @@ add_executable(aegis_phase4_tests tests/phase4_render_tests.cpp)
 target_link_libraries(aegis_phase4_tests PRIVATE aegis_project_options aegis_core aegis_ui)
 target_compile_definitions(aegis_phase4_tests PRIVATE AEGIS_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
+add_executable(aegis_e2_slice_tests tests/e2_slice_tests.cpp
+    src/mediaforge/E2Performance.cpp
+    src/mediaforge/MediaForgeAppModel.cpp
+    src/mediaforge/VerdantSliceData.cpp)
+target_include_directories(aegis_e2_slice_tests PRIVATE src)
+target_link_libraries(aegis_e2_slice_tests PRIVATE aegis_project_options aegis_core mediaforge_engine)
+
 add_test(NAME aegis_core_tests COMMAND aegis_core_tests)
 add_test(NAME aegis_editor_tests COMMAND aegis_editor_tests)
 add_test(NAME aegis_playtest_tests COMMAND aegis_playtest_tests)
@@ -99,7 +123,11 @@ add_test(NAME aegis_game_map_tests COMMAND aegis_game_map_tests)
 add_test(NAME aegis_text_tests COMMAND aegis_text_tests)
 add_test(NAME aegis_foundation_tests COMMAND aegis_foundation_tests)
 add_test(NAME aegis_phase4_tests COMMAND aegis_phase4_tests)
+add_test(NAME aegis_e2_slice_tests COMMAND aegis_e2_slice_tests)
 
 add_custom_command(TARGET aegis_dominion POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:aegis_dominion>/assets
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/maps $<TARGET_FILE_DIR:aegis_dominion>/maps)
+
+add_custom_command(TARGET aegis_mediaforge_slice POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:aegis_mediaforge_slice>/assets)

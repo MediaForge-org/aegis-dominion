@@ -49,8 +49,10 @@
 ## MediaForge engine roadmap
 
 - **E1:** Engine boundary, SDL3, SDL_GPU, GPU bootstrap, triangle and textured quad.
-- **E2:** 2D renderer, sprite batching, camera, render targets and the first beautiful Verdant vertical slice.
-- **E3:** Terrain, road, water, environment, lighting and post processing.
+- **E2 (technical implementation complete; visual review pending):** 2D renderer, batching, camera, targets, lighting/post and the first MediaForge Verdant slice.
+- **E2.1 (implemented; manual visual/input acceptance pending):** real MediaForge main menu, secondary screens, tutorial, live performance settings, clean quit and explicit Verdant showcase mode. E2 remains open.
+- **E2.2 (not started):** replace the temporary play destination with functional map selection and its data-driven preview/selection flow.
+- **E3:** Connect the approved E2 presentation to live simulation/maps; replace baked terrain/road with data-driven layered materials and add water/environment authoring parity.
 - **E4:** Enemies, towers, projectiles and VFX migration.
 - **E5:** UI, text and MAP FORGE rendering migration.
 - **E6:** Remove SFML after feature parity and regression verification.
@@ -61,6 +63,10 @@
 
 The sequence may be adjusted when profiling or production evidence requires it, but dependency direction and data/renderer separation remain fixed.
 
-## Immediate next milestone: MediaForge E2 – Beautiful Verdant Vertical Slice
+## Immediate visual gate: MediaForge E2 – Beautiful Verdant Vertical Slice
 
 E2 integrates high-quality authored Verdant terrain and road, environment, Spawn Gate, AEGIS Core, Raider, Heavy Tank, Pulse Tower, one special tower, lighting, VFX and HUD through the MediaForge GPU renderer. The user accepts E2 visually from a real screenshot/video; E1 does not claim that art milestone.
+
+Technical E2 completion does not grant artistic acceptance. After visual approval, E3 should preserve the accepted composition while replacing fixed reference data with live map/simulation state, runtime terrain/road layers, water, animation clips and runtime text.
+
+E2.1 does not start E3 and does not claim gameplay migration. It establishes only the first functional interactive MediaForge game flow.

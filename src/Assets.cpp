@@ -27,13 +27,13 @@ bool Assets::load(const std::string& root){
     return ok;
 }
 
-const sf::Texture& Assets::towerBase(TowerKind k) const { return const_cast<Assets*>(this)->resources_.texture(aegis::assets::TextureId{towerId(k, "base")}); }
-const sf::Texture& Assets::towerTurret(TowerKind k) const { return const_cast<Assets*>(this)->resources_.texture(aegis::assets::TextureId{towerId(k, "turret")}); }
-const sf::Texture& Assets::enemy(EnemyKind k) const { return const_cast<Assets*>(this)->resources_.texture(aegis::assets::TextureId{enemyId(k)}); }
+const sf::Texture& Assets::towerBase(TowerKind k) const { return resources_.texture(aegis::assets::TextureId{towerId(k, "base")}); }
+const sf::Texture& Assets::towerTurret(TowerKind k) const { return resources_.texture(aegis::assets::TextureId{towerId(k, "turret")}); }
+const sf::Texture& Assets::enemy(EnemyKind k) const { return resources_.texture(aegis::assets::TextureId{enemyId(k)}); }
 const sf::Texture& Assets::mapTexture(int index) const {
     const std::array ids{"environment.verdant.background", "environment.frost.background", "environment.ember.background"};
     const auto safeIndex = std::clamp(index, 0, 2);
-    return const_cast<Assets*>(this)->resources_.texture(aegis::assets::TextureId{ids[static_cast<std::size_t>(safeIndex)]});
+    return resources_.texture(aegis::assets::TextureId{ids[static_cast<std::size_t>(safeIndex)]});
 }
-const sf::Texture& Assets::ui(const std::string& n) const { return const_cast<Assets*>(this)->resources_.texture(aegis::assets::TextureId{"ui." + n}); }
+const sf::Texture& Assets::ui(const std::string& n) const { return resources_.texture(aegis::assets::TextureId{"ui." + n}); }
 void Assets::play(const std::string& n,float volume){ auto it=sounds_.find(n); if(it!=sounds_.end()){ it->second.setVolume(volume); it->second.play(); } }

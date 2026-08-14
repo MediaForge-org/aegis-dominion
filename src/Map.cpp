@@ -74,6 +74,18 @@ void GameMap::loadFromPlayableMap(const aegis::core::PlayableMap& map){
     applyPlayableMap(map,-1,false);
 }
 
+void GameMap::loadFromStandardMap(const aegis::core::PlayableMap& map) {
+    int visualIndex = -1;
+    if (map.id == "verdant_frontier") {
+        visualIndex = 0;
+    } else if (map.id == "frost_pass") {
+        visualIndex = 1;
+    } else if (map.id == "ember_field") {
+        visualIndex = 2;
+    }
+    applyPlayableMap(map, visualIndex, visualIndex >= 0);
+}
+
 bool GameMap::loadFromFile(const std::string& file, int visualIndex){
     std::string error;
     auto loaded=aegis::core::MapDocument::load(file,&error);

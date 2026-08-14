@@ -1,10 +1,10 @@
-Start testing: Aug 14 03:34 CEST
+Start testing: Aug 14 05:40 CEST
 ----------------------------------------------------------
-1/11 Testing: aegis_core_tests
-1/11 Test: aegis_core_tests
+1/13 Testing: aegis_core_tests
+1/13 Test: aegis_core_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_core_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_core_tests" start time: Aug 14 03:34 CEST
+"aegis_core_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 11 MapDocument test cases passed
@@ -12,15 +12,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_core_tests" end time: Aug 14 03:34 CEST
+"aegis_core_tests" end time: Aug 14 05:40 CEST
 "aegis_core_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/11 Testing: aegis_editor_tests
-2/11 Test: aegis_editor_tests
+2/13 Testing: aegis_editor_tests
+2/13 Test: aegis_editor_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_editor_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_editor_tests" start time: Aug 14 03:34 CEST
+"aegis_editor_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 10 editor test cases passed
@@ -28,15 +28,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_editor_tests" end time: Aug 14 03:34 CEST
+"aegis_editor_tests" end time: Aug 14 05:40 CEST
 "aegis_editor_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/11 Testing: aegis_playtest_tests
-3/11 Test: aegis_playtest_tests
+3/13 Testing: aegis_playtest_tests
+3/13 Test: aegis_playtest_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_playtest_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_playtest_tests" start time: Aug 14 03:34 CEST
+"aegis_playtest_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 7 playtest conversion cases passed
@@ -44,15 +44,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_playtest_tests" end time: Aug 14 03:34 CEST
+"aegis_playtest_tests" end time: Aug 14 05:40 CEST
 "aegis_playtest_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/11 Testing: aegis_game_map_tests
-4/11 Test: aegis_game_map_tests
+4/13 Testing: aegis_game_map_tests
+4/13 Test: aegis_game_map_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_game_map_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_game_map_tests" start time: Aug 14 03:34 CEST
+"aegis_game_map_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 13 GameMap projection/identity/mechanics checks passed
@@ -60,15 +60,15 @@ Output:
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_game_map_tests" end time: Aug 14 03:34 CEST
+"aegis_game_map_tests" end time: Aug 14 05:40 CEST
 "aegis_game_map_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-5/11 Testing: aegis_text_tests
-5/11 Test: aegis_text_tests
+5/13 Testing: aegis_text_tests
+5/13 Test: aegis_text_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_text_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_text_tests" start time: Aug 14 03:34 CEST
+"aegis_text_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 Failed to load font "fonts/NotoSans-Regular.ttf" (failed to create the font face)
@@ -79,18 +79,18 @@ Failed to load font "fonts/NotoSans-Regular.ttf" (failed to create the font face
 [INFO] Font fallback loaded from /usr/share/fonts/google-noto/NotoSans-Regular.ttf
 4 text test cases passed
 <end of output>
-Test time =   0.04 sec
+Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_text_tests" end time: Aug 14 03:34 CEST
+"aegis_text_tests" end time: Aug 14 05:40 CEST
 "aegis_text_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-6/11 Testing: aegis_foundation_tests
-6/11 Test: aegis_foundation_tests
+6/13 Testing: aegis_foundation_tests
+6/13 Test: aegis_foundation_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_foundation_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_foundation_tests" start time: Aug 14 03:34 CEST
+"aegis_foundation_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 10 foundation test cases passed
@@ -98,31 +98,47 @@ Output:
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_foundation_tests" end time: Aug 14 03:34 CEST
+"aegis_foundation_tests" end time: Aug 14 05:40 CEST
 "aegis_foundation_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-7/11 Testing: aegis_phase4_tests
-7/11 Test: aegis_phase4_tests
+7/13 Testing: aegis_phase4_tests
+7/13 Test: aegis_phase4_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_phase4_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_phase4_tests" start time: Aug 14 03:34 CEST
+"aegis_phase4_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 9 Phase-4 rendering checks passed
 <end of output>
-Test time =   0.03 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_phase4_tests" end time: Aug 14 03:34 CEST
+"aegis_phase4_tests" end time: Aug 14 05:40 CEST
 "aegis_phase4_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-8/11 Testing: aegis_e2_slice_tests
-8/11 Test: aegis_e2_slice_tests
+Unable to find executable: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_tower_balance_tests
+8/13 Testing: aegis_tower_balance_tests
+8/13 Test: aegis_tower_balance_tests
+Command: ""
+Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
+"aegis_tower_balance_tests" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"aegis_tower_balance_tests" end time: Aug 14 05:40 CEST
+"aegis_tower_balance_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/13 Testing: aegis_e2_slice_tests
+9/13 Test: aegis_e2_slice_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_e2_slice_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
-"aegis_e2_slice_tests" start time: Aug 14 03:34 CEST
+"aegis_e2_slice_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 E2/E2.1 snapshot, data-driven settings, UI-flow and performance checks passed
@@ -130,15 +146,31 @@ E2/E2.1 snapshot, data-driven settings, UI-flow and performance checks passed
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"aegis_e2_slice_tests" end time: Aug 14 03:34 CEST
+"aegis_e2_slice_tests" end time: Aug 14 05:40 CEST
 "aegis_e2_slice_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-9/11 Testing: mediaforge_foundation_tests
-9/11 Test: mediaforge_foundation_tests
+Unable to find executable: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/aegis_e2_map_selection_tests
+10/13 Testing: aegis_e2_map_selection_tests
+10/13 Test: aegis_e2_map_selection_tests
+Command: ""
+Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release
+"aegis_e2_map_selection_tests" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"aegis_e2_map_selection_tests" end time: Aug 14 05:40 CEST
+"aegis_e2_map_selection_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/13 Testing: mediaforge_foundation_tests
+11/13 Test: mediaforge_foundation_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/engine/mediaforge/mediaforge_foundation_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/engine/mediaforge
-"mediaforge_foundation_tests" start time: Aug 14 03:34 CEST
+"mediaforge_foundation_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 MediaForge foundation: 25 checks, 0 failures
@@ -146,40 +178,40 @@ MediaForge foundation: 25 checks, 0 failures
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"mediaforge_foundation_tests" end time: Aug 14 03:34 CEST
+"mediaforge_foundation_tests" end time: Aug 14 05:40 CEST
 "mediaforge_foundation_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-10/11 Testing: mediaforge_render_tests
-10/11 Test: mediaforge_render_tests
+12/13 Testing: mediaforge_render_tests
+12/13 Test: mediaforge_render_tests
 Command: "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/engine/mediaforge/mediaforge_render_tests"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/engine/mediaforge
-"mediaforge_render_tests" start time: Aug 14 03:34 CEST
+"mediaforge_render_tests" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 MediaForge render: 28 checks, 0 failures
 <end of output>
-Test time =   0.00 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"mediaforge_render_tests" end time: Aug 14 03:34 CEST
+"mediaforge_render_tests" end time: Aug 14 05:40 CEST
 "mediaforge_render_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-11/11 Testing: mediaforge_architecture_audit
-11/11 Test: mediaforge_architecture_audit
+13/13 Testing: mediaforge_architecture_audit
+13/13 Test: mediaforge_architecture_audit
 Command: "/usr/bin/cmake" "-DMEDIAFORGE_SOURCE_DIR=/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/engine/mediaforge" "-P" "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/engine/mediaforge/cmake/ArchitectureAudit.cmake"
 Directory: /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/engine/mediaforge
-"mediaforge_architecture_audit" start time: Aug 14 03:34 CEST
+"mediaforge_architecture_audit" start time: Aug 14 05:40 CEST
 Output:
 ----------------------------------------------------------
 -- MediaForge architecture audit passed (/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/engine/mediaforge)
 <end of output>
-Test time =   0.07 sec
+Test time =   0.08 sec
 ----------------------------------------------------------
 Test Passed.
-"mediaforge_architecture_audit" end time: Aug 14 03:34 CEST
+"mediaforge_architecture_audit" end time: Aug 14 05:40 CEST
 "mediaforge_architecture_audit" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 14 03:34 CEST
+End testing: Aug 14 05:40 CEST

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/GameLaunchConfig.cpp" "CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o" "gcc" "CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o.d"
+  "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapCatalog.cpp" "CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.o" "gcc" "CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.o.d"
   "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.cpp" "CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o" "gcc" "CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o.d"
   "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PathCurve.cpp" "CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o" "gcc" "CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o.d"
   "/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.cpp" "CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o" "gcc" "CMakeFiles/aegis_core.dir/src/core/PlayableMap.cpp.o.d"

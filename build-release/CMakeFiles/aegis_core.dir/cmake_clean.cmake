@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o"
   "CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.o.d"
+  "CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.o"
+  "CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.o.d"
   "CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o"
   "CMakeFiles/aegis_core.dir/src/core/MapDocument.cpp.o.d"
   "CMakeFiles/aegis_core.dir/src/core/PathCurve.cpp.o"

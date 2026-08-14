@@ -271,6 +271,19 @@ aegis_phase4_tests/fast:
 .PHONY : aegis_phase4_tests/fast
 
 #=============================================================================
+# Target rules for targets named aegis_tower_balance_tests
+
+# Build rule for target.
+aegis_tower_balance_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_tower_balance_tests
+.PHONY : aegis_tower_balance_tests
+
+# fast build rule for target.
+aegis_tower_balance_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/build
+.PHONY : aegis_tower_balance_tests/fast
+
+#=============================================================================
 # Target rules for targets named aegis_e2_slice_tests
 
 # Build rule for target.
@@ -282,6 +295,19 @@ aegis_e2_slice_tests: cmake_check_build_system
 aegis_e2_slice_tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/build
 .PHONY : aegis_e2_slice_tests/fast
+
+#=============================================================================
+# Target rules for targets named aegis_e2_map_selection_tests
+
+# Build rule for target.
+aegis_e2_map_selection_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 aegis_e2_map_selection_tests
+.PHONY : aegis_e2_map_selection_tests
+
+# fast build rule for target.
+aegis_e2_map_selection_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/build
+.PHONY : aegis_e2_map_selection_tests/fast
 
 #=============================================================================
 # Target rules for targets named mediaforge_foundation
@@ -406,6 +432,7 @@ src/Assets.o: src/Assets.cpp.o
 # target to build an object file
 src/Assets.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Assets.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Assets.cpp.o
 .PHONY : src/Assets.cpp.o
 
 src/Assets.i: src/Assets.cpp.i
@@ -414,6 +441,7 @@ src/Assets.i: src/Assets.cpp.i
 # target to preprocess a source file
 src/Assets.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Assets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Assets.cpp.i
 .PHONY : src/Assets.cpp.i
 
 src/Assets.s: src/Assets.cpp.s
@@ -422,6 +450,7 @@ src/Assets.s: src/Assets.cpp.s
 # target to generate assembly for a file
 src/Assets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Assets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Assets.cpp.s
 .PHONY : src/Assets.cpp.s
 
 src/Effects.o: src/Effects.cpp.o
@@ -430,6 +459,7 @@ src/Effects.o: src/Effects.cpp.o
 # target to build an object file
 src/Effects.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Effects.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Effects.cpp.o
 .PHONY : src/Effects.cpp.o
 
 src/Effects.i: src/Effects.cpp.i
@@ -438,6 +468,7 @@ src/Effects.i: src/Effects.cpp.i
 # target to preprocess a source file
 src/Effects.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Effects.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Effects.cpp.i
 .PHONY : src/Effects.cpp.i
 
 src/Effects.s: src/Effects.cpp.s
@@ -446,6 +477,7 @@ src/Effects.s: src/Effects.cpp.s
 # target to generate assembly for a file
 src/Effects.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Effects.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Effects.cpp.s
 .PHONY : src/Effects.cpp.s
 
 src/Enemy.o: src/Enemy.cpp.o
@@ -454,6 +486,7 @@ src/Enemy.o: src/Enemy.cpp.o
 # target to build an object file
 src/Enemy.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Enemy.cpp.o
 .PHONY : src/Enemy.cpp.o
 
 src/Enemy.i: src/Enemy.cpp.i
@@ -462,6 +495,7 @@ src/Enemy.i: src/Enemy.cpp.i
 # target to preprocess a source file
 src/Enemy.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Enemy.cpp.i
 .PHONY : src/Enemy.cpp.i
 
 src/Enemy.s: src/Enemy.cpp.s
@@ -470,6 +504,7 @@ src/Enemy.s: src/Enemy.cpp.s
 # target to generate assembly for a file
 src/Enemy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Enemy.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Enemy.cpp.s
 .PHONY : src/Enemy.cpp.s
 
 src/Map.o: src/Map.cpp.o
@@ -479,6 +514,7 @@ src/Map.o: src/Map.cpp.o
 src/Map.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/src/Map.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Map.cpp.o
 .PHONY : src/Map.cpp.o
 
 src/Map.i: src/Map.cpp.i
@@ -488,6 +524,7 @@ src/Map.i: src/Map.cpp.i
 src/Map.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/src/Map.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Map.cpp.i
 .PHONY : src/Map.cpp.i
 
 src/Map.s: src/Map.cpp.s
@@ -497,6 +534,7 @@ src/Map.s: src/Map.cpp.s
 src/Map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Map.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_game_map_tests.dir/build.make CMakeFiles/aegis_game_map_tests.dir/src/Map.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Map.cpp.s
 .PHONY : src/Map.cpp.s
 
 src/Projectile.o: src/Projectile.cpp.o
@@ -505,6 +543,7 @@ src/Projectile.o: src/Projectile.cpp.o
 # target to build an object file
 src/Projectile.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Projectile.cpp.o
 .PHONY : src/Projectile.cpp.o
 
 src/Projectile.i: src/Projectile.cpp.i
@@ -513,6 +552,7 @@ src/Projectile.i: src/Projectile.cpp.i
 # target to preprocess a source file
 src/Projectile.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Projectile.cpp.i
 .PHONY : src/Projectile.cpp.i
 
 src/Projectile.s: src/Projectile.cpp.s
@@ -521,6 +561,7 @@ src/Projectile.s: src/Projectile.cpp.s
 # target to generate assembly for a file
 src/Projectile.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Projectile.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Projectile.cpp.s
 .PHONY : src/Projectile.cpp.s
 
 src/Tower.o: src/Tower.cpp.o
@@ -529,6 +570,7 @@ src/Tower.o: src/Tower.cpp.o
 # target to build an object file
 src/Tower.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Tower.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Tower.cpp.o
 .PHONY : src/Tower.cpp.o
 
 src/Tower.i: src/Tower.cpp.i
@@ -537,6 +579,7 @@ src/Tower.i: src/Tower.cpp.i
 # target to preprocess a source file
 src/Tower.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Tower.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Tower.cpp.i
 .PHONY : src/Tower.cpp.i
 
 src/Tower.s: src/Tower.cpp.s
@@ -545,6 +588,7 @@ src/Tower.s: src/Tower.cpp.s
 # target to generate assembly for a file
 src/Tower.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_dominion.dir/build.make CMakeFiles/aegis_dominion.dir/src/Tower.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/src/Tower.cpp.s
 .PHONY : src/Tower.cpp.s
 
 src/WaveManager.o: src/WaveManager.cpp.o
@@ -762,6 +806,30 @@ src/core/GameLaunchConfig.s: src/core/GameLaunchConfig.cpp.s
 src/core/GameLaunchConfig.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/GameLaunchConfig.cpp.s
 .PHONY : src/core/GameLaunchConfig.cpp.s
+
+src/core/MapCatalog.o: src/core/MapCatalog.cpp.o
+.PHONY : src/core/MapCatalog.o
+
+# target to build an object file
+src/core/MapCatalog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.o
+.PHONY : src/core/MapCatalog.cpp.o
+
+src/core/MapCatalog.i: src/core/MapCatalog.cpp.i
+.PHONY : src/core/MapCatalog.i
+
+# target to preprocess a source file
+src/core/MapCatalog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.i
+.PHONY : src/core/MapCatalog.cpp.i
+
+src/core/MapCatalog.s: src/core/MapCatalog.cpp.s
+.PHONY : src/core/MapCatalog.s
+
+# target to generate assembly for a file
+src/core/MapCatalog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_core.dir/build.make CMakeFiles/aegis_core.dir/src/core/MapCatalog.cpp.s
+.PHONY : src/core/MapCatalog.cpp.s
 
 src/core/MapDocument.o: src/core/MapDocument.cpp.o
 .PHONY : src/core/MapDocument.o
@@ -1010,6 +1078,7 @@ src/mediaforge/E2Performance.o: src/mediaforge/E2Performance.cpp.o
 src/mediaforge/E2Performance.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2Performance.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/E2Performance.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/src/mediaforge/E2Performance.cpp.o
 .PHONY : src/mediaforge/E2Performance.cpp.o
 
 src/mediaforge/E2Performance.i: src/mediaforge/E2Performance.cpp.i
@@ -1019,6 +1088,7 @@ src/mediaforge/E2Performance.i: src/mediaforge/E2Performance.cpp.i
 src/mediaforge/E2Performance.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2Performance.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/E2Performance.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/src/mediaforge/E2Performance.cpp.i
 .PHONY : src/mediaforge/E2Performance.cpp.i
 
 src/mediaforge/E2Performance.s: src/mediaforge/E2Performance.cpp.s
@@ -1028,6 +1098,7 @@ src/mediaforge/E2Performance.s: src/mediaforge/E2Performance.cpp.s
 src/mediaforge/E2Performance.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/E2Performance.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/E2Performance.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/src/mediaforge/E2Performance.cpp.s
 .PHONY : src/mediaforge/E2Performance.cpp.s
 
 src/mediaforge/MediaForgeAppModel.o: src/mediaforge/MediaForgeAppModel.cpp.o
@@ -1037,6 +1108,7 @@ src/mediaforge/MediaForgeAppModel.o: src/mediaforge/MediaForgeAppModel.cpp.o
 src/mediaforge/MediaForgeAppModel.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeAppModel.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.o
 .PHONY : src/mediaforge/MediaForgeAppModel.cpp.o
 
 src/mediaforge/MediaForgeAppModel.i: src/mediaforge/MediaForgeAppModel.cpp.i
@@ -1046,6 +1118,7 @@ src/mediaforge/MediaForgeAppModel.i: src/mediaforge/MediaForgeAppModel.cpp.i
 src/mediaforge/MediaForgeAppModel.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeAppModel.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.i
 .PHONY : src/mediaforge/MediaForgeAppModel.cpp.i
 
 src/mediaforge/MediaForgeAppModel.s: src/mediaforge/MediaForgeAppModel.cpp.s
@@ -1055,6 +1128,7 @@ src/mediaforge/MediaForgeAppModel.s: src/mediaforge/MediaForgeAppModel.cpp.s
 src/mediaforge/MediaForgeAppModel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_mediaforge_slice.dir/build.make CMakeFiles/aegis_mediaforge_slice.dir/src/mediaforge/MediaForgeAppModel.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_slice_tests.dir/build.make CMakeFiles/aegis_e2_slice_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/src/mediaforge/MediaForgeAppModel.cpp.s
 .PHONY : src/mediaforge/MediaForgeAppModel.cpp.s
 
 src/mediaforge/MediaForgeMain.o: src/mediaforge/MediaForgeMain.cpp.o
@@ -1420,6 +1494,30 @@ src/ui/UiRenderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_ui.dir/build.make CMakeFiles/aegis_ui.dir/src/ui/UiRenderer.cpp.s
 .PHONY : src/ui/UiRenderer.cpp.s
 
+tests/e2_map_selection_tests.o: tests/e2_map_selection_tests.cpp.o
+.PHONY : tests/e2_map_selection_tests.o
+
+# target to build an object file
+tests/e2_map_selection_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/tests/e2_map_selection_tests.cpp.o
+.PHONY : tests/e2_map_selection_tests.cpp.o
+
+tests/e2_map_selection_tests.i: tests/e2_map_selection_tests.cpp.i
+.PHONY : tests/e2_map_selection_tests.i
+
+# target to preprocess a source file
+tests/e2_map_selection_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/tests/e2_map_selection_tests.cpp.i
+.PHONY : tests/e2_map_selection_tests.cpp.i
+
+tests/e2_map_selection_tests.s: tests/e2_map_selection_tests.cpp.s
+.PHONY : tests/e2_map_selection_tests.s
+
+# target to generate assembly for a file
+tests/e2_map_selection_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_e2_map_selection_tests.dir/build.make CMakeFiles/aegis_e2_map_selection_tests.dir/tests/e2_map_selection_tests.cpp.s
+.PHONY : tests/e2_map_selection_tests.cpp.s
+
 tests/e2_slice_tests.o: tests/e2_slice_tests.cpp.o
 .PHONY : tests/e2_slice_tests.o
 
@@ -1612,6 +1710,30 @@ tests/text_service_tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_text_tests.dir/build.make CMakeFiles/aegis_text_tests.dir/tests/text_service_tests.cpp.s
 .PHONY : tests/text_service_tests.cpp.s
 
+tests/tower_balance_tests.o: tests/tower_balance_tests.cpp.o
+.PHONY : tests/tower_balance_tests.o
+
+# target to build an object file
+tests/tower_balance_tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/tests/tower_balance_tests.cpp.o
+.PHONY : tests/tower_balance_tests.cpp.o
+
+tests/tower_balance_tests.i: tests/tower_balance_tests.cpp.i
+.PHONY : tests/tower_balance_tests.i
+
+# target to preprocess a source file
+tests/tower_balance_tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/tests/tower_balance_tests.cpp.i
+.PHONY : tests/tower_balance_tests.cpp.i
+
+tests/tower_balance_tests.s: tests/tower_balance_tests.cpp.s
+.PHONY : tests/tower_balance_tests.s
+
+# target to generate assembly for a file
+tests/tower_balance_tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aegis_tower_balance_tests.dir/build.make CMakeFiles/aegis_tower_balance_tests.dir/tests/tower_balance_tests.cpp.s
+.PHONY : tests/tower_balance_tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1628,6 +1750,7 @@ help:
 	@echo "... aegis_core"
 	@echo "... aegis_core_tests"
 	@echo "... aegis_dominion"
+	@echo "... aegis_e2_map_selection_tests"
 	@echo "... aegis_e2_slice_tests"
 	@echo "... aegis_editor_tests"
 	@echo "... aegis_foundation_tests"
@@ -1636,6 +1759,7 @@ help:
 	@echo "... aegis_phase4_tests"
 	@echo "... aegis_playtest_tests"
 	@echo "... aegis_text_tests"
+	@echo "... aegis_tower_balance_tests"
 	@echo "... aegis_ui"
 	@echo "... mediaforge_engine"
 	@echo "... mediaforge_foundation"
@@ -1687,6 +1811,9 @@ help:
 	@echo "... src/core/GameLaunchConfig.o"
 	@echo "... src/core/GameLaunchConfig.i"
 	@echo "... src/core/GameLaunchConfig.s"
+	@echo "... src/core/MapCatalog.o"
+	@echo "... src/core/MapCatalog.i"
+	@echo "... src/core/MapCatalog.s"
 	@echo "... src/core/MapDocument.o"
 	@echo "... src/core/MapDocument.i"
 	@echo "... src/core/MapDocument.s"
@@ -1768,6 +1895,9 @@ help:
 	@echo "... src/ui/UiRenderer.o"
 	@echo "... src/ui/UiRenderer.i"
 	@echo "... src/ui/UiRenderer.s"
+	@echo "... tests/e2_map_selection_tests.o"
+	@echo "... tests/e2_map_selection_tests.i"
+	@echo "... tests/e2_map_selection_tests.s"
 	@echo "... tests/e2_slice_tests.o"
 	@echo "... tests/e2_slice_tests.i"
 	@echo "... tests/e2_slice_tests.s"
@@ -1792,6 +1922,9 @@ help:
 	@echo "... tests/text_service_tests.o"
 	@echo "... tests/text_service_tests.i"
 	@echo "... tests/text_service_tests.s"
+	@echo "... tests/tower_balance_tests.o"
+	@echo "... tests/tower_balance_tests.i"
+	@echo "... tests/tower_balance_tests.s"
 .PHONY : help
 
 

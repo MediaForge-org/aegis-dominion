@@ -1,12 +1,16 @@
-aegis_core_tests 9 0.00083599
-aegis_text_tests 9 0.00406747
-aegis_editor_tests 8 0.00069933
-aegis_playtest_tests 8 0.000763766
-aegis_game_map_tests 8 0.00188479
-aegis_foundation_tests 8 0.00197139
-aegis_phase4_tests 8 0.00315801
-aegis_e2_slice_tests 8 0.00119047
-mediaforge_foundation_tests 8 0.000461924
-mediaforge_render_tests 8 0.000576193
-mediaforge_architecture_audit 8 0.0091915
+aegis_core_tests 10 0.00137913
+aegis_text_tests 10 0.00468523
+aegis_editor_tests 9 0.000852612
+aegis_playtest_tests 9 0.000667549
+aegis_game_map_tests 9 0.00192632
+aegis_foundation_tests 9 0.00176974
+aegis_phase4_tests 9 0.00256039
+aegis_e2_slice_tests 9 0.00142838
+mediaforge_foundation_tests 9 0.000433201
+mediaforge_render_tests 9 0.00077164
+mediaforge_architecture_audit 9 0.0093811
+aegis_tower_balance_tests 0 0
+aegis_e2_map_selection_tests 0 0
 ---
+aegis_tower_balance_tests
+aegis_e2_map_selection_tests

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "E2Performance.hpp"
+#include "core/GameLaunchConfig.hpp"
+#include "core/MapCatalog.hpp"
 
 #include <array>
 #include <cstddef>
@@ -11,7 +13,7 @@
 
 namespace aegis::mediaforge {
 
-enum class ScreenId { mainMenu, play, mapForge, tutorial, settings };
+enum class ScreenId { mainMenu, mapSelection, gameplay, mapForge, tutorial, settings };
 
 enum class SettingId { verticalSync, fpsLimit, graphicsQuality };
 enum class SettingCategory { display, graphics };
@@ -58,6 +60,7 @@ struct SettingDescriptor {
 
 enum class AppCommand {
     play,
+    startGame,
     mapForge,
     tutorial,
     settings,
@@ -82,7 +85,9 @@ struct RuntimeSettings {
 
 class MediaForgeAppModel {
 public:
-    explicit MediaForgeAppModel(RuntimeSettings settings = {});
+    static constexpr std::size_t visibleMapCapacity = 4;
+
+    explicit MediaForgeAppModel(RuntimeSettings settings = {}, std::vector<core::MapCatalogEntry> maps = {});
 
     [[nodiscard]] ScreenId screen() const noexcept { return screen_; }
     [[nodiscard]] const RuntimeSettings& settings() const noexcept { return settings_; }
@@ -93,6 +98,20 @@ public:
         return ::aegis::mediaforge::settingDescriptor(settings_, id);
     }
     [[nodiscard]] bool quitRequested() const noexcept { return quitRequested_; }
+    [[nodiscard]] const std::vector<core::MapCatalogEntry>& maps() const noexcept { return maps_; }
+    [[nodiscard]] std::optional<std::size_t> selectedMapIndex() const noexcept { return selectedMap_; }
+    [[nodiscard]] const core::MapCatalogEntry* selectedMap() const noexcept;
+    [[nodiscard]] bool isMapSelected(std::size_t index) const noexcept { return selectedMap_ == index; }
+    [[nodiscard]] std::size_t firstVisibleMap() const noexcept { return firstVisibleMap_; }
+    [[nodiscard]] bool canStart() const noexcept;
+    [[nodiscard]] std::string previewIdentity() const;
+    [[nodiscard]] const core::GameSession* gameSession() const noexcept {
+        return gameSession_ ? &*gameSession_ : nullptr;
+    }
+    [[nodiscard]] bool selectMap(std::size_t index);
+    [[nodiscard]] bool moveMapSelection(int direction);
+    [[nodiscard]] bool scrollMaps(int rows);
+    [[nodiscard]] bool startSelectedMap();
     [[nodiscard]] bool activate(AppCommand command);
     [[nodiscard]] bool activateSetting(SettingId id);
     [[nodiscard]] bool back();
@@ -102,6 +121,10 @@ private:
 
     ScreenId screen_{ScreenId::mainMenu};
     RuntimeSettings settings_{};
+    std::vector<core::MapCatalogEntry> maps_;
+    std::optional<std::size_t> selectedMap_;
+    std::size_t firstVisibleMap_{};
+    std::optional<core::GameSession> gameSession_;
     std::vector<ScreenId> history_;
     bool quitRequested_{};
 };

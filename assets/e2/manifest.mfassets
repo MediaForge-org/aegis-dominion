@@ -1,6 +1,9 @@
 MEDIAFORGE_ASSETS_V1
 # asset "logical-id" "path-from-assets" x y width height source-width source-height filter wrap pivot-x pivot-y scale "material" "emissive" "normal" "animation"
 asset "terrain.verdant.composed" "e2/source/verdant_battlefield_2048.png" 0 0 1672 941 1672 941 linear clamp 0.5 0.5 1.0 "terrain-srgb" "-" "-" "-"
+asset "map.preview.verdant_frontier" "maps/verdant.png" 0 0 1200 900 1200 900 linear clamp 0.5 0.5 1.0 "map-preview-srgb" "-" "-" "-"
+asset "map.preview.frost_pass" "maps/frost.png" 0 0 1200 900 1200 900 linear clamp 0.5 0.5 1.0 "map-preview-srgb" "-" "-" "-"
+asset "map.preview.ember_field" "maps/ember.png" 0 0 1200 900 1200 900 linear clamp 0.5 0.5 1.0 "map-preview-srgb" "-" "-" "-"
 
 asset "world.spawn_gate" "e2/source/structures_atlas_1536.png" 0 0 768 512 1536 1024 linear clamp 0.5 0.5 0.48 "armored-emissive" "vfx.amber_halo" "-" "world.spawn_gate.idle"
 asset "world.aegis_core" "e2/source/structures_atlas_1536.png" 768 0 768 512 1536 1024 linear clamp 0.5 0.5 0.46 "armored-emissive" "vfx.cyan_halo" "-" "world.aegis_core.idle"

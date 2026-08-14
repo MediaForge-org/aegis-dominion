@@ -139,7 +139,7 @@ int main() {
         require(application.screen() == aegis::mediaforge::ScreenId::mainMenu && !application.quitRequested(),
                 "MediaForge application must start at its real main menu");
         require(application.activate(aegis::mediaforge::AppCommand::play) &&
-                application.screen() == aegis::mediaforge::ScreenId::play && application.back() &&
+                application.screen() == aegis::mediaforge::ScreenId::mapSelection && application.back() &&
                 application.screen() == aegis::mediaforge::ScreenId::mainMenu, "play transition/back navigation failed");
         require(application.activate(aegis::mediaforge::AppCommand::mapForge) && application.back() &&
                 application.activate(aegis::mediaforge::AppCommand::tutorial) && application.back() &&

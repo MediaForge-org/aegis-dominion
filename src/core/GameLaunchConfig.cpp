@@ -10,4 +10,12 @@ std::optional<GameLaunchConfig> makeMapForgePlaytestLaunch(const MapDocument& do
     return GameLaunchConfig{MapForgePlaytestLaunch{std::move(*playable)}};
 }
 
+const PlayableMap& GameSession::map() const noexcept {
+    return std::visit([](const auto& launch) -> const PlayableMap& { return launch.map; }, launch_);
+}
+
+bool GameSession::isMapForgePlaytest() const noexcept {
+    return std::holds_alternative<MapForgePlaytestLaunch>(launch_);
+}
+
 } // namespace aegis::core

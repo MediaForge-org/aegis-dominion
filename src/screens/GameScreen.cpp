@@ -34,7 +34,7 @@ GameScreen::GameScreen(app::ScreenContext context, core::GameLaunchConfig launch
     : Screen(context), ui_(context.window, context.assets), launch_(std::move(launch)) {
     context_.input.setContext(input::Context::Gameplay);
     if (const auto* standard = std::get_if<core::StandardGameLaunch>(&launch_)) {
-        map_.set(standard->mapIndex);
+        map_.loadFromStandardMap(standard->map);
         logging::log().info("Starting game with map: {} / {}", map_.data().id, map_.data().name);
     } else {
         const auto& playtest = std::get<core::MapForgePlaytestLaunch>(launch_);

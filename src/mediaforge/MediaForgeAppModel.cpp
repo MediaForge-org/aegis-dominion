@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <sstream>
 
 namespace aegis::mediaforge {
 namespace {
@@ -69,7 +70,8 @@ std::optional<SettingDescriptor> settingDescriptor(const RuntimeSettings& settin
     return makeSettingDescriptor(settings, id);
 }
 
-MediaForgeAppModel::MediaForgeAppModel(RuntimeSettings settings) : settings_(settings) {
+MediaForgeAppModel::MediaForgeAppModel(RuntimeSettings settings, std::vector<core::MapCatalogEntry> maps)
+    : settings_(settings), maps_(std::move(maps)) {
     if (std::ranges::find(fpsLimits, settings_.fpsLimit) == fpsLimits.end()) settings_.fpsLimit = 120;
 }
 
@@ -81,14 +83,77 @@ void MediaForgeAppModel::open(ScreenId screen) {
 
 bool MediaForgeAppModel::back() {
     if (history_.empty()) return false;
+    const bool leavingGameplay = screen_ == ScreenId::gameplay;
     screen_ = history_.back();
     history_.pop_back();
+    if (leavingGameplay) gameSession_.reset();
+    return true;
+}
+
+const core::MapCatalogEntry* MediaForgeAppModel::selectedMap() const noexcept {
+    if (!selectedMap_ || *selectedMap_ >= maps_.size()) return nullptr;
+    return &maps_[*selectedMap_];
+}
+
+bool MediaForgeAppModel::canStart() const noexcept {
+    const auto* selected = selectedMap();
+    return selected && selected->valid();
+}
+
+std::string MediaForgeAppModel::previewIdentity() const {
+    const auto* selected = selectedMap();
+    if (!selected || !selected->playable) return {};
+    const auto& map = *selected->playable;
+    std::ostringstream identity;
+    identity << map.id << ':' << map.width << 'x' << map.height << ':' << map.routeId << ':'
+             << map.route.size() << ':' << map.environment.terrainSeed;
+    return identity.str();
+}
+
+bool MediaForgeAppModel::selectMap(std::size_t index) {
+    if (index >= maps_.size() || !maps_[index].valid()) return false;
+    selectedMap_ = index;
+    if (index < firstVisibleMap_) firstVisibleMap_ = index;
+    if (index >= firstVisibleMap_ + visibleMapCapacity) firstVisibleMap_ = index + 1 - visibleMapCapacity;
+    return true;
+}
+
+bool MediaForgeAppModel::moveMapSelection(int direction) {
+    if (maps_.empty() || direction == 0) return false;
+    const int step = direction > 0 ? 1 : -1;
+    std::size_t index = selectedMap_.value_or(step > 0 ? maps_.size() - 1 : 0);
+    for (std::size_t visited = 0; visited < maps_.size(); ++visited) {
+        index = static_cast<std::size_t>((static_cast<long long>(index) + step +
+                                         static_cast<long long>(maps_.size())) %
+                                        static_cast<long long>(maps_.size()));
+        if (maps_[index].valid()) return selectMap(index);
+    }
+    return false;
+}
+
+bool MediaForgeAppModel::scrollMaps(int rows) {
+    if (rows == 0 || maps_.size() <= visibleMapCapacity) return false;
+    const auto maximum = maps_.size() - visibleMapCapacity;
+    const auto next = static_cast<std::size_t>(std::clamp<long long>(
+        static_cast<long long>(firstVisibleMap_) + rows, 0, static_cast<long long>(maximum)));
+    if (next == firstVisibleMap_) return false;
+    firstVisibleMap_ = next;
+    return true;
+}
+
+bool MediaForgeAppModel::startSelectedMap() {
+    const auto* selected = selectedMap();
+    if (!selected || !selected->playable) return false;
+    core::GameLaunchConfig launch{core::StandardGameLaunch{*selected->playable}};
+    gameSession_.emplace(std::move(launch));
+    open(ScreenId::gameplay);
     return true;
 }
 
 bool MediaForgeAppModel::activate(AppCommand command) {
     switch (command) {
-        case AppCommand::play: open(ScreenId::play); break;
+        case AppCommand::play: open(ScreenId::mapSelection); break;
+        case AppCommand::startGame: return startSelectedMap();
         case AppCommand::mapForge: open(ScreenId::mapForge); break;
         case AppCommand::tutorial: open(ScreenId::tutorial); break;
         case AppCommand::settings: open(ScreenId::settings); break;

@@ -4,6 +4,7 @@
 #include "Map.hpp"
 #include "ui/UiRenderer.hpp"
 #include "animation/Tween.hpp"
+#include "core/MapCatalog.hpp"
 
 #include <vector>
 
@@ -29,6 +30,7 @@ private:
 
     ui::UiRenderer ui_;
     GameMap map_;
+    std::vector<core::MapCatalogEntry> mapCatalog_;
     Page page_ = Page::Menu;
     int tutorialPage_ = 0;
     std::vector<Particle> particles_;

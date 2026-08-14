@@ -29,7 +29,8 @@ const std::array<const char*, 6> TutorialBodies = {
 };
 }
 
-MainMenuScreen::MainMenuScreen(app::ScreenContext context, bool openMapSelect) : Screen(context), ui_(context.window, context.assets) {
+MainMenuScreen::MainMenuScreen(app::ScreenContext context, bool openMapSelect)
+    : Screen(context), ui_(context.window, context.assets), mapCatalog_(core::discoverMapCatalog("maps")) {
     context_.input.setContext(input::Context::Menu);
     std::mt19937 random{73};
     std::uniform_real_distribution<float> x(0.f, static_cast<float>(WINDOW_W));
@@ -64,8 +65,10 @@ void MainMenuScreen::click(sf::Vector2f position) {
     } else if (page_ == Page::MapSelect) {
         for (int i = 0; i < 3; ++i) {
             if (sf::FloatRect(70.f + static_cast<float>(i) * 510.f, 220.f, 440.f, 500.f).contains(position)) {
+                const auto catalogIndex = static_cast<std::size_t>(i);
+                if (catalogIndex >= mapCatalog_.size() || !mapCatalog_[catalogIndex].playable) return;
                 app::ScreenRequest request{app::ScreenType::Game};
-                request.gameLaunch = core::GameLaunchConfig{core::StandardGameLaunch{i}};
+                request.gameLaunch = core::GameLaunchConfig{core::StandardGameLaunch{*mapCatalog_[catalogIndex].playable}};
                 context_.screens.replace(std::move(request));
                 return;
             }

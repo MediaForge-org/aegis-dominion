@@ -42,6 +42,7 @@ class GameMap {
 public:
     void set(int index);
     bool loadFromFile(const std::string& file, int visualIndex = 0);
+    void loadFromStandardMap(const aegis::core::PlayableMap& map);
     void loadFromPlayableMap(const aegis::core::PlayableMap& map);
     int index() const { return index_; }
     const MapData& data() const { return data_; }

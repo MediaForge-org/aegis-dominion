@@ -22,6 +22,8 @@ E2 now adds the generic public renderer: `Camera2D`, sprite/geometry submissions
 
 E2.1 adds generic `mf::ui::Canvas`, `Rect` and `Context` contracts for aspect-correct pointer mapping, button state, pointer capture, keyboard focus preparation and input consumption. `mf::ui::SegmentedLevelIndicator` adds game-neutral index/count geometry and generic widget-state/pulse styling. These components contain no AEGIS screen names, setting IDs or copy. `MediaForgeAppModel`, the screen stack, stable setting IDs, categories, types, option lists, German UTF-8 text atlas, main-menu layout and settings composition remain in `src/mediaforge/` and `assets/e2/`. Normal MediaForge startup enters that model; the scripted renderer reference is selected explicitly with `--e2-showcase`.
 
+E2.2 keeps map knowledge in AEGIS. `core::discoverMapCatalog()` orders the three declared built-ins, enumerates other `.aegismap` files as custom/MAP FORGE sources, loads each exactly once through `MapDocument`, derives `PlayableMap` only through authoritative validation, and disables parse/validation failures plus every entry sharing a duplicate stable ID. `MediaForgeAppModel` owns selection, a bounded visible-list offset and `core::GameSession`; MediaForge Engine sees only generic UI and render submissions. Built-in previews use the existing authored map images, while every preview and gameplay presentation overlays the selected map's real route, zones, spawn and goal. Preview textures stay resident, preview identity stays stable while selection is unchanged, and persistent targets eliminate steady-state idle regeneration.
+
 **SFML IS TRANSITIONAL.** The current AEGIS application, UI and world renderer remain operational and are not rewritten in E1. No new SFML dependency may enter gameplay simulation, map data or `src/core/`; long-term presentation work targets MediaForge.
 
 ## Runtime composition
@@ -76,7 +78,7 @@ editor/MapEditorModel                    MapForgeScreen + EditorCamera
 
 `MapDocument::validateDetailed()` returns severity plus object identity/index. MAP FORGE shows errors and warnings and can select referenced path nodes, endpoints and zones. Fatal errors block playtest; warnings do not.
 
-`buildPlayableMap()` selects the first route that has both a spawn and goal, copies route/endpoints/zones and never mutates the source document. `makeMapForgePlaytestLaunch()` wraps that complete value in the `GameLaunchConfig` variant. A normal launch contains `StandardGameLaunch{mapIndex}`; a MAP FORGE launch contains `MapForgePlaytestLaunch{PlayableMap}`. The alternatives cannot be confused through a boolean or missing optional document.
+`buildPlayableMap()` selects the first route that has both a spawn and goal, copies route/endpoints/zones and never mutates the source document. Both launch alternatives own the resulting value: a normal launch contains `StandardGameLaunch{PlayableMap}` and a MAP FORGE launch contains `MapForgePlaytestLaunch{PlayableMap}`. `GameSession` visits the explicit alternative and exposes that exact map. No launch-time integer, filename reload, previous selection, Verdant default or scripted-showcase fallback exists.
 
 `GameMap::loadFromPlayableMap()` consumes the playtest value directly and never calls the standard-map loader. Its SFML-facing adapter applies one deterministic projection from document world space into the current 1200×900 gameplay plane:
 
@@ -102,11 +104,12 @@ Repository/map strings are UTF-8 `std::string`. `ui::TextService` converts them 
 ## Remaining architecture debt
 
 - Gameplay entities still use SFML vectors internally; snapshots isolate rendering, but complete renderer-agnostic combat simulation remains future work.
+- Tower fire still calls the transitional `Assets` and `Effects` facades directly, while projectiles carry SFML position/color and presentation fields. R2 should extract renderer-neutral combat events/state before E2.3–E2.5 consume them; R1 deliberately leaves those algorithms and effects unchanged.
 - Current gameplay supports one active enemy route per match; maps may store several routes and MAP FORGE edits all of them.
 - Map selection/tutorial are menu pages rather than independent screens, although navigation supports extracting them.
 - The inspector uses shared panels/buttons/labels but does not yet provide reflection or complete numeric/text widget editing.
 - MAP FORGE previews terrain and stored decorations flow into playtest, but terrain painting, height sculpting and decoration placement tools are not active yet.
 - Current enemy sheets are single-pose transitional art; external clip definitions and state playback are ready for multi-frame replacements.
 - Waves, economy and balance remain hard-coded.
-- Full gameplay and MAP FORGE still present through SFML. E2.1 adds the real MediaForge menu and secondary-screen flow, but map selection, live simulation and editor migration remain future bounded work.
+- Full gameplay and MAP FORGE still present through SFML. E2.2 adds real map selection and the selected-map session presentation; live waves/enemies/towers/combat and editor migration remain future bounded work.
 - E1 ships a Vulkan/SPIR-V smoke shader path. Portable D3D12/Metal shader artifacts and the public batched renderer arrive in later MediaForge milestones without changing game data.

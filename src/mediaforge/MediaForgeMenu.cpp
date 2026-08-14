@@ -15,10 +15,12 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <cmath>
 #include <filesystem>
 #include <format>
 #include <iostream>
 #include <iterator>
+#include <limits>
 #include <optional>
 #include <span>
 #include <string>
@@ -40,6 +42,13 @@ struct ButtonDefinition {
     std::string_view label;
     std::optional<SettingId> setting;
     bool enabled{true};
+    std::optional<std::size_t> mapIndex;
+
+    constexpr ButtonDefinition(mf::ui::WidgetId widgetId, mf::ui::Rect widgetBounds, AppCommand appCommand,
+                               std::string_view text, std::optional<SettingId> settingId,
+                               bool isEnabled = true, std::optional<std::size_t> map = std::nullopt) noexcept
+        : id(widgetId), bounds(widgetBounds), command(appCommand), label(text), setting(settingId),
+          enabled(isEnabled), mapIndex(map) {}
 };
 
 constexpr std::array mainButtons{
@@ -52,6 +61,14 @@ constexpr std::array mainButtons{
 constexpr std::array backButton{
     ButtonDefinition{10, {{620, 720}, {360, 66}}, AppCommand::back, "ZURÜCK", std::nullopt},
 };
+
+constexpr mf::ui::Rect mapListBounds{{285, 300}, {430, 380}};
+constexpr mf::ui::Rect mapPreviewBounds{{755, 300}, {560, 315}};
+
+mf::ui::Rect mapCardBounds(std::size_t visibleIndex) {
+    return {{mapListBounds.position.x, mapListBounds.position.y + static_cast<float>(visibleIndex) * 94.0F},
+            {mapListBounds.size.x, 82.0F}};
+}
 
 std::vector<ButtonDefinition> buttonsFor(ScreenId screen, const MediaForgeAppModel& application) {
     switch (screen) {
@@ -67,7 +84,24 @@ std::vector<ButtonDefinition> buttonsFor(ScreenId screen, const MediaForgeAppMod
             buttons.push_back({90, {{620, 720}, {360, 66}}, AppCommand::back, "ZURÜCK", std::nullopt, true});
             return buttons;
         }
-        case ScreenId::play:
+        case ScreenId::mapSelection: {
+            std::vector<ButtonDefinition> buttons;
+            const auto first = application.firstVisibleMap();
+            const auto count = std::min(MediaForgeAppModel::visibleMapCapacity,
+                                        application.maps().size() > first ? application.maps().size() - first : 0U);
+            buttons.reserve(count + 2);
+            for (std::size_t visible = 0; visible < count; ++visible) {
+                const auto index = first + visible;
+                buttons.push_back({100U + index, mapCardBounds(visible), AppCommand::back, "", std::nullopt,
+                                   application.maps()[index].valid(), index});
+            }
+            buttons.push_back({80, {{755, 695}, {270, 66}}, AppCommand::startGame, "START", std::nullopt,
+                               application.canStart()});
+            buttons.push_back({81, {{1045, 695}, {270, 66}}, AppCommand::back, "ZURÜCK", std::nullopt, true});
+            return buttons;
+        }
+        case ScreenId::gameplay:
+            return {{82, {{1248, 744}, {298, 66}}, AppCommand::back, "ZURÜCK", std::nullopt, true}};
         case ScreenId::mapForge:
         case ScreenId::tutorial: return {backButton.begin(), backButton.end()};
     }
@@ -293,6 +327,115 @@ void drawScreenHeading(mf::Renderer2D& renderer, const E2AssetCatalog& assets, s
     submitSolid(renderer, {{735, 277}, {130, 3}}, {0.92F, 0.58F, 0.18F, 0.72F}, 226);
 }
 
+std::string ellipsize(std::string_view value, std::size_t maximumGlyphs) {
+    std::size_t offset{};
+    std::size_t glyphs{};
+    while (offset < value.size() && value[offset] != '\n' && glyphs < maximumGlyphs) {
+        offset += decodeUtf8(value, offset).second;
+        ++glyphs;
+    }
+    if (offset == value.size() || (offset < value.size() && value[offset] == '\n')) return std::string(value.substr(0, offset));
+    return std::string(value.substr(0, offset)) + "...";
+}
+
+mf::Color biomeColor(std::string_view biome, float alpha = 1.0F) noexcept {
+    if (biome == "frost") return {0.14F, 0.36F, 0.46F, alpha};
+    if (biome == "ember") return {0.42F, 0.16F, 0.08F, alpha};
+    return {0.10F, 0.31F, 0.23F, alpha};
+}
+
+std::string_view authoredMapPreview(std::string_view id) noexcept {
+    if (id == "verdant_frontier") return "map.preview.verdant_frontier";
+    if (id == "frost_pass") return "map.preview.frost_pass";
+    if (id == "ember_field") return "map.preview.ember_field";
+    return {};
+}
+
+void submitLine(mf::Renderer2D& renderer, mf::Vec2 from, mf::Vec2 to, float thickness,
+                mf::Color color, std::int32_t layer) {
+    const float dx = to.x - from.x;
+    const float dy = to.y - from.y;
+    mf::Sprite2D sprite;
+    sprite.position = {(from.x + to.x) * 0.5F, (from.y + to.y) * 0.5F};
+    sprite.size = {std::sqrt(dx * dx + dy * dy), thickness};
+    sprite.rotationRadians = std::atan2(dy, dx);
+    sprite.color = color;
+    sprite.layer = layer;
+    sprite.space = mf::CoordinateSpace::screen;
+    renderer.submit(sprite);
+}
+
+mf::ui::Rect fittedMapBounds(const core::PlayableMap& map, mf::ui::Rect bounds) {
+    const float scale = std::min(bounds.size.x / map.width, bounds.size.y / map.height);
+    const mf::Vec2 size{map.width * scale, map.height * scale};
+    return {{bounds.position.x + (bounds.size.x - size.x) * 0.5F,
+             bounds.position.y + (bounds.size.y - size.y) * 0.5F}, size};
+}
+
+mf::Vec2 projectMapPoint(const core::PlayableMap& map, mf::ui::Rect fitted, core::Vec2 point) {
+    return {fitted.position.x + point.x / map.width * fitted.size.x,
+            fitted.position.y + point.y / map.height * fitted.size.y};
+}
+
+void drawMapGeometry(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
+                     const core::PlayableMap& map, mf::ui::Rect bounds, std::int32_t layer,
+                     bool useAuthoredPreview) {
+    const auto fitted = fittedMapBounds(map, bounds);
+    const auto preview = useAuthoredPreview ? authoredMapPreview(map.id) : std::string_view{};
+    if (!preview.empty()) {
+        submitAsset(renderer, assets, preview,
+                    {fitted.position.x + fitted.size.x * 0.5F, fitted.position.y + fitted.size.y * 0.5F},
+                    fitted.size, 1.0F, mf::BlendMode::alpha, layer);
+    } else {
+        submitSolid(renderer, fitted, biomeColor(map.biome), layer);
+    }
+    submitSolid(renderer, fitted, {0.01F, 0.025F, 0.032F, useAuthoredPreview ? 0.16F : 0.28F}, layer + 1);
+    for (const auto& zone : map.zones) {
+        const mf::ui::Rect projected{
+            projectMapPoint(map, fitted, {zone.rect.x, zone.rect.y}),
+            {zone.rect.w / map.width * fitted.size.x, zone.rect.h / map.height * fitted.size.y}};
+        mf::Color color{0.15F, 0.76F, 0.49F, 0.14F};
+        if (zone.type == core::ZoneType::Blocked) color = {0.88F, 0.24F, 0.16F, 0.18F};
+        else if (zone.type == core::ZoneType::Water) color = {0.08F, 0.48F, 0.78F, 0.20F};
+        else if (zone.type == core::ZoneType::DecorationOnly) color = {0.66F, 0.48F, 0.18F, 0.14F};
+        submitSolid(renderer, projected, color, layer + 2);
+    }
+    const float pathThickness = std::clamp(fitted.size.y * 0.014F, 3.0F, 12.0F);
+    for (std::size_t index = 0; index + 1 < map.route.size(); ++index) {
+        const auto from = projectMapPoint(map, fitted, map.route[index]);
+        const auto to = projectMapPoint(map, fitted, map.route[index + 1]);
+        submitLine(renderer, from, to, pathThickness + 5.0F, {0.01F, 0.03F, 0.04F, 0.72F}, layer + 3);
+        submitLine(renderer, from, to, pathThickness, {0.25F, 0.83F, 0.88F, 0.92F}, layer + 4);
+    }
+    const auto spawn = projectMapPoint(map, fitted, map.spawn);
+    const auto goal = projectMapPoint(map, fitted, map.goal);
+    const float marker = std::clamp(fitted.size.y * 0.15F, 34.0F, 122.0F);
+    submitAsset(renderer, assets, "world.spawn_gate", spawn, {marker * 1.45F, marker}, 0.96F,
+                mf::BlendMode::alpha, layer + 6);
+    submitAsset(renderer, assets, "world.aegis_core", goal, {marker * 1.38F, marker}, 0.96F,
+                mf::BlendMode::alpha, layer + 6);
+}
+
+void drawMapCard(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
+                 const core::MapCatalogEntry& entry, bool selected, mf::ui::Rect bounds,
+                 mf::ui::WidgetState state) {
+    const bool highlighted = selected || state == mf::ui::WidgetState::hovered ||
+                             state == mf::ui::WidgetState::focused;
+    submitNineSlice(renderer, assets, selected ? "ui.surface.selected" : "ui.surface.action",
+                    bounds.position, bounds.size, 18, 232, entry.valid() ? 0.94F : 0.42F);
+    const auto accent = entry.valid() ? (highlighted ? mf::Color{0.10F, 0.76F, 0.83F, 0.96F}
+                                                   : mf::Color{0.08F, 0.50F, 0.57F, 0.65F})
+                                    : mf::Color{0.80F, 0.23F, 0.17F, 0.82F};
+    submitSolid(renderer, {{bounds.position.x + 10, bounds.position.y + 10}, {5, bounds.size.y - 20}}, accent, 234);
+    submitText(renderer, assets, ellipsize(entry.displayName(), 28),
+               {bounds.position.x + 28, bounds.position.y + 13}, 25, textColor(state), 235);
+    const std::string source = entry.source == core::MapSource::BuiltIn ? "BUILT-IN" : "CUSTOM / MAP FORGE";
+    const std::string detail = entry.valid() ? source + "  //  " + entry.stableId()
+        : "UNGÜLTIG  //  " + ellipsize(entry.error, 31);
+    submitText(renderer, assets, detail, {bounds.position.x + 28, bounds.position.y + 48}, 14,
+               entry.valid() ? mf::Color{0.44F, 0.70F, 0.73F, 1.0F} : mf::Color{0.94F, 0.42F, 0.34F, 1.0F}, 235);
+}
+
 void drawOverlay(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
                  const MediaForgeAppModel& application,
                  std::span<const ButtonDefinition> definitions,
@@ -300,10 +443,16 @@ void drawOverlay(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
                  const std::optional<SettingId>& pulsedSetting, float settingChangePulse) {
     const auto screen = application.screen();
     const bool main = screen == ScreenId::mainMenu;
-    submitNineSlice(renderer, assets, "ui.surface.command", main ? mf::Vec2{500, 72} : mf::Vec2{235, 105},
-                    main ? mf::Vec2{600, 756} : mf::Vec2{1130, 710}, main ? 54.0F : 58.0F, 220, 0.97F);
-    submitSolid(renderer, {{main ? 522.0F : 257.0F, main ? 94.0F : 127.0F},
-                           {main ? 556.0F : 1086.0F, 3}}, {0.08F, 0.67F, 0.75F, 0.62F}, 222);
+    const bool gameplay = screen == ScreenId::gameplay;
+    if (gameplay) {
+        submitNineSlice(renderer, assets, "ui.surface.status", {1218, 28}, {358, 844}, 48, 220, 0.98F);
+        submitSolid(renderer, {{1238, 48}, {318, 3}}, {0.08F, 0.67F, 0.75F, 0.72F}, 222);
+    } else {
+        submitNineSlice(renderer, assets, "ui.surface.command", main ? mf::Vec2{500, 72} : mf::Vec2{235, 105},
+                        main ? mf::Vec2{600, 756} : mf::Vec2{1130, 710}, main ? 54.0F : 58.0F, 220, 0.97F);
+        submitSolid(renderer, {{main ? 522.0F : 257.0F, main ? 94.0F : 127.0F},
+                               {main ? 556.0F : 1086.0F, 3}}, {0.08F, 0.67F, 0.75F, 0.62F}, 222);
+    }
 
     if (main) {
         submitText(renderer, assets, "AEGIS", {800, 122}, 76, {0.76F, 0.94F, 0.97F, 1.0F}, 225, TextAlign::center);
@@ -312,17 +461,63 @@ void drawOverlay(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
                    {0.40F, 0.66F, 0.70F, 0.92F}, 225, TextAlign::center);
         submitText(renderer, assets, "MEDIAFORGE // VULKAN", {800, 770}, 17,
                    {0.38F, 0.52F, 0.55F, 0.86F}, 225, TextAlign::center);
-    } else if (screen == ScreenId::play) {
-        drawScreenHeading(renderer, assets, "KARTENAUSWAHL", "E2.1 // SPIELEN");
-        submitText(renderer, assets, "Interaktive Kartenauswahl folgt in E2.2.", {800, 365}, 30,
-                   {0.80F, 0.89F, 0.91F, 1}, 225, TextAlign::center);
-        submitText(renderer, assets, "Kein automatischer Start der E2-Referenzszene.", {800, 420}, 25,
-                   {0.50F, 0.68F, 0.71F, 1}, 225, TextAlign::center);
-        submitNineSlice(renderer, assets, "ui.surface.selected", {550, 500}, {500, 125}, 34, 224, 0.78F);
-        submitText(renderer, assets, "E2.2  MAP FLOW", {800, 532}, 27,
-                   {0.91F, 0.62F, 0.23F, 1}, 226, TextAlign::center);
-        submitText(renderer, assets, "MIGRATION AUSSTEHEND", {800, 573}, 20,
-                   {0.49F, 0.70F, 0.73F, 1}, 226, TextAlign::center);
+    } else if (screen == ScreenId::mapSelection) {
+        drawScreenHeading(renderer, assets, "MAPAUSWAHL", "E2.2 // EINSATZGEBIET");
+        submitText(renderer, assets, std::format("KARTEN  {}-{} / {}", application.maps().empty() ? 0U : application.firstVisibleMap() + 1,
+                                                std::min(application.maps().size(), application.firstVisibleMap() + MediaForgeAppModel::visibleMapCapacity),
+                                                application.maps().size()),
+                   {285, 278}, 15, {0.43F, 0.68F, 0.71F, 1}, 226);
+        submitNineSlice(renderer, assets, "ui.surface.selected", mapPreviewBounds.position, mapPreviewBounds.size,
+                        30, 224, 0.82F);
+        if (const auto* selected = application.selectedMap(); selected && selected->playable) {
+            const auto& map = *selected->playable;
+            drawMapGeometry(renderer, assets, map,
+                            {{mapPreviewBounds.position.x + 16, mapPreviewBounds.position.y + 16},
+                             {mapPreviewBounds.size.x - 32, mapPreviewBounds.size.y - 32}}, 225, true);
+            submitText(renderer, assets, ellipsize(map.name, 28), {755, 632}, 27,
+                       {0.88F, 0.96F, 0.97F, 1}, 226);
+            submitText(renderer, assets, std::format("ID  //  {}", map.id), {755, 666}, 15,
+                       {0.45F, 0.70F, 0.73F, 1}, 226);
+            const auto& metadata = selected->document->metadata;
+            submitText(renderer, assets,
+                       std::format("{}  //  {} x {}  //  {}  //  {} KNOTEN", map.biome,
+                                   static_cast<int>(map.width), static_cast<int>(map.height),
+                                   metadata.difficulty, map.route.size()),
+                       {755, 786}, 16, {0.52F, 0.72F, 0.74F, 1}, 226);
+        } else {
+            submitText(renderer, assets, "KARTE AUSWÄHLEN", {1035, 424}, 29,
+                       {0.53F, 0.73F, 0.76F, 1}, 226, TextAlign::center);
+            submitText(renderer, assets, "Pfeiltasten oder Maus", {1035, 470}, 19,
+                       {0.39F, 0.58F, 0.61F, 1}, 226, TextAlign::center);
+        }
+    } else if (screen == ScreenId::gameplay) {
+        if (const auto* session = application.gameSession()) {
+            const auto& map = session->map();
+            submitText(renderer, assets, "E2.2", {1397, 78}, 19, {0.94F, 0.62F, 0.23F, 1}, 225, TextAlign::center);
+            submitText(renderer, assets, "GAMEPLAY SESSION", {1397, 108}, 25,
+                       {0.80F, 0.94F, 0.96F, 1}, 225, TextAlign::center);
+            submitText(renderer, assets, ellipsize(map.name, 20), {1248, 168}, 29,
+                       {0.91F, 0.96F, 0.97F, 1}, 225);
+            submitText(renderer, assets, "MAP-ID", {1248, 222}, 15, {0.43F, 0.68F, 0.71F, 1}, 225);
+            submitText(renderer, assets, ellipsize(map.id, 24), {1248, 245}, 19, {0.82F, 0.91F, 0.92F, 1}, 225);
+            submitText(renderer, assets, "DIMENSIONEN", {1248, 295}, 15, {0.43F, 0.68F, 0.71F, 1}, 225);
+            submitText(renderer, assets, std::format("{} x {}", static_cast<int>(map.width), static_cast<int>(map.height)),
+                       {1248, 318}, 20, {0.82F, 0.91F, 0.92F, 1}, 225);
+            submitText(renderer, assets, "PFAD", {1248, 368}, 15, {0.43F, 0.68F, 0.71F, 1}, 225);
+            submitText(renderer, assets, std::format("{} // {} Knoten", map.routeId, map.route.size()),
+                       {1248, 391}, 18, {0.82F, 0.91F, 0.92F, 1}, 225);
+            submitText(renderer, assets, "SPAWN", {1248, 441}, 15, {0.43F, 0.68F, 0.71F, 1}, 225);
+            submitText(renderer, assets, std::format("{}, {}", static_cast<int>(map.spawn.x), static_cast<int>(map.spawn.y)),
+                       {1248, 464}, 18, {0.88F, 0.66F, 0.28F, 1}, 225);
+            submitText(renderer, assets, "ZIEL", {1248, 514}, 15, {0.43F, 0.68F, 0.71F, 1}, 225);
+            submitText(renderer, assets, std::format("{}, {}", static_cast<int>(map.goal.x), static_cast<int>(map.goal.y)),
+                       {1248, 537}, 18, {0.35F, 0.84F, 0.91F, 1}, 225);
+            submitSolid(renderer, {{1248, 586}, {298, 2}}, {0.10F, 0.65F, 0.72F, 0.50F}, 225);
+            submitText(renderer, assets, "E2.3 NICHT GESTARTET", {1397, 617}, 17,
+                       {0.92F, 0.58F, 0.20F, 1}, 225, TextAlign::center);
+            submitText(renderer, assets, "Wellen und Kampf folgen.", {1397, 649}, 16,
+                       {0.48F, 0.67F, 0.70F, 1}, 225, TextAlign::center);
+        }
     } else if (screen == ScreenId::mapForge) {
         drawScreenHeading(renderer, assets, "MAP FORGE", "E2.1 // EDITOR");
         submitText(renderer, assets, "MAP FORGE Migration ausstehend.", {800, 375}, 32,
@@ -359,6 +554,14 @@ void drawOverlay(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
 
     for (std::size_t index = 0; index < definitions.size(); ++index) {
         const auto state = index < buttonStates.size() ? buttonStates[index] : mf::ui::WidgetState::normal;
+        if (definitions[index].mapIndex) {
+            const auto mapIndex = *definitions[index].mapIndex;
+            if (mapIndex < application.maps().size()) {
+                drawMapCard(renderer, assets, application.maps()[mapIndex], application.isMapSelected(mapIndex),
+                            definitions[index].bounds, state);
+            }
+            continue;
+        }
         drawButton(renderer, assets, definitions[index], state, buttonLabel(definitions[index], application));
         if (definitions[index].setting) {
             if (const auto setting = application.settingDescriptor(*definitions[index].setting)) {
@@ -369,7 +572,16 @@ void drawOverlay(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
     }
 }
 
-void drawStaticWorld(mf::Renderer2D& renderer, const E2AssetCatalog& assets) {
+void drawStaticWorld(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
+                     const MediaForgeAppModel& application) {
+    if (application.screen() == ScreenId::gameplay) {
+        if (const auto* session = application.gameSession()) {
+            drawMapGeometry(renderer, assets, session->map(), {{0, 0}, {1200, 900}}, 0, true);
+        }
+        submitSolid(renderer, {{1200, 0}, {400, 900}}, {0.005F, 0.014F, 0.020F, 1.0F}, 20);
+        submitSolid(renderer, {{1198, 0}, {3, 900}}, {0.08F, 0.67F, 0.75F, 0.68F}, 21);
+        return;
+    }
     submitAsset(renderer, assets, "terrain.verdant.composed", {800, 450}, {1600, 900}, 0.38F,
                 mf::BlendMode::opaque, 0, {0.20F, 0.28F, 0.28F, 1});
     submitAsset(renderer, assets, "environment.verdant.grove", {160, 745}, {430, 430}, 0.70F,
@@ -383,7 +595,20 @@ void drawStaticWorld(mf::Renderer2D& renderer, const E2AssetCatalog& assets) {
     submitSolid(renderer, {{0, 0}, {1600, 900}}, {0.01F, 0.025F, 0.032F, 0.50F}, 20);
 }
 
-void drawStaticEmissive(mf::Renderer2D& renderer, const E2AssetCatalog& assets) {
+void drawStaticEmissive(mf::Renderer2D& renderer, const E2AssetCatalog& assets,
+                        const MediaForgeAppModel& application) {
+    if (application.screen() == ScreenId::gameplay) {
+        if (const auto* session = application.gameSession()) {
+            const auto fitted = fittedMapBounds(session->map(), {{0, 0}, {1200, 900}});
+            const auto spawn = projectMapPoint(session->map(), fitted, session->map().spawn);
+            const auto goal = projectMapPoint(session->map(), fitted, session->map().goal);
+            submitAsset(renderer, assets, "vfx.amber_halo", spawn, {260, 180}, 0.26F,
+                        mf::BlendMode::additive, 1);
+            submitAsset(renderer, assets, "vfx.cyan_halo", goal, {260, 180}, 0.28F,
+                        mf::BlendMode::additive, 1);
+        }
+        return;
+    }
     submitAsset(renderer, assets, "vfx.cyan_halo", {800, 180}, {780, 350}, 0.20F,
                 mf::BlendMode::additive, 1);
     submitAsset(renderer, assets, "vfx.amber_halo", {800, 690}, {600, 260}, 0.12F,
@@ -404,13 +629,13 @@ mf::Result<MenuTargets> createTargets(mf::Renderer2D& renderer, GraphicsQuality 
                                                : mf::RenderTargetDescription::Format::rgba8Unorm;
     const auto emissiveFormat = profile.hdrEmissive ? mf::RenderTargetDescription::Format::rgba16Float
                                                      : mf::RenderTargetDescription::Format::rgba8Unorm;
-    auto world = renderer.createRenderTarget({1600, 900, "E2.1 Menu World", worldFormat});
+    auto world = renderer.createRenderTarget({1600, 900, "E2.2 Application World", worldFormat});
     if (!world) return std::unexpected(world.error());
     auto emissive = renderer.createRenderTarget({static_cast<std::uint32_t>(canvasWidth * profile.bloomScale),
                                                   static_cast<std::uint32_t>(canvasHeight * profile.bloomScale),
-                                                  "E2.1 Menu Emissive", emissiveFormat});
+                                                  "E2.2 Application Emissive", emissiveFormat});
     if (!emissive) return std::unexpected(emissive.error());
-    auto overlay = renderer.createRenderTarget({1600, 900, "E2.1 Menu UI",
+    auto overlay = renderer.createRenderTarget({1600, 900, "E2.2 Application UI",
                                                  mf::RenderTargetDescription::Format::rgba8Unorm});
     if (!overlay) return std::unexpected(overlay.error());
     return MenuTargets{std::move(*world), std::move(*emissive), std::move(*overlay)};
@@ -447,7 +672,9 @@ int runInteractiveMenu(const E2RunConfiguration& run) {
     mf::GPUDevice device = std::move(*deviceResult);
 
     RuntimeSettings initialSettings{run.verticalSync, run.fpsLimit == 0 ? 120U : run.fpsLimit, run.quality};
-    MediaForgeAppModel application(initialSettings);
+    std::filesystem::path mapsRoot = "maps";
+    if (!std::filesystem::exists(mapsRoot)) mapsRoot = std::filesystem::path(AEGIS_SOURCE_DIR) / "maps";
+    MediaForgeAppModel application(initialSettings, core::discoverMapCatalog(mapsRoot));
     auto presentMode = applyPresentMode(device, window, application.settings().verticalSync);
     if (!presentMode) return report(presentMode.error());
 
@@ -467,9 +694,10 @@ int runInteractiveMenu(const E2RunConfiguration& run) {
     auto targets = std::move(*targetsResult);
 
     mf::log(mf::LogLevel::info, std::format(
-        "E2.1 interactive menu: backend={} present={} fps_limit={} quality={} assets={} textures={} load_ms={:.2f}",
+        "E2.2 interactive application: backend={} present={} fps_limit={} quality={} maps={} assets={} textures={} load_ms={:.2f}",
         device.backendName(), presentModeName(*presentMode), application.settings().fpsLimit,
-        qualityName(application.settings().quality), assets.assetCount(), assets.textureCount(), assets.loadMilliseconds()));
+        qualityName(application.settings().quality), application.maps().size(), assets.assetCount(),
+        assets.textureCount(), assets.loadMilliseconds()));
 
     mf::EventPump eventPump;
     std::vector<mf::Event> frameEvents;
@@ -524,15 +752,38 @@ int runInteractiveMenu(const E2RunConfiguration& run) {
                 visualStates.assign(definitions.size(), mf::ui::WidgetState::normal);
                 visualScreen = application.screen();
             }
+            worldDirty = true;
             overlayDirty = true;
         }
         if (window.closeRequested()) break;
 
-        if (!definitions.empty() && (input.keyPressed(mf::Key::tab) || input.keyPressed(mf::Key::down))) {
+        bool mapNavigationChanged = false;
+        if (application.screen() == ScreenId::mapSelection) {
+            if (input.keyPressed(mf::Key::down) || input.keyPressed(mf::Key::right)) {
+                mapNavigationChanged = application.moveMapSelection(1);
+            } else if (input.keyPressed(mf::Key::up) || input.keyPressed(mf::Key::left)) {
+                mapNavigationChanged = application.moveMapSelection(-1);
+            }
+            const float wheel = input.wheelDelta().y;
+            if (wheel > 0.0F) mapNavigationChanged = application.scrollMaps(-1) || mapNavigationChanged;
+            else if (wheel < 0.0F) mapNavigationChanged = application.scrollMaps(1) || mapNavigationChanged;
+            if (mapNavigationChanged) {
+                definitions = buttonsFor(application.screen(), application);
+                if (application.selectedMapIndex()) ui.setKeyboardFocus(100U + *application.selectedMapIndex());
+                visualStates.assign(definitions.size(), mf::ui::WidgetState::normal);
+                overlayDirty = true;
+            }
+        }
+
+        if (!definitions.empty() && input.keyPressed(mf::Key::tab)) {
             focusIndex = (focusIndex + 1) % definitions.size();
             ui.setKeyboardFocus(definitions[focusIndex].id);
             overlayDirty = true;
-        } else if (!definitions.empty() && input.keyPressed(mf::Key::up)) {
+        } else if (application.screen() != ScreenId::mapSelection && !definitions.empty() && input.keyPressed(mf::Key::down)) {
+            focusIndex = (focusIndex + 1) % definitions.size();
+            ui.setKeyboardFocus(definitions[focusIndex].id);
+            overlayDirty = true;
+        } else if (application.screen() != ScreenId::mapSelection && !definitions.empty() && input.keyPressed(mf::Key::up)) {
             focusIndex = (focusIndex + definitions.size() - 1) % definitions.size();
             ui.setKeyboardFocus(definitions[focusIndex].id);
             overlayDirty = true;
@@ -561,7 +812,10 @@ int runInteractiveMenu(const E2RunConfiguration& run) {
         if (activated) {
             const auto oldSettings = application.settings();
             const auto oldScreen = application.screen();
-            if (activated->setting) (void)application.activateSetting(*activated->setting);
+            const auto oldPreview = application.previewIdentity();
+            const auto oldFirstVisible = application.firstVisibleMap();
+            if (activated->mapIndex) (void)application.selectMap(*activated->mapIndex);
+            else if (activated->setting) (void)application.activateSetting(*activated->setting);
             else (void)application.activate(activated->command);
             if (application.quitRequested()) window.requestClose();
             if (window.closeRequested()) break;
@@ -591,6 +845,12 @@ int runInteractiveMenu(const E2RunConfiguration& run) {
                 if (!definitions.empty()) ui.setKeyboardFocus(definitions.front().id);
                 visualStates.assign(definitions.size(), mf::ui::WidgetState::normal);
                 visualScreen = application.screen();
+                worldDirty = true;
+            } else if (application.previewIdentity() != oldPreview ||
+                       application.firstVisibleMap() != oldFirstVisible) {
+                definitions = buttonsFor(application.screen(), application);
+                if (application.selectedMapIndex()) ui.setKeyboardFocus(100U + *application.selectedMapIndex());
+                visualStates.assign(definitions.size(), mf::ui::WidgetState::normal);
             }
             overlayDirty = true;
         }
@@ -609,18 +869,18 @@ int runInteractiveMenu(const E2RunConfiguration& run) {
 
         renderer.beginFrame();
         if (worldDirty) {
-            if (!begin(renderer, targets.world, {0.004F, 0.010F, 0.014F, 1}, true, "E2.1 menu world")) return 2;
-            drawStaticWorld(renderer, assets);
+            if (!begin(renderer, targets.world, {0.004F, 0.010F, 0.014F, 1}, true, "E2.2 application world")) return 2;
+            drawStaticWorld(renderer, assets, application);
             if (!end(renderer)) return 2;
-            if (!begin(renderer, targets.emissive, {0, 0, 0, 0}, true, "E2.1 menu emissive")) return 2;
-            drawStaticEmissive(renderer, assets);
+            if (!begin(renderer, targets.emissive, {0, 0, 0, 0}, true, "E2.2 application emissive")) return 2;
+            drawStaticEmissive(renderer, assets, application);
             if (!end(renderer)) return 2;
             worldDirty = false;
         } else {
             renderer.addCachedSprites(9);
         }
         if (overlayDirty) {
-            if (!begin(renderer, targets.overlay, {0, 0, 0, 0}, true, "E2.1 menu UI")) return 2;
+            if (!begin(renderer, targets.overlay, {0, 0, 0, 0}, true, "E2.2 application UI")) return 2;
             drawOverlay(renderer, assets, application, definitions, visualStates,
                         pulsedSetting, settingChangePulse);
             if (!end(renderer)) return 2;

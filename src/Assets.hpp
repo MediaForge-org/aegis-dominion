@@ -22,7 +22,8 @@ public:
 
     void play(const std::string& name, float volume=100.f);
 private:
-    aegis::assets::AssetManager resources_;
+    // Asset lookup is logically const but may populate the owned resource cache.
+    mutable aegis::assets::AssetManager resources_;
     std::map<std::string, sf::Sound> sounds_;
     aegis::ui::TextService text_;
     aegis::animation::AnimationCatalog animations_;

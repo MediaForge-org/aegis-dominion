@@ -2,7 +2,7 @@
 
 > Dieses Repository entwickelt den spielbaren SFML-Prototyp schrittweise zu einer datengetriebenen Architektur weiter. Karten, Editorzustand und Rendering werden getrennt, damit MAP FORGE und ein späterer 3D-Renderer dieselben Inhalte verwenden können.
 
-## MediaForge Engine E2.1
+## MediaForge Engine E2.2
 
 Dieses Repository enthält nun die wiederverwendbare **MediaForge Engine 0.2.0-dev** unter `engine/mediaforge/`. E2 ergänzt E1 um `Camera2D`, einen sortierten/batched `Renderer2D`, Alpha/Additiv-Blending, dynamische Frame-Uploads, Offscreen-RenderTargets, explizite Renderpässe, lineare Licht-/Emissive-Flächen, Bloom/Vignette/Tonemapping, Partikelverträge und Renderstatistiken. Unter `engine/mediaforge/` liegen weiterhin keine Spieltypen oder AEGIS-Assets.
 
@@ -15,7 +15,7 @@ cd build
 ./aegis_mediaforge_slice
 ```
 
-Das Menü bietet `SPIELEN`, `MAP FORGE`, `ANLEITUNG`, `EINSTELLUNGEN` und `BEENDEN`. Maus-Hover/Press, Tastaturfokus, Zurück-Navigation sowie VSync-, FPS-Limit- und Qualitätsänderungen sind funktional. `SPIELEN` öffnet die interaktive E2.2-Kartenauswahl-Vorschau; `MAP FORGE` öffnet den klar gekennzeichneten Migrationshinweis. Der bestehende SFML-Editor bleibt erhalten.
+Das Menü bietet `SPIELEN`, `MAP FORGE`, `ANLEITUNG`, `EINSTELLUNGEN` und `BEENDEN`. Maus-Hover/Press, Tastaturfokus, Zurück-Navigation sowie VSync-, FPS-Limit- und Qualitätsänderungen sind funktional. `SPIELEN` öffnet die reale E2.2-Mapauswahl aus den vorhandenen `.aegismap`-Daten. `START` übergibt exakt die gewählte `PlayableMap` an eine begrenzte echte AEGIS-Gameplay-Session; Wellen, Türme und Kampf beginnen erst mit E2.3 und später. `MAP FORGE` öffnet weiterhin den klar gekennzeichneten Migrationshinweis. Der bestehende SFML-Editor bleibt erhalten.
 
 Die schöne, weiterhin gesondert abzunehmende Verdant-E2-Referenz wird ausdrücklich gestartet:
 
@@ -23,7 +23,7 @@ Die schöne, weiterhin gesondert abzunehmende Verdant-E2-Referenz wird ausdrück
 ./aegis_mediaforge_slice --e2-showcase
 ```
 
-Der SFML-Pfad (`./aegis_dominion`) und E1s Diagnose (`./engine/mediaforge/mediaforge_gpu_smoke`) bleiben erhalten. SDL3 ist exakt auf 3.4.14, `glslc` auf shaderc 2026.1 gepinnt. E2 bleibt offen; E2.1 etabliert nur den ersten funktionalen interaktiven MediaForge-Spielfluss.
+Der SFML-Pfad (`./aegis_dominion`) und E1s Diagnose (`./engine/mediaforge/mediaforge_gpu_smoke`) bleiben erhalten. SDL3 ist exakt auf 3.4.14, `glslc` auf shaderc 2026.1 gepinnt. E2 bleibt offen; E2.2 etabliert Auswahl und Session-Handoff, startet aber weder E2.3 noch die vollständige Gameplay-Migration.
 
 ## V3 milestones already included
 - zentrale UTF-8-/Font-Infrastruktur für deutsche Umlaute und ß

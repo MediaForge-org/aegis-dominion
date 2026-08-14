@@ -318,7 +318,8 @@ CMakeFiles/aegis_dominion.dir/src/main.cpp.o: \
  /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/GameLaunchConfig.hpp \
  /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/PlayableMap.hpp \
  /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/core/MapDocument.hpp \
- /usr/include/c++/16/variant \
+ /usr/include/c++/16/utility /usr/include/c++/16/bits/stl_relops.h \
+ /usr/include/c++/16/bits/intcmp.h /usr/include/c++/16/variant \
  /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/src/input/InputSystem.hpp \
  /usr/include/c++/16/functional /usr/include/c++/16/bits/std_function.h \
  /usr/include/c++/16/bits/binders.h /usr/include/c++/16/bits/funcwrap.h \

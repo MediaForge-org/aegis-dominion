@@ -9,7 +9,9 @@
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/aegis_text_tests.dir
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/aegis_foundation_tests.dir
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/aegis_phase4_tests.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/aegis_tower_balance_tests.dir
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/aegis_e2_slice_tests.dir
+/mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/aegis_e2_map_selection_tests.dir
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/test.dir
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/edit_cache.dir
 /mnt/Festplatte/Schreibtisch/Projekte/aegis_dominion/build-release/CMakeFiles/rebuild_cache.dir

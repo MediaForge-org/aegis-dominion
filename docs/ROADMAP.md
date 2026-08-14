@@ -51,7 +51,10 @@
 - **E1:** Engine boundary, SDL3, SDL_GPU, GPU bootstrap, triangle and textured quad.
 - **E2 (technical implementation complete; visual review pending):** 2D renderer, batching, camera, targets, lighting/post and the first MediaForge Verdant slice.
 - **E2.1 (implemented; manual visual/input acceptance pending):** real MediaForge main menu, secondary screens, tutorial, live performance settings, clean quit and explicit Verdant showcase mode. E2 remains open.
-- **E2.2 (not started):** replace the temporary play destination with functional map selection and its data-driven preview/selection flow.
+- **E2.2 (implemented; manual Fedora visual/input acceptance pending):** real built-in/custom map discovery, validation, selection, data-driven preview and exact selected-map `GameSession` handoff. E2 remains open.
+- **E2.3 (not started):** live wave/enemy migration into the selected MediaForge gameplay session.
+- **E2.4 (not started):** tower building and placement migration.
+- **E2.5 (not started):** combat, targeting and projectile/VFX integration.
 - **E3:** Connect the approved E2 presentation to live simulation/maps; replace baked terrain/road with data-driven layered materials and add water/environment authoring parity.
 - **E4:** Enemies, towers, projectiles and VFX migration.
 - **E5:** UI, text and MAP FORGE rendering migration.
@@ -69,4 +72,4 @@ E2 integrates high-quality authored Verdant terrain and road, environment, Spawn
 
 Technical E2 completion does not grant artistic acceptance. After visual approval, E3 should preserve the accepted composition while replacing fixed reference data with live map/simulation state, runtime terrain/road layers, water, animation clips and runtime text.
 
-E2.1 does not start E3 and does not claim gameplay migration. It establishes only the first functional interactive MediaForge game flow.
+E2.2 does not start E2.3 or E3 and does not claim live gameplay migration. It establishes the real map-selection and selected-session boundary only.
